@@ -3,18 +3,17 @@ import Swal from 'sweetalert2';
 import {Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-active-list',
+  templateUrl: './active-list.component.html',
+  styleUrls: ['./active-list.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'peso_project';
-
-
+export class ActiveListComponent implements OnInit, OnDestroy {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
   allUsers: any = [];
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -47,4 +46,5 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
+
 }
