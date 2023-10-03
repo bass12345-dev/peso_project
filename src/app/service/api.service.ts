@@ -32,12 +32,21 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/search-query`,data);
       }
 
+      //Add Data
+      addData(body: any){
+
+      }
+
 
   //GET
 
   count_all(){
     return this.http.get<any[]>(`${this.apiUrl}/api/count_all`);
   }
+
+  getList(status : any =""){
+      return this.http.get<any[]>(`${this.apiUrl}/api/person?type=` + status);
+  } 
 
   //PUT
 

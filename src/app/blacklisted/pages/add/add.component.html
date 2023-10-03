@@ -1,0 +1,50 @@
+
+<div class="card" style="width: 100%;">
+    <div class="card-header">
+      <span style="font-size: 20px;">Add Person</span>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-danger" hidden role="alert">
+       
+      </div>
+      <form class="row g-3" id="add-form">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">First Name<span class="text-danger">*</span></label>
+          <input type="text"  class="form-control" name="first_name"  required="">
+         
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label is-invalid">Last Name<span class="text-danger">*</span></label>
+          <input type="text" class="form-control"  name="last_name" >
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Middle Name <span class="text-danger">*</span></label>
+          <input type="text"   class="form-control" name="middle_name"  >
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Extension <span class="text-danger">*</span></label>
+          <input type="text"  class="form-control" name="extension" >
+          <small>Jr, Sr ...</small>
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
+          <select style="border: 1px solid;" class="form-control" name="barangay" >
+            <option value="0">Select Barangay...</option>
+            <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Phone Number <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" name="phone_number"   placeholder="">
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Email Address <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" name="email_address"   placeholder="">
+        </div>
+        
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary add"  >Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -17,6 +17,11 @@ import {MatTableModule} from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ActiveListComponent } from './pages/active-list/active-list.component';
 import {DataTablesModule} from 'angular-datatables';
+import { AddComponent } from './pages/add/add.component';
+import { InactiveListComponent } from './pages/inactive-list/inactive-list.component';
+import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
+import { PersonInfoComponent } from './pages/view-profile/components/person-info/person-info.component';
+import { PersonRecordsComponent } from './pages/view-profile/components/person-records/person-records.component';
 
 
 
@@ -28,6 +33,11 @@ import {DataTablesModule} from 'angular-datatables';
     CountCardComponent,
     SearchComponent,
     ActiveListComponent,
+    AddComponent,
+    InactiveListComponent,
+    ViewProfileComponent,
+    PersonInfoComponent,
+    PersonRecordsComponent,
 
    
   ],
