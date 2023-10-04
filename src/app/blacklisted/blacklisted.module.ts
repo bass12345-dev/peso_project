@@ -22,7 +22,9 @@ import { InactiveListComponent } from './pages/inactive-list/inactive-list.compo
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 import { PersonInfoComponent } from './pages/view-profile/components/person-info/person-info.component';
 import { PersonRecordsComponent } from './pages/view-profile/components/person-records/person-records.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -54,6 +56,9 @@ import { PersonRecordsComponent } from './pages/view-profile/components/person-r
     MatTableModule,
     MatProgressBarModule,
     DataTablesModule,
+    MatFormFieldModule,
+    MatInputModule,  
+    MatPaginatorModule,
     
   ]
 })

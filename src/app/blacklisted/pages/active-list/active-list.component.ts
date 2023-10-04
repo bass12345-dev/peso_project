@@ -1,9 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import {Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
+import * as XLSX from 'xlsx';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -11,46 +14,91 @@ import { Router } from '@angular/router';
   templateUrl: './active-list.component.html',
   styleUrls: ['./active-list.component.css']
 })
-export class ActiveListComponent implements OnInit, OnDestroy {
-  dtOptions: any = {};
-  dtTrigger: Subject<any> = new Subject<any>();
-  allUsers: any = [];
-  list : any = [];
-  constructor(
-    private apiService : ApiService, 
-    public router: Router){
-  }
-  ngOnInit(): void {
-    
-    // this.users();
-    this.get_list();
-    
-    this.dtOptions = {
-     
+export class ActiveListComponent  {
   
-      dom: 'Bfrtip',
-   
-      buttons: [
-    
-        'copy',
-        'print',
-        'excel',
-    
-      ]
-    };
+  displayedColumns: string[] = ['name', 'address', 'email', 'phone_number','action'];
+  public dataSource = new MatTableDataSource<any>();
+  type: string = 'active';
+  showLoading : boolean = false;
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
 
-  }
-
-  get_list(){
-          this.apiService.getList('active').subscribe((items : any = []) => {
-            this.list = items;
-            this.dtTrigger.next(this.list);
-          });
-  }
+  constructor(
+              private apiService :ApiService, 
+              public router: Router,
+            
+              ){}
 
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
+ngOnInit() {this.getData();}
+
+ doFilter = (value: any) => {
+  this.dataSource.filter = value.target.value.trim().toLocaleLowerCase();
+}
+
+
+ getData(){
+  this.apiService.getList(this.type).subscribe((items: any[]) => {
+
+    this.dataSource.data = items;
+    this.showLoading = true;
+
+  });
+
+}
+
+export(){
+  let timeSpan = new Date().toISOString();
+  let prefix = "Active";
+  let fileName = `${prefix}-${timeSpan}`;
+  let targetTableElm = document.getElementById('excel-table');
+  let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
+  XLSX.writeFile(wb, `${fileName}.xlsx`);
+}
+ngAfterViewInit(): void {
+ 
+  this.dataSource.paginator = this.paginator;
+}
+
+remove(id:any){
+
+  let item = 'inactive';
+
+  Swal.fire({
+    title: '',
+    text: "Remove this person in the list",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.apiService.remove(id,item).subscribe((data : any) =>{
+        if(data.response){
+          Swal.fire(
+            data.message,
+            '',
+            'success'
+          )
+          this.getData();
+        }else {
+          alert(data.message)
+        }
+      });
+
+    }
+  })
+
+
+  
+}
+
+
+view_records(id:any){
+
+  this.router.navigate(['/blacklisted/view_records/' + id]);
+
+}
 
 }

@@ -33,8 +33,8 @@ export class ApiService {
       }
 
       //Add Data
-      addData(body: any){
-
+      addData(data: any){
+        return this.http.post(`${this.apiUrl}/api/add`,data);
       }
 
 
@@ -50,7 +50,23 @@ export class ApiService {
 
   //PUT
 
+    set_active(id:any, item : any){
+
+      return this.http.put(`${this.apiUrl}/api/set-active/` + id,item);
+  
+    }
+
+    remove(id:any, item : any){
+      return this.http.put(`${this.apiUrl}/api/remove/` + id,item);
+    }
+
   //DELETE
+    
+
+    delete(id : any){
+
+      return this.http.delete(`${this.apiUrl}/api/delete/` + id);
+    }
 
 
 
