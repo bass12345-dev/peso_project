@@ -48,7 +48,28 @@ export class ApiService {
       return this.http.get<any[]>(`${this.apiUrl}/api/person?type=` + status);
   } 
 
+    //Get Person Data
+  getPersonData(id:any): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/api/person_info?id=` + id);
+    }
+
+    //Get Records
+    getRecords(id:any): Observable<any[]>{
+
+      return this.http.get<any[]>(`${this.apiUrl}/api/get_records?id=` + id);
+  }
+
+
+
+  check_person(id:any){
+    return this.http.get<any[]>(`${this.apiUrl}/api/check_person?id=` + id);
+  }
+
   //PUT
+
+  add_record(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/add_record/` + id,params);
+  }
 
     set_active(id:any, item : any){
 
@@ -60,6 +81,10 @@ export class ApiService {
       return this.http.put(`${this.apiUrl}/api/remove/` + id,item);
     }
 
+    update_person_info(id:any,params : any){
+      return this.http.put(`${this.apiUrl}/api/update-person-info/` + id,params);
+    }
+  
   //DELETE
     
 
@@ -68,6 +93,10 @@ export class ApiService {
       return this.http.delete(`${this.apiUrl}/api/delete/` + id);
     }
 
+
+    delete_record(id:any){
+      return this.http.delete(`${this.apiUrl}/api/delete-record/` + id);
+    }
 
 
 

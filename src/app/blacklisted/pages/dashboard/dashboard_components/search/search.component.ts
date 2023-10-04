@@ -24,7 +24,11 @@ export class SearchComponent {
   }
 
   search(){
-    let params = {first_name : this.first_name,last_name : this.last_name}
+
+    if(this.first_name == '' && this.last_name == ''){
+        alert('Please Fill Up at least one');
+    }else {
+      let params = {first_name : this.first_name,last_name : this.last_name}
       this.showLoading = false;
       this.apiService.searchName(params).subscribe((data : any) =>{
         this.dataSource =  data;
@@ -32,9 +36,13 @@ export class SearchComponent {
         this.display_count = this.count_text +' '+ data.length;
         this.showLoading = true;
       });  
+
+    }
+   
   }
 
   view_records(id:string){
+      this.router.navigate(['/blacklisted/view/' + id]);
 
   }
 

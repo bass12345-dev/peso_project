@@ -1,1 +1,19 @@
-<p>view-profile works!</p>
+<div class="header-title mb-2">
+    <h1>Profile</h1>
+    <button class="btn"  (click)="back()" ><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
+</div>
+  <div class="card p-3" style="border: 1px solid;">
+    <div class="row">
+      <div class="col-md-12">
+        <app-person-info></app-person-info>
+        <!-- <app-person-info [message]="message"></app-person-info> -->
+      </div>
+      
+    </div>
+    <div class="row">
+      
+        <app-person-records [id]="id"></app-person-records>
+        <!-- <app-records-table [message]="message"></app-records-table> -->
+      
+    </div>
+  </div>

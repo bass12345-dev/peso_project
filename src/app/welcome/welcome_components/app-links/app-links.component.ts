@@ -33,8 +33,19 @@ export class AppLinksComponent {
       if (result.isConfirmed) {
         let params = {'code' : result.value};
 
+        Swal.fire({
+          title: 'Verifying...',
+          html: 'Please wait...',
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading()
+          }
+        });
+
         this.apiService.VerifyCode(params).subscribe((data : any) =>{
           if(data.response){
+            Swal.close()
             localStorage.setItem('permissions', '1');
             this.router.navigate(['/blacklisted/dashboard']);
           }else {
@@ -51,5 +62,28 @@ export class AppLinksComponent {
       }
       
     })
+  }
+
+  open_document(){
+
+    Swal.fire({
+      title: 'Login As',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: `User`,
+      denyButtonText: `Admin`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/blacklisted/dashboard']);
+
+      } else if (result.isDenied) {
+        this.router.navigate(['/blacklisted/dashboard']);
+       
+      }
+    })
+  }
+
+  open_user(){
+    alert('asd');
   }
 }

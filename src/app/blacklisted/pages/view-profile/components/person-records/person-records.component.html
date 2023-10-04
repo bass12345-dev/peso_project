@@ -1,1 +1,57 @@
-<p>person-records works!</p>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-2 border border-dark" >
+            
+            <!-- <button class="btn btn-secondary w-50 mb-2"><i class="fas fa-plus m-1"></i>Add New Record</button> -->
+            
+            <table mat-table  [dataSource]="dataSource" >
+                <ng-container matColumnDef="record">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Record</th>
+                <td mat-cell *matCellDef="let element"> {{element.record_description }} </td>
+                </ng-container>
+            
+            
+                <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created </th>
+                <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action" >
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Action </th>
+                    <td mat-cell *matCellDef="let element"><button class="btn" (click)="delete_record(element.record_id)"><i class="fas fa-trash text-danger"></i></button></td>
+                    </ng-container>
+    
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div  [hidden]="showLoading">
+                <mat-progress-bar    mode="query" ></mat-progress-bar>
+            </div>
+    
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3 mt-2" style="border: 1px solid;">
+            <div class="row">
+                <div class="col-md-12">
+                  <form >
+                    <label class="mb-2">Add Record</label>
+                    <textarea style="width: 100%; height: 150px;" [(ngModel)]="record" name="record" class="form-control" ></textarea>
+                    <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2" (click)="submit()" > 
+                        <div class="spinner-border" role="status" [hidden]="spinner">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      Submit
+                    </button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
+
+

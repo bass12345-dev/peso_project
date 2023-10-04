@@ -1,1 +1,59 @@
-<p>person-info works!</p>
+<div class="card mb-4 border border-dark">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Full Name</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0">{{person.first_name}}</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Email</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0">{{ person.email_address}}</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Phone Number</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0">{{ person.phone_number}}</p>
+        </div>
+      </div>
+      <hr>
+     
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Address</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0">{{ person.address}}</p>
+        </div>
+      </div>
+
+      <hr>
+     
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Status</p>
+        </div>
+        <div class="col-sm-9">
+          <button class="btn btn-rounded " style="border: 25px;"   [ngClass]="{' btn-danger': status === 'Active', ' btn-warning' : status === 'Inactive'  }" >{{status}}</button>
+        </div>
+      </div>
+
+      <hr>
+     
+      <div class="row">
+        <div class="col-sm-12">
+          <a href="javascript:;"  style="width: 100%;" class="btn btn-success btn-rounded p-1 pl-2 pr-2 float-right" (click)="update()">Update</a>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,6 +1,4 @@
-<div class="header-title">
-    <h1>Remove From Blacklisted</h1>
-</div>
+<app-title [title]="title"></app-title>
 <div class="card p-3" style="border: 1px solid;">
     <mat-form-field appearance="fill">
         <mat-label>Filter</mat-label>
@@ -8,6 +6,7 @@
     </mat-form-field>
     <div class="export-container mb-2">
         <button mat-raised-button color="primary" (click)="export()">
+        <i class="fas fa-file-excel-o"></i>
           Export
         </button>
       </div>

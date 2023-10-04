@@ -20,6 +20,7 @@ export class ActiveListComponent  {
   public dataSource = new MatTableDataSource<any>();
   type: string = 'active';
   showLoading : boolean = false;
+  title = 'List of Blacklisted';
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   constructor(
@@ -47,12 +48,20 @@ ngOnInit() {this.getData();}
 }
 
 export(){
+  Swal.fire({
+    title: 'Verifying...',
+    html: 'Please wait...',
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    
+  });
   let timeSpan = new Date().toISOString();
   let prefix = "Active";
   let fileName = `${prefix}-${timeSpan}`;
   let targetTableElm = document.getElementById('excel-table');
   let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
   XLSX.writeFile(wb, `${fileName}.xlsx`);
+
 }
 ngAfterViewInit(): void {
  
@@ -97,7 +106,7 @@ remove(id:any){
 
 view_records(id:any){
 
-  this.router.navigate(['/blacklisted/view_records/' + id]);
+  this.router.navigate(['/blacklisted/view/' + id]);
 
 }
 

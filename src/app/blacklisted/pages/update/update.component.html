@@ -1,0 +1,50 @@
+<app-title [title]="title"></app-title>
+<app-title></app-title>
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+      <form class="row g-3" id="add-form" [formGroup]="addForm" (ngSubmit)="update()">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">First Name<span class="text-danger">*</span></label>
+          <input type="text" formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" class="form-control" name="first_name"  required="">
+         
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label is-invalid">Last Name<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" formControlName="lastName"  [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }" name="last_name" >
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Middle Name <span class="text-danger">*</span></label>
+          <input type="text"  formControlName="middleName"  class="form-control" name="middle_name"  >
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Extension <span class="text-danger">*</span></label>
+          <input type="text" formControlName="extension"  class="form-control" name="extension" >
+          <small>Jr, Sr ...</small>
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
+          <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" >
+            <option value="" selected>Select Barangay...</option>
+            <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Phone Number <span class="text-danger">*</span></label>
+          <input type="text" formControlName="phoneNumber" class="form-control" name="phone_number"   placeholder="">
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Email Address <span class="text-danger">*</span></label>
+          <input type="email" formControlName="emailAddress" [ngClass]="{ 'is-invalid': submitted && f['emailAddress'].errors }" class="form-control" name="emailAddress"   placeholder="">
+        </div>
+        
+        <div class="col-12">
+            <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+                <div class="spinner-border" role="status" [hidden]="spinner">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              Submit
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>

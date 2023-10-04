@@ -25,6 +25,15 @@ import { PersonRecordsComponent } from './pages/view-profile/components/person-r
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatPaginatorModule } from '@angular/material/paginator';
+import { TitleComponent } from './components/title/title.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarModule,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { UpdateComponent } from './pages/update/update.component';
+import { SecurityCodeComponent } from './pages/security-code/security-code.component';
 
 
 @NgModule({
@@ -40,6 +49,9 @@ import {MatPaginatorModule } from '@angular/material/paginator';
     ViewProfileComponent,
     PersonInfoComponent,
     PersonRecordsComponent,
+    TitleComponent,
+    UpdateComponent,
+    SecurityCodeComponent,
 
    
   ],
@@ -59,6 +71,8 @@ import {MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,  
     MatPaginatorModule,
+    MatSnackBarModule
+  
     
   ]
 })
