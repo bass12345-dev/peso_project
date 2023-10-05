@@ -1,0 +1,36 @@
+
+<div class="card" style="width: 100%;">
+    <div class="card-header">
+      <button class="btn" (click)="back()" ><i style="font-size: 25px;" class="fa fa-arrow-left "></i></button>
+      <span style="font-size: 20px;">Add Document</span>
+     
+    </div>
+    <div class="card-body">
+
+      <form class="row g-3" [formGroup]="addForm" (ngSubmit)="onSubmit()" >
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Document Name<span class="text-danger">*</span></label>
+          <input type="text"class="form-control"  name="document_name" formControlName="document_name"  [ngClass]="{ 'is-invalid': submitted && f['document_name'].errors }" >
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label is-invalid">Document Type<span class="text-danger">*</span></label>
+          <select  class="form-control" name="document_type" formControlName="document_type"  [ngClass]="{ 'is-invalid': submitted && f['document_type'].errors }"  >
+            <option value="">Select Document Types...</option>
+            <option   *ngFor="let row of types; let index = index" value="{{row.type_id}}" >{{ row.type_name }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Description <span class="text-danger">*</span></label>
+          <textarea class="form-control"   name="description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" ></textarea>
+        </div>
+        <div class="col-12">
+          <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+              <div class="spinner-border" role="status" [hidden]="spinner">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            Submit
+          </button>
+      </div>
+      </form>
+    </div>
+  </div>

@@ -21,6 +21,10 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyDocumentsComponent } from './pages/my-documents/my-documents.component';
 import { TitleComponent } from '../components/title/title.component';
+import { IncomingComponent } from './pages/incoming/incoming.component';
+import { ReceivedComponent } from './pages/received/received.component';
+import { ForwardedComponent } from './pages/forwarded/forwarded.component';
+import { AddDocumentComponent } from './pages/add-document/add-document.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { TitleComponent } from '../components/title/title.component';
     LoginComponent,
     DashboardComponent,
     MyDocumentsComponent,
+    IncomingComponent,
+    ReceivedComponent,
+    ForwardedComponent,
+    AddDocumentComponent,
     
 
   ],

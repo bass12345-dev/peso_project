@@ -59,7 +59,7 @@ export class LoginComponent {
       if(data.response){
 
         Swal.close()
-        localStorage.setItem('user-document', '1');
+        localStorage.setItem('id', data.data);
         this.router.navigate(['/document/user/dashboard']);
       
       }else {

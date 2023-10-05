@@ -9,3 +9,23 @@
         </div> 
     </div>
 </div>
+
+<div class="card p-3" style="border: 1px solid;">
+    <mat-form-field appearance="fill">
+        <mat-label>Filter</mat-label>
+        <input matInput  placeholder="Search columns" #input>
+    </mat-form-field>
+    <div class="export-container mb-2">
+        <button mat-raised-button color="primary" >
+          <i class="fas fa-file-excel-o"></i>
+          Export
+        </button>
+        <button routerLink="../add-documents" mat-raised-button color="accent" class="pull-right" >
+            <i class="fas fa-plus"></i>
+            Add Document
+          </button>
+      </div>
+      
+ 
+  </div>
+  

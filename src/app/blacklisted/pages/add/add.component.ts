@@ -63,6 +63,7 @@ export class AddComponent implements OnInit {
         this.alert_(data.message);
         this.button_dis = false;
         this.spinner = true;
+        this.addForm.reset();
       }else {
         this.alert_(data.message)
         this.button_dis = false;
