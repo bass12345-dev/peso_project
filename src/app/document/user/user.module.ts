@@ -17,12 +17,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { LoginComponent } from './pages/auth/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MyDocumentsComponent } from './pages/my-documents/my-documents.component';
+import { TitleComponent } from '../components/title/title.component';
 
 @NgModule({
   declarations: [
     UserComponent,
-    UserNavigationComponent
+    UserNavigationComponent,
+    LoginComponent,
+    DashboardComponent,
+    MyDocumentsComponent,
+    
+
   ],
   imports: [
     CommonModule,

@@ -24,6 +24,7 @@ import { OfficesComponent } from './pages/offices/offices.component';
 import { TitleComponent } from '../components/title/title.component';
 import { DocumentTypesComponent } from './pages/document-types/document-types.component';
 import { UsersComponent } from './pages/users/users.component';
+import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
 
 
 
@@ -37,7 +38,8 @@ import { UsersComponent } from './pages/users/users.component';
     OfficesComponent,
     TitleComponent,
     DocumentTypesComponent,
-    UsersComponent
+    UsersComponent,
+    AllDocumentsComponent
   
   ],
   imports: [

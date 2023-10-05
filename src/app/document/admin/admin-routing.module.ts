@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { OfficesComponent } from './pages/offices/offices.component';
 import { DocumentTypesComponent } from './pages/document-types/document-types.component';
 import { UsersComponent } from './pages/users/users.component';
+import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent,
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path : 'offices', component : OfficesComponent},
     { path : 'document-types', component : DocumentTypesComponent},
     { path : 'users', component : UsersComponent},
+    { path : 'documents', component : AllDocumentsComponent},
     
   ] }];
 

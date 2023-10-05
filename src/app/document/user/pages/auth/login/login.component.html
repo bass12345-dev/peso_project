@@ -18,31 +18,37 @@
                       </div>
                    </div>
                    <div class="p-2 mt-2">
-                      <form id="login-form" >
+                      <form id="add-form"  [formGroup]="addForm" (ngSubmit)="onSubmit()">
                          <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
+                            <input type="text" class="form-control" name="username" formControlName="username"  [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" placeholder="Enter username" >
                          </div>
                          <div class="mb-3">
                             <label class="form-label" for="password-input">Password</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="password" class="form-control pe-5" placeholder="Enter password" id="password-input" name="password" required>
+                               <input type="password" class="form-control pe-5" placeholder="Enter password" formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" name="password" >
                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon"><i class="fas fa-key align-middle"></i></button>
                             </div>
                          </div>
-                         <div class="mt-4">
-                            <button routerLink="../user/dashboard" class="btn  w-100 login" style="background-color: #0061f2; color: #fff" type="button">Sign In 
-                            </button>
-                            <div class="mt-2">
+                         
+                         <div class="mt-2">
+                           <button [disabled]="button_dis" type="submit" class="btn btn-primary w-100"  > 
+                               <div class="spinner-border" role="status" [hidden]="spinner">
+                               <span class="visually-hidden">Loading...</span>
+                             </div>
+                             Submit
+                           </button>
+                        </div>
+                     </form>
+                         <div class="mt-2">
                                <button  routerLink="../../document/register" class="btn  w-100 login btn-secondary"  type="button">Register 
                                </button>
-                            </div>
                          </div>
                          <div class="mt-2">
                             <button routerLink="../track" class="btn  w-100 track btn-success" type="button"> Track Document
                             </button>                             
                          </div>
-                      </form>
+                     
                    </div>
                 </div>
                 <!-- end card body -->

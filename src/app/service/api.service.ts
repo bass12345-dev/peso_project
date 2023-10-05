@@ -115,6 +115,10 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/add-document-type`,data);
       }
 
+      verifyUser(body:any){
+        return this.http.post(`${this.apiUrl}/api/verify-user`,body);
+      }
+
 
   //GET
 
@@ -126,14 +130,11 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/api/get-document-types`);
   } 
 
+  getUsers(type:any): Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiUrl}/api/get-users?type=` + type);;
+  }
 
 
-
-
-    //Get Person Data
-
-
-    //Get Records
 
 
   //PUT
