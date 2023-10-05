@@ -47,10 +47,20 @@ export class PersonRecordsComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.showLoading = false;
+        Swal.fire({
+          title: 'Deleting...',
+          html: 'Please wait...',
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading()
+          }
+        });
         this.apiService.delete_record(id).subscribe((data : any) =>{
           if(data.response){
             this.alert_(data.message);
             this.get_records();
+            Swal.close();
             this.showLoading = true;
           }else {
             alert(data.message)

@@ -74,10 +74,10 @@ export class AppLinksComponent {
       denyButtonText: `Admin`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['/blacklisted/dashboard']);
+        this.router.navigate(['../document/login']);
 
       } else if (result.isDenied) {
-        this.router.navigate(['/blacklisted/dashboard']);
+        this.router.navigate(['../document/admin/login']);
        
       }
     })

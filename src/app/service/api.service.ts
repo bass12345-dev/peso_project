@@ -100,4 +100,58 @@ export class ApiService {
 
 
 
+     //                  Document Tracking                //
+
+  //POST
+
+
+
+      //Add Data
+      addOffice(data: any){
+        return this.http.post(`${this.apiUrl}/api/add-office`,data);
+      }
+
+      addType(data: any){
+        return this.http.post(`${this.apiUrl}/api/add-document-type`,data);
+      }
+
+
+  //GET
+
+    getOffices(){
+      return this.http.get<any[]>(`${this.apiUrl}/api/offices`);
+  } 
+
+  getTypes(){
+    return this.http.get<any[]>(`${this.apiUrl}/api/get-document-types`);
+  } 
+
+
+
+
+
+    //Get Person Data
+
+
+    //Get Records
+
+
+  //PUT
+
+
+  
+  //DELETE
+    
+  delete_office(id:any){
+    return this.http.delete(`${this.apiUrl}/api/delete-office/` + id);
+  }
+
+  delete_type(id:any){
+    return this.http.delete(`${this.apiUrl}/api/delete-type/` + id);
+  }
+
+
+
+
+
  }

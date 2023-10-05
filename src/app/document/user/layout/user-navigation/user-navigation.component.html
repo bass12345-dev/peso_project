@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <!-- <mat-toolbar>Menu</mat-toolbar> -->
+    <img
+  class="avatar mat-elevation-z8"
+  src="https://gingoog.gov.ph/wp-content/uploads/2022/08/xPESO-1024x1024.png.pagespeed.ic.g_61fWnqrc.webp"
+/>
+
+<mat-divider></mat-divider>
+    <mat-nav-list>
+      <a mat-list-item  routerLink="dashboard" routerLinkActive="active-link"> <i class="fa fa-tachometer" aria-hidden="true"></i><span > Dashboard</span></a>
+      <a mat-list-item routerLink="documents" routerLinkActive="active-link"><span> <i class="fa fa-angle-double-right" aria-hidden="true"></i> My Documents</span></a>
+      <a mat-list-item routerLink="incoming" routerLinkActive="active-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> <span>Incoming</span></a>
+      <a mat-list-item routerLink="received" routerLinkActive="active-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> <span>Recieved</span></a>
+      <a mat-list-item routerLink="forwarded" routerLinkActive="active-link"><span> <i class="fa fa-angle-double-right" aria-hidden="true"></i> Forwarded</span></a>
+      <a mat-list-item routerLink="../login"  routerLinkActive="active-link" ><i class="fa fa-sign-out text-danger " aria-hidden="true"></i> <span class="text-danger">Logout</span></a>
+      <mat-divider></mat-divider>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+        style="color: #000;"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Document Tracker</span>
+      
+    </mat-toolbar>
+    <div style="padding: 10px;"><router-outlet></router-outlet></div>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
