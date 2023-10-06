@@ -63,6 +63,12 @@ export class LoginComponent {
         this.router.navigate(['/document/user/dashboard']);
       
       }else {
+
+        Swal.fire(
+          data.message,
+          '',
+          'error'
+        )
       
       }
     })
