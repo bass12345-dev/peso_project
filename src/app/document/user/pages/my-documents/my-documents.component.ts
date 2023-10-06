@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
+import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-my-documents',
@@ -12,7 +14,7 @@ import { ApiService } from 'src/app/service/api.service';
 export class MyDocumentsComponent {
 
   title = 'My Documents';
-  displayedColumns: string[] = ['name', 'address', 'email', 'phone_number','action'];
+  displayedColumns: string[] = ['tracking_number', 'document_name', 'document_type', 'created','action'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -42,4 +44,23 @@ export class MyDocumentsComponent {
       });
 
     }
+
+
+    
+export(){
+  Swal.fire({
+    title: 'Verifying...',
+    html: 'Please wait...',
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    
+  });
+  let timeSpan = new Date().toISOString();
+  let prefix = "Active";
+  let fileName = `${prefix}-${timeSpan}`;
+  let targetTableElm = document.getElementById('excel-table');
+  let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
+  XLSX.writeFile(wb, `${fileName}.xlsx`);
+  Swal.close();
+}
 }
