@@ -123,6 +123,10 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/add-document`,data);
       }
 
+      ForwardDocs(data: any){
+        return this.http.post(`${this.apiUrl}/api/forward-document`,data);
+      }
+
 
   //GET
 
@@ -150,6 +154,11 @@ getMyDocuments(id:any): Observable<any[]>{
   return this.http.get<any[]>(`${this.apiUrl}/api/get-my-documents?id=` + id);
 }
 
+getReceivedDocs(id:any): Observable<any[]>{
+
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-received-documents?id=` + id);
+}
+
 
 
   //PUT
@@ -164,6 +173,11 @@ getMyDocuments(id:any): Observable<any[]>{
 
   delete_type(id:any){
     return this.http.delete(`${this.apiUrl}/api/delete-type/` + id);
+  }
+
+
+  deleteMyDocs(id:any){
+    return this.http.delete(`${this.apiUrl}/api/delete-my-document/` + id);
   }
 
 

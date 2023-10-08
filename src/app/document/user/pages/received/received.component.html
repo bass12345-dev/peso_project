@@ -1,1 +1,106 @@
-<p>received works!</p>
+
+
+<div class="page-header-content">
+    <div class="row align-items-center justify-content-between pt-3">
+        <div class="col-auto mb-3">
+            <div class="header-title">
+                <h1>{{title}}</h1>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div class="card p-3" style="border: 1px solid;">
+    <mat-form-field appearance="fill">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="doFilter($event)" placeholder="Search columns" #input>
+    </mat-form-field>
+    <div class="export-container mb-2">
+        <button mat-raised-button color="primary" (click)="export()" >
+          <i class="fas fa-file-excel-o"></i>
+          Export
+        </button>
+        <button routerLink="../add-documents" mat-raised-button color="accent" class="pull-right" >
+            <i class="fas fa-plus"></i>
+            Add Document
+          </button>
+      </div>
+    
+      <div class="mat-elevation-z8 " >
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="excel-table">
+  
+            <ng-container matColumnDef="tracking_number" >
+            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Tracking Number</th>
+            <td mat-cell *matCellDef="let element"> {{element.tracking_number }} </td>
+            </ng-container>
+        
+          
+            
+            <ng-container matColumnDef="document_name">
+            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Document Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.document_name}} </td>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="document_type">
+            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Document Type</th>
+            <td mat-cell *matCellDef="let element"> {{element.type_name}} </td>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created</th>
+            <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <button class="btn btn-primary" (click)="a(element.tracking_number)"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"><i class="fas fa-forward"></i></button>
+                
+            </td>
+              </ng-container>
+  
+           
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 40, 80, 160]">
+        </mat-paginator>
+        <div  [hidden]="showLoading">
+            <mat-progress-bar    mode="query" ></mat-progress-bar>
+        </div>
+    </div>
+      
+ 
+  </div>
+  
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h2 id="offcanvasRightLabel">Forward</h2>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="tracking_number" name="tracking_number">
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">To : </label>
+          <select class="form-control" formControlName="forward" name="forward" [ngClass]="{ 'is-invalid': submitted && f['forward'].errors }" >
+            <option value="" selected>Select ...</option>
+            <option *ngFor="let a of users ;let index = index" [disabled]="this.id == a.user_id ? true : false" value="{{a.user_id}}">
+                {{a.first_name}} {{a.middle_name}} {{a.last_name}} {{a.extension}}
+            </option>
+          </select>
+
+          <label for="exampleInputPassword1" class="form-label">Remarks </label>
+          <textarea class="form-control"   name="remarks" formControlName="remarks"   ></textarea>
+          
+        </div>
+        
+        <button type="submit"   class="btn btn-primary">Forward</button>
+      </form>
+  </div>
+</div>

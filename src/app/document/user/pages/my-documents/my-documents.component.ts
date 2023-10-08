@@ -30,6 +30,10 @@ export class MyDocumentsComponent {
     doFilter = (value: any) => {
       this.dataSource.filter = value.target.value.trim().toLocaleLowerCase();
     }
+    ngAfterViewInit(): void {
+ 
+      this.dataSource.paginator = this.paginator;
+    }
     
     getMydocuments(){
 
@@ -62,5 +66,37 @@ export(){
   let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
   XLSX.writeFile(wb, `${fileName}.xlsx`);
   Swal.close();
+}
+
+remove(id:any, title : any){
+
+  
+
+  Swal.fire({
+    title: '',
+    text: "Delete Document " + title + ' ?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.apiService.deleteMyDocs(id).subscribe((data : any) =>{
+        if(data.response){
+          Swal.fire(
+            data.message,
+            '',
+            'success'
+          )
+          this.getMydocuments();
+        }else {
+          alert(data.message)
+        }
+      });
+
+    }
+  })
 }
 }
