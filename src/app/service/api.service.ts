@@ -127,6 +127,16 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/forward-document`,data);
       }
 
+      ReceivedDoc(data: any){
+        return this.http.post(`${this.apiUrl}/api/receive-document`,data);
+      }
+
+      CompletedDoc(data: any){
+        return this.http.post(`${this.apiUrl}/api/complete-document`,data);
+      }
+
+      
+
 
   //GET
 
@@ -157,6 +167,27 @@ getMyDocuments(id:any): Observable<any[]>{
 getReceivedDocs(id:any): Observable<any[]>{
 
   return this.http.get<any[]>(`${this.apiUrl}/api/get-received-documents?id=` + id);
+}
+
+getForwardedDocs(id:any): Observable<any[]>{
+
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-forwarded-documents?id=` + id);
+}
+
+getIncomingDocs(id:any): Observable<any[]>{
+
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-incoming-documents?id=` + id);
+}
+
+
+getHistoryDocs(id:any): Observable<any[]>{
+
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-history?t=` + id);
+}
+
+getDocumentData(id:any): Observable<any[]>{
+
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-document-data?t=` + id);
 }
 
 

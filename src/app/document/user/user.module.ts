@@ -25,6 +25,7 @@ import { IncomingComponent } from './pages/incoming/incoming.component';
 import { ReceivedComponent } from './pages/received/received.component';
 import { ForwardedComponent } from './pages/forwarded/forwarded.component';
 import { AddDocumentComponent } from './pages/add-document/add-document.component';
+import { TrackComponent } from './pages/track/track.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AddDocumentComponent } from './pages/add-document/add-document.componen
     ReceivedComponent,
     ForwardedComponent,
     AddDocumentComponent,
+    TrackComponent,
     
 
   ],

@@ -7,6 +7,7 @@ import { AddDocumentComponent } from './pages/add-document/add-document.componen
 import { ReceivedComponent } from './pages/received/received.component';
 import { IncomingComponent } from './pages/incoming/incoming.component';
 import { ForwardedComponent } from './pages/forwarded/forwarded.component';
+import { TrackComponent } from './pages/track/track.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent  ,
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path : 'received', component : ReceivedComponent},
     { path : 'incoming', component : IncomingComponent},
     { path : 'forwarded', component : ForwardedComponent},
+    { path : 'track/:id', component : TrackComponent},
     
   ] }
 ];

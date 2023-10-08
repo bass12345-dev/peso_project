@@ -1,0 +1,162 @@
+
+
+<div class="page-header-content">
+    <div class="row align-items-center justify-content-between pt-3">
+        <div class="col-auto mb-3">
+            <div class="header-title">
+                <h1>{{title}}</h1>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div class="card p-3" style="border: 1px solid;">
+    <div class="row">
+        <div class="col-md-5">
+
+            <div class="card mb-4 border border-dark">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Document name</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <p class="text-muted mb-0">{{document.document_name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Tracking Number</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <p class="text-muted mb-0">{{document.tracking_number}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Encoded/Created By</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <p class="text-muted mb-0">{{document.encoded_by}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                 
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Office</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <p class="text-muted mb-0">{{document.office}}</p>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Document Type</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <p class="text-muted mb-0">{{document.document_type}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Description</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <p class="text-muted mb-0">{{document.description}}</p>
+                    </div>
+                  </div>
+            
+                  <hr>
+                 
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Status</p>
+                    </div>
+                    <div class="col-sm-9">
+                            
+                    </div>
+                  </div>
+            
+                  <hr>
+                 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a href="javascript:;"  style="width: 100%;" class="btn btn-success btn-rounded p-1 pl-2 pr-2 float-right" >Update</a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            
+          
+        </div>
+        <div class="col-md-7">
+
+            <div class="mat-elevation-z8 " >
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="excel-table">
+          
+                    <ng-container matColumnDef="number" >
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">#</th>
+                    <td mat-cell *matCellDef="let element;let index = index"> {{ index  + 1 }} </td>
+                    </ng-container>
+                    
+        
+                            
+                    <ng-container matColumnDef="date_released" >
+                        <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Date Released</th>
+                        <td mat-cell *matCellDef="let element"> {{element.date_released}} </td>
+                        </ng-container>
+                  
+                    
+                    <ng-container matColumnDef="user1">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> User</th>
+                    <td mat-cell *matCellDef="let element"> {{element.user1}} </td>
+                    </ng-container>
+                
+                    
+                    <ng-container matColumnDef="date_received">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Date Received</th>
+                    <td mat-cell *matCellDef="let element"> {{element.date_received}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="user2">
+                        <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">User</th>
+                        <td mat-cell *matCellDef="let element"> {{element.user2}} </td>
+                        </ng-container>
+                
+                    
+                    <ng-container matColumnDef="duration">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Duration</th>
+                    <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+                    </ng-container>
+          
+                  
+          
+                   
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 40, 80, 160]">
+                </mat-paginator>
+                <div  [hidden]="showLoading">
+                    <mat-progress-bar    mode="query" ></mat-progress-bar>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    
+      
+      
+ 
+  </div>
+  
+
+

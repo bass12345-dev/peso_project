@@ -16,8 +16,8 @@ import * as $ from 'jquery';
 })
 export class ReceivedComponent {
 
-  title = 'My Documents';
-  displayedColumns: string[] = ['tracking_number', 'document_name', 'document_type', 'created','action'];
+  title = 'Received';
+  displayedColumns: string[] = ['tracking_number', 'document_name', 'document_type', 'remarks','created','action'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   users : any;
@@ -48,6 +48,9 @@ export class ReceivedComponent {
         forward: ['', Validators.required],
         remarks: [''],
         tracking_number : [''],
+        id : [''],
+        history_id : [''],
+
        
       });
     
@@ -67,6 +70,8 @@ export class ReceivedComponent {
           return;
           
       }
+
+
 
       this.apiService.ForwardDocs(this.addForm.value).subscribe((data : any) =>{
         if(data.response){
@@ -146,13 +151,56 @@ export(){
 }
 
 
-a(t_number : any){
+a(t_number : any, history_id : any){
   this.addForm.setValue({
     tracking_number: t_number,
     forward: '',
     remarks: '',
+    id: this.id,
+    history_id: history_id,
   })
 }
+
+
+completed(id: any , title : any){
+
+
+
+    let params = {
+  
+      id : id
+    }
+  
+    Swal.fire({
+      title: '',
+      text: "Completed " + title + ' ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.apiService.CompletedDoc(params).subscribe((data : any) =>{
+          if(data.response){
+            Swal.fire(
+              data.message,
+              '',
+              'success'
+            )
+            this.getReceivedDocs();
+          }else {
+            alert(data.message)
+          }
+        });
+  
+      }
+    })
+  }
+
+
+
 
 
 }
