@@ -173,7 +173,7 @@ completed(id: any , title : any){
   
     Swal.fire({
       title: '',
-      text: "Completed " + title + ' ?',
+      text: "Approve Document " + title + ' ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

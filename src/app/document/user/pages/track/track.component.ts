@@ -82,6 +82,10 @@ export class TrackComponent {
     }
 
 
+    back(){
+      this.location.back(); 
+    }
+
 
 
 }
