@@ -1,0 +1,52 @@
+
+<div class="auth-page-content">
+    <div class="container">
+       <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6 col-xl-5">
+             <div class="card mt-4">
+                <div class="card-body p-4">
+                   <div class="text-left">
+                      <button routerLink="../../document/login" class="btn"><i class="fa fa-arrow-left h4" ></i> </button>
+                   </div>
+                   <!-- <div class="text-center ">
+                      <h3 class="text-primary">History !</h3>
+                    
+                   </div> -->
+
+                   <form class="example-form">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label>Enter Tracking Number</mat-label>
+                      <input matInput placeholder="Tracking Number and press Enter.." (keydown.enter)="search($event)">
+                    </mat-form-field>
+                  
+                  
+                  </form>
+
+                   <!-- Section: Timeline -->
+                    <section class="p-5">
+                        <ul class="timeline">
+                        <li class="timeline-item mb-5" *ngFor="let row of items ">
+                            <h5 class="fw-bold">{{row.date}}</h5>
+                            <p class="text-muted mb-2 fw-bold">{{row.document_name}}</p>
+                            <p class="text-muted mb-2 fw-bold">Received By : {{row.received_by}}</p>
+                            <p class="text-muted">
+                                {{row.remarks}}
+                            </p>
+                        </li>
+                    
+                      
+
+                        </ul>
+                    </section>
+                    <!-- Section: Timeline -->
+                   
+                </div>
+                <!-- end card body -->
+             </div>
+          </div>
+       </div>
+       <!-- end row -->
+    </div>
+    <!-- end container -->
+ </div>
+ <!-- end auth page content -->

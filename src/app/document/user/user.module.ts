@@ -26,6 +26,7 @@ import { ReceivedComponent } from './pages/received/received.component';
 import { ForwardedComponent } from './pages/forwarded/forwarded.component';
 import { AddDocumentComponent } from './pages/add-document/add-document.component';
 import { TrackComponent } from './pages/track/track.component';
+import { TrackDocComponent } from './pages/auth/track-doc/track-doc.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TrackComponent } from './pages/track/track.component';
     ForwardedComponent,
     AddDocumentComponent,
     TrackComponent,
+    TrackDocComponent,
     
 
   ],

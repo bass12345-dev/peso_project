@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrl = 'https://basil-project.000webhostapp.com/public';
+  apiUrl = 'http://127.0.0.1:8000';
 
 
   //                  Blacklisted                 //
@@ -193,6 +193,10 @@ getDocumentData(id:any): Observable<any[]>{
 
 CountMyDashboard(id:any){
   return this.http.get(`${this.apiUrl}/api/count-doc-t?id=` + id);
+}
+
+track_document(id:any,tracking_number : any){
+  return this.http.get(`${this.apiUrl}/api/track-document?tracking_number=` + tracking_number + '&&id=' + id);
 }
 
 
