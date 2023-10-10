@@ -10,7 +10,8 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./track-doc.component.css']
 })
 export class TrackDocComponent {
-  items : any
+  items : any;
+  track = true;
   constructor(
 
     private route: ActivatedRoute,
@@ -26,8 +27,18 @@ export class TrackDocComponent {
 
 
     this.apiService.track_document(localStorage.getItem("id"),text.target.value).subscribe((data : any) =>{
+    
+      if(data.response == false){
 
+        alert('Tracking Number Not Found')
+
+      }
+
+      if(data.length) {
+        this.track = false;
+      }
      this.items = data
+     
 
 
     })
