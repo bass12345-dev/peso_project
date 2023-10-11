@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { param } from 'jquery';
 
 @Component({
   selector: 'app-app-links',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app-links.component.css']
 })
 export class AppLinksComponent {
+
 
   constructor(
     private apiService : ApiService,
@@ -22,7 +24,8 @@ export class AppLinksComponent {
   open_(){
     Swal.fire({
       title: 'Enter Security Code',
-      input: 'text',
+      html:
+      '<input type="password" id="swal-input2" class="swal2-input" #abc>',
       inputAttributes: {
         autocapitalize: 'off'
       },
@@ -31,7 +34,7 @@ export class AppLinksComponent {
 
     }).then((result) => {
       if (result.isConfirmed) {
-        let params = {'code' : result.value};
+        let params = {'code' :  (<HTMLInputElement>document.getElementById('swal-input2')).value};
 
         Swal.fire({
           title: 'Verifying...',
@@ -45,8 +48,10 @@ export class AppLinksComponent {
 
         this.apiService.VerifyCode(params).subscribe((data : any) =>{
           if(data.response){
-            Swal.close()
-            localStorage.setItem('permissions', '1');
+            Swal.close();
+
+
+            localStorage.setItem('permissions', data.message);
             this.router.navigate(['/blacklisted/dashboard']);
           }else {
             

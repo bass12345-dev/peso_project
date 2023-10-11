@@ -37,6 +37,10 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/add`,data);
       }
 
+      ChangeCode(data: any,id :any){
+        return this.http.post(`${this.apiUrl}/api/change-code?id=` + id,data);
+      }
+
 
   //GET
 

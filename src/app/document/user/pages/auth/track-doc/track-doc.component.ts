@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-track-doc',
   templateUrl: './track-doc.component.html',
@@ -24,10 +24,20 @@ export class TrackDocComponent {
 
   search(text:any){
 
+    Swal.fire({
+      title: 'Verifying...',
+      html: 'Please wait...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    });
+
 
 
     this.apiService.track_document(localStorage.getItem("id"),text.target.value).subscribe((data : any) =>{
-    
+      Swal.close();
       if(data.response == false){
 
         alert('Tracking Number Not Found')

@@ -33,7 +33,11 @@
         >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Document Tracker</span>
+      <div class="container">
+        <span>Document Tracker</span>
+      <span class="pull-right text-danger"><app-user-display></app-user-display></span>
+      </div>
+      
       
     </mat-toolbar>
     <div style="padding: 10px;"><router-outlet></router-outlet></div>

@@ -1,25 +1,25 @@
 <app-title [title]="title"></app-title>
 <div class="card" style="width: 100%;">
     <div class="card-body">
-      <form class="row g-3" id="add-form" >
+      <form class="row g-3" id="add-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Old Security Code<span class="text-danger">*</span></label>
-          <input type="text" class="form-control">
+          <input type="password" formControlName="old"  [ngClass]="{ 'is-invalid': submitted && f['old'].errors }" class="form-control" name="old">
          
         </div>
         <div class="col-md-6">
           <label for="inputPassword4" class="form-label ">New security Code<span class="text-danger">*</span></label>
-          <input type="text" class="form-control"  name="last_name" >
+          <input type="password" formControlName="new"  [ngClass]="{ 'is-invalid': submitted && f['new'].errors }" class="form-control" name="new">
         </div>
         
         
         <div class="col-12">
-          <button  type="submit" class="btn btn-primary mt-2"  > 
-              <!-- <div class="spinner-border" role="status" >
-              <span class="visually-hidden">Loading...</span>
-            </div> -->
-            Submit
-          </button>
+          <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+            <div class="spinner-border" role="status" [hidden]="spinner">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Submit
+        </button>
       </div>
       </form>
     </div>
