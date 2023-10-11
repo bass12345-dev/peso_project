@@ -53,10 +53,17 @@ export class TrackComponent {
 
     getHistory(){
 
-      this.apiService.getHistoryDocs(this.tracking_number).subscribe((items: any[]) => {
+      this.apiService.getHistoryDocs(this.tracking_number).subscribe((items: any) => {
 
-        this.dataSource.data = items;
-        this.showLoading = true;
+
+        if(items.length){
+          this.dataSource.data = items;
+          this.showLoading = true;
+        }else {
+          alert(items.message);
+          this.back();
+        }
+
 
         // let total_duration = 0;
 

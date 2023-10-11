@@ -203,7 +203,13 @@ track_document(id:any,tracking_number : any){
   return this.http.get(`${this.apiUrl}/api/track-document?tracking_number=` + tracking_number + '&&id=' + id);
 }
 
-//Admin 
+//Admin
+
+//Post
+
+verifyAdmin(body:any){
+  return this.http.post(`${this.apiUrl}/api/verify-admin`,body);
+}
 
 //Get
 getAllDocuments(): Observable<any[]>{
