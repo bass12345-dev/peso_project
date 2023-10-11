@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-count-card',
@@ -7,40 +9,53 @@ import { Component } from '@angular/core';
 })
 export class CountCardComponent {
 
-  count_card = [
-       
-                  {
-                    'title' : 'All Documents',
-                    'total' :  1,
-                    'icon'  : 'fa-ban',
-                    'bgc'  : 'l-bg-cherry'
-                  },
-                  {
-                    'title' : 'Offices',
-                    'total' :  1,
-                    'icon'  : 'fa-plus',
-                    'bgc'  : 'l-bg-blue-dark'
-                  },
-                  {
-                    'title' : 'Types',
-                    'total' :  1,
-                    'icon'  : 'fa-plus',
-                    'bgc'  : 'l-bg-green-dark'
-                  },
-                  {
-                    'title' : 'Users',
-                    'total' :  1,
-                    'icon'  : 'fa-plus',
-                    'bgc'  : 'l-bg-orange-dark'
-                  }
+  count_all_documents = 1;
+  count_card : any = [];
 
-                  
-  ];
+  constructor(
+    private apiService :ApiService, 
+    public router: Router,
+  ){}
 
 
   ngOnInit(){
 
-    console.log(this.count_card);
+
+    this.apiService.CountadminDashboard().subscribe((items: any) => {
+
+      this.count_card = [
+              
+        {
+          'title' : 'All Documents',
+          'total' :  items.count_documents,
+          'icon'  : 'fa-ban',
+          'bgc'  : 'l-bg-cherry'
+        },
+        {
+          'title' : 'Offices',
+          'total' :  items.count_offices,
+          'icon'  : 'fa-plus',
+          'bgc'  : 'l-bg-blue-dark'
+        },
+        {
+          'title' : 'Types',
+          'total' :  items.count_document_types,
+          'icon'  : 'fa-plus',
+          'bgc'  : 'l-bg-green-dark'
+        },
+        {
+          'title' : 'Users',
+          'total' :  items.count_users,
+          'icon'  : 'fa-plus',
+          'bgc'  : 'l-bg-orange-dark'
+        }
+
+        
+    ];
+
+    })
+
+          
   }
 
 }

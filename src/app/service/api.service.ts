@@ -203,6 +203,18 @@ track_document(id:any,tracking_number : any){
   return this.http.get(`${this.apiUrl}/api/track-document?tracking_number=` + tracking_number + '&&id=' + id);
 }
 
+//Admin 
+
+//Get
+getAllDocuments(): Observable<any[]>{
+
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-all-documents`);
+}
+
+CountadminDashboard(){
+  return this.http.get(`${this.apiUrl}/api/count-docs`);
+}
+
 
 
   //PUT
