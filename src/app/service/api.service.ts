@@ -11,8 +11,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // apiUrl = 'http://127.0.0.1:8000';
-  apiUrl = 'https://basil-project.000webhostapp.com/public';
+  apiUrl = 'http://127.0.0.1:8000';
+  // apiUrl = 'https://basil-project.000webhostapp.com/public';
 
 
   //                  Blacklisted                 //

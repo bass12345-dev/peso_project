@@ -28,6 +28,7 @@ import { AddDocumentComponent } from './pages/add-document/add-document.componen
 import { TrackComponent } from './pages/track/track.component';
 import { TrackDocComponent } from './pages/auth/track-doc/track-doc.component';
 import { UserDisplayComponent } from './layout/user-display/user-display.component';
+import { TrackAllComponent } from './pages/track-all/track-all.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { UserDisplayComponent } from './layout/user-display/user-display.compone
     TrackComponent,
     TrackDocComponent,
     UserDisplayComponent,
+    TrackAllComponent,
     
 
   ],

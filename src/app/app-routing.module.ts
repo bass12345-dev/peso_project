@@ -5,11 +5,12 @@ import { LoginComponent } from './document/user/pages/auth/login/login.component
 import { RegisterComponent } from './document/user/pages/auth/register/register.component';
 import { AdminLoginComponent } from './document/admin/pages/auth/admin-login/admin-login.component';
 import { TrackDocComponent } from './document/user/pages/auth/track-doc/track-doc.component';
+import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.service';
 
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'blacklisted', loadChildren: () => import('./blacklisted/blacklisted.module').then(m => m.BlacklistedModule) },
+  { path: 'blacklisted', loadChildren: () => import('./blacklisted/blacklisted.module').then(m => m.BlacklistedModule), canActivate : [BlacklistedAuthGuardService] },
   { path: 'document', loadChildren: () => import('./document/document.module').then(m => m.DocumentModule) },
   { path: 'document/login', component: LoginComponent},
   { path: 'document/register', component: RegisterComponent},

@@ -34,6 +34,7 @@ import {
 } from '@angular/material/snack-bar';
 import { UpdateComponent } from './pages/update/update.component';
 import { SecurityCodeComponent } from './pages/security-code/security-code.component';
+import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { SecurityCodeComponent } from './pages/security-code/security-code.compo
     MatSnackBarModule
   
     
-  ]
+  ],
+  providers: [BlacklistedAuthGuardService],
 })
 export class BlacklistedModule { }

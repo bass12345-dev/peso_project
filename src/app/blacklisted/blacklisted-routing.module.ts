@@ -8,9 +8,10 @@ import { InactiveListComponent } from './pages/inactive-list/inactive-list.compo
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 import { UpdateComponent } from './pages/update/update.component';
 import { SecurityCodeComponent } from './pages/security-code/security-code.component';
+import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
 
 const routes: Routes = [
-  { path: 'blacklisted', component: BlacklistedComponent,
+  { path: 'blacklisted', component: BlacklistedComponent, canActivate : [BlacklistedAuthGuardService],
   children : [
     { path : 'dashboard', component : DashboardComponent},
     { path : 'list', component : ActiveListComponent},

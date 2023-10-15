@@ -14,6 +14,7 @@ import { CarouselComponent } from './welcome/welcome_components/carousel/carouse
 import { BlacklistedModule } from './blacklisted/blacklisted.module';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.service';
 
 
 
@@ -41,7 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
   ],
   exports : [RouterModule],
-  providers: [],
+  providers: [BlacklistedAuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
