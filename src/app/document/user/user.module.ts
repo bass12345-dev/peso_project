@@ -29,6 +29,7 @@ import { TrackComponent } from './pages/track/track.component';
 import { TrackDocComponent } from './pages/auth/track-doc/track-doc.component';
 import { UserDisplayComponent } from './layout/user-display/user-display.component';
 import { TrackAllComponent } from './pages/track-all/track-all.component';
+import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { TrackAllComponent } from './pages/track-all/track-all.component';
     MatInputModule,  
     MatPaginatorModule,
     MatSnackBarModule
-  ]
+  ],
+  providers: [UserDocumentGuard],
 })
 export class UserModule { }

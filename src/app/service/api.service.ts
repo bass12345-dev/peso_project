@@ -76,6 +76,11 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/api/add_record/` + id,params);
   }
 
+
+  update_record(record_id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_record/` + record_id,params);
+  }
+
     set_active(id:any, item : any){
 
       return this.http.put(`${this.apiUrl}/api/set-active/` + id,item);

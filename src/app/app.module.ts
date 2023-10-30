@@ -15,6 +15,7 @@ import { BlacklistedModule } from './blacklisted/blacklisted.module';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.service';
+import { UserDocumentGuard } from './service/user-document-guard.service';
 
 
 
@@ -42,7 +43,7 @@ import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.se
 
   ],
   exports : [RouterModule],
-  providers: [BlacklistedAuthGuardService],
+  providers: [BlacklistedAuthGuardService, UserDocumentGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,9 +6,10 @@ import { OfficesComponent } from './pages/offices/offices.component';
 import { DocumentTypesComponent } from './pages/document-types/document-types.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
+import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
 
 const routes: Routes = [
-  { path: 'admin', component: AdminComponent,
+  { path: 'admin', component: AdminComponent, canActivate : [AdminDocumentGuard],
   children : [
     { path : 'dashboard', component : DashboardComponent},
     { path : 'offices', component : OfficesComponent},

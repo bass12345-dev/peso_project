@@ -10,9 +10,10 @@ import { ForwardedComponent } from './pages/forwarded/forwarded.component';
 import { TrackComponent } from './pages/track/track.component';
 import { TrackDocComponent } from './pages/auth/track-doc/track-doc.component';
 import { TrackAllComponent } from './pages/track-all/track-all.component';
+import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
 
 const routes: Routes = [
-  { path: 'user', component: UserComponent  ,
+  { path: 'user', component: UserComponent  , canActivate : [UserDocumentGuard],
   children : [
     { path : 'dashboard', component : DashboardComponent},
     { path : 'my-document', component : MyDocumentsComponent},

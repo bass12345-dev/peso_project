@@ -25,6 +25,7 @@ import { TitleComponent } from '../components/title/title.component';
 import { DocumentTypesComponent } from './pages/document-types/document-types.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
+import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
 
 
 
@@ -59,6 +60,7 @@ import { AllDocumentsComponent } from './pages/all-documents/all-documents.compo
     MatInputModule,  
     MatPaginatorModule,
     MatSnackBarModule
-  ]
+  ],
+  providers: [AdminDocumentGuard],
 })
 export class AdminModule { }

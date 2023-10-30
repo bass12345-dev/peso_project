@@ -35,6 +35,7 @@ import {
 import { UpdateComponent } from './pages/update/update.component';
 import { SecurityCodeComponent } from './pages/security-code/security-code.component';
 import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
+import { AuthService } from '../service/auth.service';
 
 
 @NgModule({
@@ -76,6 +77,6 @@ import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.s
   
     
   ],
-  providers: [BlacklistedAuthGuardService],
+  providers: [BlacklistedAuthGuardService,],
 })
 export class BlacklistedModule { }
