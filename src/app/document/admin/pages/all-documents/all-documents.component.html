@@ -16,14 +16,11 @@
         <input matInput (keyup)="doFilter($event)" placeholder="Search columns" #input>
     </mat-form-field>
     <div class="export-container mb-2">
-        <button mat-raised-button color="primary" >
-          <i class="fas fa-file-excel-o"></i>
-          Export
-        </button>
-        <button routerLink="../add-documents" mat-raised-button color="accent" class="pull-right" >
-            <i class="fas fa-plus"></i>
-            Add Document
+        <button mat-raised-button color="primary" (click)="export()" >
+            <i class="fas fa-file-excel-o"></i>
+            Export
           </button>
+        
       </div>
     
       <div class="mat-elevation-z8 " >
@@ -52,6 +49,11 @@
             <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created</th>
             <td mat-cell *matCellDef="let element"> {{element.created}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="created_by">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created By</th>
+                <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+                </ng-container>
   
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Actions</th>

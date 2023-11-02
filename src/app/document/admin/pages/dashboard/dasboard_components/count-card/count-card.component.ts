@@ -28,25 +28,25 @@ export class CountCardComponent {
         {
           'title' : 'All Documents',
           'total' :  items.count_documents,
-          'icon'  : 'fa-ban',
+          'icon'  : 'fa-file',
           'bgc'  : 'l-bg-cherry'
         },
         {
           'title' : 'Offices',
           'total' :  items.count_offices,
-          'icon'  : 'fa-plus',
+          'icon'  : 'fa-building',
           'bgc'  : 'l-bg-blue-dark'
         },
         {
           'title' : 'Types',
           'total' :  items.count_document_types,
-          'icon'  : 'fa-plus',
+          'icon'  : 'fa-file-text',
           'bgc'  : 'l-bg-green-dark'
         },
         {
           'title' : 'Users',
           'total' :  items.count_users,
-          'icon'  : 'fa-plus',
+          'icon'  : 'fa-users',
           'bgc'  : 'l-bg-orange-dark'
         }
 
