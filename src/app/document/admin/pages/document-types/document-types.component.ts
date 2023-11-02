@@ -19,6 +19,9 @@ export class DocumentTypesComponent {
   displayedColumns: string[] = ['type', 'created','action'];
   dataSource : string[] = [];
   showLoading : boolean = false;
+  text_label_input : string = 'Add';
+  cancel_update_btn : boolean = true;
+  type_id : any;
 
   
 constructor(
@@ -31,6 +34,24 @@ constructor(
 
   ngOnInit(){
     this.getTypes()
+  }
+
+  update_type(id : any,type:any){
+
+    this.text_label_input = 'Update';
+    this.cancel_update_btn = false;
+    this.type = type;
+    this.type_id = id;
+
+  }
+
+  cancel_update_click(){
+
+    this.text_label_input = 'Add';
+    this.cancel_update_btn = true;
+    this.type = '';
+    this.type_id = undefined;
+   
   }
 
   getTypes(){
@@ -85,7 +106,48 @@ constructor(
       type: this.type,
     }
 
+
     
+    if(this.type_id == undefined ){
+      this.add_type(params);
+    }else {
+      this.update_type_backend(this.type_id,params);
+    }
+
+    
+
+
+
+
+  }
+
+  update_type_backend(type_id : any,params:any){
+
+
+    this.apiService.update_type(type_id,params).subscribe((data : any) =>{
+      if(data.response){
+        this.alert_(data.message);
+        this.button_dis = false;
+        this.spinner = true;
+        this.type = ' ';
+        this.getTypes();
+      }else {
+        this.alert_(data.message)
+        this.button_dis = false;
+        this.spinner = true;
+      }
+
+      this.text_label_input = 'Add';
+      this.cancel_update_btn = true;
+      this.type = '';
+      this.type_id = undefined;
+    })
+
+
+  }
+
+
+  add_type(params:any){
     if(this.type == ' '){
       alert('Please Fill Up')
       this.button_dis = false;
@@ -107,9 +169,6 @@ constructor(
       })
 
     }
-
-
-
   }
 
   alert_(message:any){

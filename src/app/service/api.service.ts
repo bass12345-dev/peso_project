@@ -232,6 +232,15 @@ CountadminDashboard(){
   //PUT
 
 
+  update_office(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_office/` + id,params);
+  }
+
+  update_type(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_type/` + id,params);
+  }
+
+
   
   //DELETE
     

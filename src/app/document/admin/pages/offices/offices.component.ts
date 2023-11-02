@@ -19,6 +19,9 @@ export class OfficesComponent {
   displayedColumns: string[] = ['office', 'created','action'];
   dataSource : string[] = [];
   showLoading : boolean = false;
+  text_label_input : string = 'Add';
+  cancel_update_btn : boolean = true;
+  office_id : any;
 
   
 constructor(
@@ -31,6 +34,24 @@ constructor(
 
   ngOnInit(){
     this.getOffices()
+  }
+
+  update_office(id : any,office:any){
+
+    this.text_label_input = 'Update';
+    this.cancel_update_btn = false;
+    this.office = office;
+    this.office_id = id;
+
+  }
+
+  cancel_update_click(){
+
+    this.text_label_input = 'Add';
+    this.cancel_update_btn = true;
+    this.office = '';
+    this.office_id = undefined;
+   
   }
 
   getOffices(){
@@ -85,7 +106,46 @@ constructor(
       office: this.office,
     }
 
+
+    if(this.office_id == undefined ){
+      this.add_office(params);
+    }else {
+      this.update_office_backend(this.office_id,params);
+    }
     
+
+
+
+
+  }
+
+
+  update_office_backend(id:any,params:any){
+    this.apiService.update_office(id,params).subscribe((data : any) =>{
+      if(data.response){
+        this.alert_(data.message);
+        this.button_dis = false;
+        this.spinner = true;
+        this.office = ' ';
+        this.getOffices();
+      }else {
+        this.alert_(data.message)
+        this.button_dis = false;
+        this.spinner = true;
+      }
+
+      this.text_label_input = 'Add';
+      this.cancel_update_btn = true;
+      this.office = '';
+      this.office_id = undefined;
+    });
+  }
+
+  
+
+
+  add_office(params:any){
+
     if(this.office == ' '){
       alert('Please Fill Up')
       this.button_dis = false;
@@ -104,11 +164,9 @@ constructor(
           this.button_dis = false;
           this.spinner = true;
         }
-      })
+      });
 
     }
-
-
 
   }
 
