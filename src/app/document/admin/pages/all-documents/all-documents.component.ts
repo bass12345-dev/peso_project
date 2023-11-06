@@ -73,6 +73,8 @@ export class AllDocumentsComponent {
 
     track(tracking_number : any){
 
+      this.router.navigate(['document/admin/track/' + tracking_number]);
+
     }
 
     remove(id :any, document_name : any){
@@ -125,6 +127,10 @@ export class AllDocumentsComponent {
        
       });
     }
+
+
+
+
     
 
 }

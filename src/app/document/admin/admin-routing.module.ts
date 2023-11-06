@@ -7,6 +7,7 @@ import { DocumentTypesComponent } from './pages/document-types/document-types.co
 import { UsersComponent } from './pages/users/users.component';
 import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
 import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
+import { TrackComponent } from './pages/track/track.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate : [AdminDocumentGuard],
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path : 'document-types', component : DocumentTypesComponent},
     { path : 'users', component : UsersComponent},
     { path : 'documents', component : AllDocumentsComponent},
+    { path : 'track/:id', component : TrackComponent},
     
   ] }];
 

@@ -26,6 +26,7 @@ import { DocumentTypesComponent } from './pages/document-types/document-types.co
 import { UsersComponent } from './pages/users/users.component';
 import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
 import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
+import { TrackComponent } from './pages/track/track.component';
 
 
 
@@ -40,7 +41,8 @@ import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service
     TitleComponent,
     DocumentTypesComponent,
     UsersComponent,
-    AllDocumentsComponent
+    AllDocumentsComponent,
+    TrackComponent
   
   ],
   imports: [
