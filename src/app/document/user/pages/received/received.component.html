@@ -85,7 +85,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
     <h2 id="offcanvasRightLabel">Forward</h2>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close text-reset" id="close-off" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
@@ -106,7 +106,10 @@
           
         </div>
         
-        <button type="submit"   class="btn btn-primary">Forward</button>
+        <button type="submit"   class="btn btn-primary">
+          <div class="spinner-border" role="status" [hidden]="spinner">
+            <span class="visually-hidden">Loading...</span>
+          </div>Forward</button>
       </form>
   </div>
 </div>

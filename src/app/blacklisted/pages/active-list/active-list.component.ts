@@ -20,7 +20,7 @@ export class ActiveListComponent  {
   public dataSource = new MatTableDataSource<any>();
   type: string = 'active';
   showLoading : boolean = false;
-  title = 'List of Blacklisted';
+  title = 'Active';
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   constructor(

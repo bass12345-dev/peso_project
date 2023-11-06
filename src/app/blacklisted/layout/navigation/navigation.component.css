@@ -25,7 +25,7 @@ mat-sidenav {
 
   width: 200px;
   border-right: none;
-  background: #303641;
+  background: linear-gradient(to right, #493240, rgb(105, 30, 75)) !important;
   color: white;
 
 }

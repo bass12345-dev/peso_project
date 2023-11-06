@@ -89,7 +89,9 @@ constructor(
             this.getOffices();
             this.showLoading = true;
           }else {
-            alert(data.message)
+            Swal.close();
+            this.alert_(data.message);
+            this.showLoading = true;
           }
         });
 

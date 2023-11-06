@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocumentRoutingModule } from './document-routing.module';
 import { DocumentComponent } from './document.component';
 
@@ -40,8 +40,9 @@ import { UserModule } from './user/user.module';
     MatIconModule,
     MatListModule,
     AdminModule,
-    UserModule
-    
+    UserModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DocumentModule { }

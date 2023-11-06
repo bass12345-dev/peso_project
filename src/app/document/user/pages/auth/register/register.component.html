@@ -8,52 +8,86 @@
                       <button routerLink="../login" class="btn"><i class="fa fa-arrow-left h4" ></i> </button>
                    </div>
                    <div class="text-center ">
-                      <h3 class="text-primary">Register !</h3>
+                      <h3 class="text-primary">{{title}}</h3>
                    </div>
                    <div class="p-2 mt-2">
-                      <form id="login-form" >
+                      <form id="login-form" [formGroup]="addForm"   (ngSubmit)="onSubmit()">
                          <div class="mb-3">
                             <label for="username" class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="username" id="username"  required>
+                            <input type="text" class="form-control" name="first_name" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }">
                          </div>
                          <div class="mb-3">
                             <label class="form-label" for="password-input">Middle Name</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="text" class="form-control pe-5"  name="password" required>
+                               <input type="text" class="form-control pe-5"   name="middle_name" formControlName="middle_name"  [ngClass]="{ 'is-invalid': submitted && f['middle_name'].errors }">
                             </div>
                          </div>
                          <div class="mb-3">
                             <label class="form-label" for="password-input">Last Name</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="text" class="form-control pe-5"  name="password" required>
+                               <input type="text" class="form-control pe-5"  name="last_name" formControlName="last_name"  [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }">
                             </div>
                          </div>
                          <div class="mb-3">
-                            <label class="form-label" for="password-input">Email Address</label>
+                           <label class="form-label" for="password-input">Jr Sr ... Extension</label>
+                           <div class="position-relative auth-pass-inputgroup mb-3">
+                              <input type="text" class="form-control pe-5"  name="extension" formControlName="extension"  [ngClass]="{ 'is-invalid': submitted && f['extension'].errors }">
+                           </div>
+                        </div>
+                        <div class="mb-3">
+                           <label class="form-label" for="password-input">Contact Number</label>
+                           <div class="position-relative auth-pass-inputgroup mb-3">
+                              <input type="text" class="form-control pe-5"  name="contact_number" formControlName="contact_number"  [ngClass]="{ 'is-invalid': submitted && f['contact_number'].errors }">
+                           </div>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label" for="password-input">Email Address</label> <small class="text-danger"> *Valid</small>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="email" class="form-control pe-5"  name="password" required>
+                               <input type="email" class="form-control pe-5"  name="email" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
                             </div>
+
+                            <!-- <span class="text-danger" *ngif="f['email'].errors?.pattern">Email address is invalid</span>   -->
                          </div>
+
+                         <div class="mb-3">
+                           <label for="inputPassword4" class="form-label is-invalid">Barangay<span class="text-danger">*</span></label>
+                           <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"  >
+                             <option value="" selected>Select Barangay</option>
+                             <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
+                           </select>
+                        </div>
+
+                         <div class="mb-3">
+                           <label for="inputPassword4" class="form-label is-invalid">Offices<span class="text-danger">*</span></label>
+                           <select  class="form-control" name="office" formControlName="office"  [ngClass]="{ 'is-invalid': submitted && f['office'].errors }"  >
+                             <option value="">Select Office</option>
+                             <option   *ngFor="let row of offices; let index = index" value="{{row.office_id}}" >{{ row.office }}</option>
+                           </select>
+                        </div>
+
                          <div class="mb-3">
                             <label class="form-label" for="password-input">Username</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="password" class="form-control pe-5"  name="password" required>
+                               <input type="text" class="form-control pe-5"  name="user_name" formControlName="user_name"  [ngClass]="{ 'is-invalid': submitted && f['user_name'].errors }">
                             </div>
                          </div>
                          <div class="mb-3">
                             <label class="form-label" for="password-input">Password</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="password" class="form-control pe-5"  name="password" required>
+                               <input type="password" class="form-control pe-5"  name="password" formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
                             </div>
                          </div>
                          <div class="mb-3">
                             <label class="form-label" for="password-input">Confirm Password</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                               <input type="password" class="form-control pe-5" name="password" required>
+                               <input type="password" class="form-control pe-5" name="confirm_password" formControlName="confirm_password"  [ngClass]="{ 'is-invalid': submitted && f['confirm_password'].errors }">
                             </div>
                          </div>
                          <div class="mt-4">
-                            <button routerLink="../dashboard" class="btn  w-100 login" style="background-color: #0061f2; color: #fff" type="submit">Submit 
+                            <button type="button" class="btn  w-100 login" style="background-color: #0061f2; color: #fff" type="submit">
+                              <div class="spinner-border" role="status" [hidden]="spinner">
+                                 <span class="visually-hidden">Loading...</span>
+                               </div>Submit 
                             </button>                             
                          </div>
                       </form>

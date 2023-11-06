@@ -51,6 +51,46 @@ export class UsersComponent {
 
  remove(id:any){
 
+  let items = {
+      status : 'inactive'
+  }
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Delete this person",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.showLoading = false;
+      Swal.fire({
+        title: 'Deleting...',
+        html: 'Please wait...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      });
+      this.apiService.delete_user(id,items).subscribe((data : any) =>{
+        if(data.response){
+          Swal.close();
+          this.alert_(data.message);
+          this.getData();
+          this.showLoading = true;
+        }else {
+          Swal.close();
+          this.alert_(data.message);
+          this.showLoading = true;
+        }
+      });
+
+    }
+  });
+
  }
 
  ngAfterViewInit(): void {
@@ -66,9 +106,20 @@ export(){
   let targetTableElm = document.getElementById('excel-table');
   let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
   XLSX.writeFile(wb, `${fileName}.xlsx`);
-
-
 }
+
+
+
+alert_(message:any){
+
+  this._snackBar.open(message, '', {
+    horizontalPosition: 'end',
+    verticalPosition: 'top',
+    duration: 5 * 700,
+   
+  });
+}
+
 
 
 }

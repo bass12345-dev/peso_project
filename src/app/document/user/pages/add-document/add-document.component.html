@@ -10,7 +10,7 @@
       <form class="row g-3" [formGroup]="addForm" (ngSubmit)="onSubmit()" >
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Document Name<span class="text-danger">*</span></label>
-          <input type="text"class="form-control"  name="document_name" formControlName="document_name"  [ngClass]="{ 'is-invalid': submitted && f['document_name'].errors }" >
+          <input type="text" class="form-control"  name="document_name" formControlName="document_name"  [ngClass]="{ 'is-invalid': submitted && f['document_name'].errors }" >
         </div>
         <div class="col-md-6">
           <label for="inputPassword4" class="form-label is-invalid">Document Type<span class="text-danger">*</span></label>

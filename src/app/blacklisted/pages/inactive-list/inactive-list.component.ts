@@ -18,7 +18,7 @@ export class InactiveListComponent implements OnInit {
   type: string = 'inactive';
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
-  title = 'Remove From Blacklisted';
+  title = 'Inactive';
   constructor(private apiService : ApiService){
 
   }

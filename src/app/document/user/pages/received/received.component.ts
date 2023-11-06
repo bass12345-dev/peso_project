@@ -80,6 +80,7 @@ export class ReceivedComponent {
           this.spinner = true;
           this.addForm.reset();
           this.getReceivedDocs(); 
+          document.getElementById("close-off")?.click();
         }else {
           this.alert_(data.message)
           this.button_dis = false;

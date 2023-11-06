@@ -148,6 +148,10 @@ export class ApiService {
       
 
 
+      Register(data: any){
+        return this.http.post(`${this.apiUrl}/api/register`,data);
+      }
+
   //GET
 
     getOffices(){
@@ -244,6 +248,10 @@ CountadminDashboard(){
     return this.http.put(`${this.apiUrl}/api/update_document/` + id,params);
   }
 
+
+  delete_user(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/remove-user/` + id,params);
+  }
 
   
   //DELETE
