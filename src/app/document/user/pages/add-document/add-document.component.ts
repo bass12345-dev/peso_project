@@ -14,7 +14,7 @@ export class AddDocumentComponent {
   types : any;
   addForm!: FormGroup;
   submitted = false;
-  title = 'Add Person';
+  title = 'Add Documents';
   button_dis : boolean = false;
   spinner : boolean = true;
   user : any

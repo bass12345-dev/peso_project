@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class CarouselComponent {
 
+
+  // public carousel1 = require("../../../../assets/background-track.jpg");
+
 }

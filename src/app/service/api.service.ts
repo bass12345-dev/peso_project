@@ -240,6 +240,10 @@ CountadminDashboard(){
     return this.http.put(`${this.apiUrl}/api/update_type/` + id,params);
   }
 
+  update_document(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_document/` + id,params);
+  }
+
 
   
   //DELETE

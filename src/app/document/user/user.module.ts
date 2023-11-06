@@ -30,6 +30,7 @@ import { TrackDocComponent } from './pages/auth/track-doc/track-doc.component';
 import { UserDisplayComponent } from './layout/user-display/user-display.component';
 import { TrackAllComponent } from './pages/track-all/track-all.component';
 import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
+import { UpdateDocumentComponent } from './pages/update-document/update-document.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
     TrackDocComponent,
     UserDisplayComponent,
     TrackAllComponent,
+    UpdateDocumentComponent,
     
 
   ],

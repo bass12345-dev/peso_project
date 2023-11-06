@@ -102,11 +102,12 @@ remove(id:any, title : any){
 
 
 track(tracking_number : any){
-
-  
   this.router.navigate(['document/user/track/' + tracking_number]);
-
 }
 
+update(tracking_number:any){
+
+  this.router.navigate(['document/user/update-document/' + tracking_number]);
+}
 
 }

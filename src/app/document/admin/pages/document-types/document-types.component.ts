@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -83,13 +84,19 @@ constructor(
           }
         });
         this.apiService.delete_type(type_id).subscribe((data : any) =>{
+          
+
           if(data.response){
             Swal.close();
-            this.alert_(data.message);
+            var style = 'custom-style-success';
+            this.alert_(data.message,style);
             this.getTypes();
             this.showLoading = true;
           }else {
-            alert(data.message)
+            Swal.close();
+            this.showLoading = true;
+            var style = 'custom-style-danger';
+            this.alert_(data.message,style);
           }
         });
 
@@ -126,13 +133,15 @@ constructor(
 
     this.apiService.update_type(type_id,params).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message);
+        var style = 'custom-style-success';
+        this.alert_(data.message,style);
         this.button_dis = false;
         this.spinner = true;
         this.type = ' ';
         this.getTypes();
       }else {
-        this.alert_(data.message)
+        var style = 'custom-style-danger';
+          this.alert_(data.message,style);
         this.button_dis = false;
         this.spinner = true;
       }
@@ -156,13 +165,15 @@ constructor(
       
       this.apiService.addType(params).subscribe((data : any) =>{
         if(data.response){
-          this.alert_(data.message);
+          var style = 'custom-style-success';
+          this.alert_(data.message,style);
           this.button_dis = false;
           this.spinner = true;
           this.type = ' ';
           this.getTypes();
         }else {
-          this.alert_(data.message)
+          var style = 'custom-style-danger';
+          this.alert_(data.message,style)
           this.button_dis = false;
           this.spinner = true;
         }
@@ -171,12 +182,13 @@ constructor(
     }
   }
 
-  alert_(message:any){
+  alert_(message:any,style : string){
 
     this._snackBar.open(message, '', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       duration: 5 * 700,
+      panelClass: [style]
      
     });
   }
