@@ -9,6 +9,16 @@
 
       <form class="row g-3" [formGroup]="addForm" (ngSubmit)="onSubmit()" >
         <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Tracking Number<span class="text-danger">*</span></label>
+          <div class="input-group">
+            <input type="text" aria-label="" value="{{y}}" class="form-control ">
+            <input type="text" aria-label="" value="{{m}}"  class="form-control ">
+            <input type="text" aria-label="" value="{{d}}"  class="form-control ">
+            <input type="text" readonly class="form-control w-50"  name="tracking_number" formControlName="tracking_number"  [ngClass]="{ 'is-invalid': submitted && f['tracking_number'].errors }" >
+          </div>
+         
+        </div>
+        <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Document Name<span class="text-danger">*</span></label>
           <input type="text" class="form-control"  name="document_name" formControlName="document_name"  [ngClass]="{ 'is-invalid': submitted && f['document_name'].errors }" >
         </div>
@@ -19,6 +29,7 @@
             <option   *ngFor="let row of types; let index = index" value="{{row.type_id}}" >{{ row.type_name }}</option>
           </select>
         </div>
+        
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Description <span class="text-danger">*</span></label>
           <textarea class="form-control"   name="description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" ></textarea>

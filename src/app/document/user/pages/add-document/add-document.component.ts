@@ -17,7 +17,10 @@ export class AddDocumentComponent {
   title = 'Add Documents';
   button_dis : boolean = false;
   spinner : boolean = true;
-  user : any
+  user : any;
+  m : any;
+  y : any;
+  d : any;
   constructor(
     private location: Location, 
     private route: ActivatedRoute,
@@ -35,7 +38,33 @@ export class AddDocumentComponent {
       document_name: ['', Validators.required],
       document_type: ['', Validators.required],
       description: ['', ],
+      tracking_number : ['', Validators.required],
     });
+
+    this.get_last();
+   }
+
+   get_last(){
+
+    this.apiService.getLast().subscribe((item:any) => {
+      console.log(item)
+    this.addForm.setValue({
+
+      document_name: '',
+      tracking_number  : item.number,
+      document_type: '',
+      description: '',
+
+    });
+
+    this.y = item.y;
+    this.m = item.m;
+    this.d = item.d;
+
+  })
+
+
+
    }
 
    getUserData(){
@@ -44,6 +73,7 @@ export class AddDocumentComponent {
       
   });
    }
+   
 
    onSubmit() {
     this.button_dis = true;
@@ -63,7 +93,8 @@ export class AddDocumentComponent {
       office_id :  this.user.office_id,
       document_name: this.addForm.value['document_name'],
       document_type : this.addForm.value['document_type'],
-      description : this.addForm.value['description']
+      description : this.addForm.value['description'],
+      tracking_number : this.addForm.value['tracking_number']
     }
 
     this.apiService.addDocument(params).subscribe((data : any) =>{

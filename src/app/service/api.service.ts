@@ -154,9 +154,16 @@ export class ApiService {
 
   //GET
 
+  getLast(){
+    return this.http.get<any>(`${this.apiUrl}/api/get-last`);
+} 
+
+
     getOffices(){
       return this.http.get<any[]>(`${this.apiUrl}/api/offices`);
   } 
+
+  
 
   getTypes(){
     return this.http.get<any[]>(`${this.apiUrl}/api/get-document-types`);
