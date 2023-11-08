@@ -65,7 +65,7 @@ constructor(
   delete(type_id : any){
     Swal.fire({
       title: 'Are you sure?',
-      text: "Delete this person",
+      text: "Delete this type",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

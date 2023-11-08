@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as $ from 'jquery';
 
+
 @Component({
   selector: 'app-track',
   templateUrl: './track.component.html',
@@ -18,7 +19,7 @@ import * as $ from 'jquery';
 export class TrackComponent {
 
   title = 'Track #' +  this.route.snapshot.paramMap.get('id');
-  displayedColumns: string[] = ['number','date_released',  'user1', 'date_received', 'user2', 'duration'];
+  displayedColumns: string[] = ['number','date_released',  'user1', 'date_received', 'user2', 'duration','remarks'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   users : any;
@@ -31,6 +32,8 @@ export class TrackComponent {
   submitted = false;
   t_number : any;
   document : any;
+  remarks : any;
+  final_action_taken :any;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   constructor(
@@ -88,6 +91,11 @@ export class TrackComponent {
 
     }
 
+
+    view_remarks(remarks : any, final_action_taken : any){
+      this.remarks = remarks;
+      this.final_action_taken = final_action_taken;
+    }
 
     back(){
       this.location.back(); 

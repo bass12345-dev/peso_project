@@ -39,6 +39,9 @@ export class AddDocumentComponent {
       document_type: ['', Validators.required],
       description: ['', ],
       tracking_number : ['', Validators.required],
+      // year : ['', Validators.required],
+      // month : ['', Validators.required],
+      // day : ['', Validators.required],
     });
 
     this.get_last();
@@ -54,12 +57,15 @@ export class AddDocumentComponent {
       tracking_number  : item.number,
       document_type: '',
       description: '',
+      // month : item.m,
+      // day : item.d,
+      // year : item.y 
 
     });
 
-    this.y = item.y;
-    this.m = item.m;
-    this.d = item.d;
+    // this.y = item.y;
+    // this.m = item.m;
+    // this.d = item.d;
 
   })
 
@@ -95,7 +101,9 @@ export class AddDocumentComponent {
       document_type : this.addForm.value['document_type'],
       description : this.addForm.value['description'],
       tracking_number : this.addForm.value['tracking_number']
+      // tracking_number : this.addForm.value['year'] + this.addForm.value['month'] +  this.addForm.value['day'] +this.addForm.value['tracking_number']
     }
+
 
     this.apiService.addDocument(params).subscribe((data : any) =>{
       if(data.response){
@@ -103,6 +111,7 @@ export class AddDocumentComponent {
         this.button_dis = false;
         this.spinner = true;
         this.addForm.reset();
+        this.get_last()
       }else {
         this.alert_(data.message)
         this.button_dis = false;

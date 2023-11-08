@@ -31,6 +31,8 @@ import { UserDisplayComponent } from './layout/user-display/user-display.compone
 import { TrackAllComponent } from './pages/track-all/track-all.component';
 import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
 import { UpdateDocumentComponent } from './pages/update-document/update-document.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { UpdateDocumentComponent } from './pages/update-document/update-document
     MatFormFieldModule,
     MatInputModule,  
     MatPaginatorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    EditorModule
   ],
   providers: [UserDocumentGuard],
 })

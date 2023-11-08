@@ -27,6 +27,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
 import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
 import { TrackComponent } from './pages/track/track.component';
+import { FinalActionTakenComponent } from './pages/final-action-taken/final-action-taken.component';
 
 
 
@@ -42,7 +43,8 @@ import { TrackComponent } from './pages/track/track.component';
     DocumentTypesComponent,
     UsersComponent,
     AllDocumentsComponent,
-    TrackComponent
+    TrackComponent,
+    FinalActionTakenComponent
   
   ],
   imports: [

@@ -9,6 +9,8 @@ import * as XLSX from 'xlsx';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as $ from 'jquery';
+
+
 @Component({
   selector: 'app-received',
   templateUrl: './received.component.html',
@@ -21,9 +23,11 @@ export class ReceivedComponent {
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   users : any;
+  actions : any;
   id : any;
   to :any;
   addForm!: FormGroup;
+  addForm1!: FormGroup;
   button_dis : boolean = false;
   spinner : boolean = true;
   submitted = false;
@@ -42,6 +46,7 @@ export class ReceivedComponent {
     ngOnInit() {
       this.getReceivedDocs(); 
       this.getUsers(); 
+      this.getActions(); 
       this.id = localStorage.getItem("id");
       
       this.addForm = this.formBuilder.group({
@@ -53,11 +58,63 @@ export class ReceivedComponent {
 
        
       });
+
+      this.addForm1 = this.formBuilder.group({
+        history_id1: ['', Validators.required],
+        final: ['', Validators.required],
+        remarks1: [''],
+      
+      });
     
     }
 
     get f() { return this.addForm.controls; }
+    get f1() { return this.addForm1.controls; }
+    onSubmit1() {
+      this.button_dis = true;
+      this.spinner = false;
+      this.submitted = true;
 
+      if (this.addForm1.invalid) {
+        this.button_dis = false;
+        this.spinner = true;
+        return;
+        
+    }
+    let params = {
+
+      id : this.addForm1.value['history_id1'],
+      final_action_taken : this.addForm1.value['final'],
+      remarks1 : this.addForm1.value['remarks1'],
+    }
+
+
+    this.apiService.CompletedDoc(params).subscribe((data : any) =>{
+      if(data.response){
+        Swal.fire(
+          data.message,
+          '',
+          'success'
+        )
+
+        this.button_dis = false;
+        this.spinner = true;
+        this.addForm1.reset();
+        this.getReceivedDocs(); 
+        document.getElementById("close-off")?.click();
+      
+      }else {
+        this.button_dis = false;
+        this.spinner = true;
+        alert(data.message);
+
+      }
+    });
+
+
+
+  
+    }
     onSubmit() {
       this.button_dis = true;
       this.spinner = false;
@@ -71,7 +128,7 @@ export class ReceivedComponent {
           
       }
 
-
+      
 
       this.apiService.ForwardDocs(this.addForm.value).subscribe((data : any) =>{
         if(data.response){
@@ -133,6 +190,15 @@ export class ReceivedComponent {
 
     }
 
+    getActions(){
+
+
+      this.apiService.getActions().subscribe((items: any[]) => {
+        this.actions = items;
+      });
+
+    }
+
     
 export(){
   Swal.fire({
@@ -163,41 +229,54 @@ a(t_number : any, history_id : any){
 }
 
 
+complete_off_canvas(id: any , title : any){
+
+  this.addForm1.setValue({
+
+    history_id1: id,
+    final : '',
+    remarks1: '',
+    
+  });
+
+
+}
+
 completed(id: any , title : any){
 
 
 
-    let params = {
+    // let params = {
   
-      id : id
-    }
+    //   id : id
+    // }
   
-    Swal.fire({
-      title: '',
-      text: "Approve Document " + title + ' ?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes!'
-    }).then((result) => {
-      if (result.isConfirmed) {
+    // Swal.fire({
+    //   title: '',
+    //   text: "Approve Document " + title + ' ?',
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Yes!'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
   
-        this.apiService.CompletedDoc(params).subscribe((data : any) =>{
-          if(data.response){
-            Swal.fire(
-              data.message,
-              '',
-              'success'
-            )
-            this.getReceivedDocs();
-          }else {
-            alert(data.message)
-          }
-        });
+        // this.apiService.CompletedDoc(params).subscribe((data : any) =>{
+        //   if(data.response){
+        //     Swal.fire(
+        //       data.message,
+        //       '',
+        //       'success'
+        //     )
+        //     this.getReceivedDocs();
+        //   }else {
+        //     alert(data.message)
+        //   }
+        // });
   
-      }
-    })
+    //   }
+    // })
   }
 
 

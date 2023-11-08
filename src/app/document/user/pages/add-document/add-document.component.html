@@ -11,10 +11,10 @@
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Tracking Number<span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="text" aria-label="" value="{{y}}" class="form-control ">
-            <input type="text" aria-label="" value="{{m}}"  class="form-control ">
-            <input type="text" aria-label="" value="{{d}}"  class="form-control ">
-            <input type="text" readonly class="form-control w-50"  name="tracking_number" formControlName="tracking_number"  [ngClass]="{ 'is-invalid': submitted && f['tracking_number'].errors }" >
+            <!-- <input type="text" aria-label=""  name="year" formControlName="year"  [ngClass]="{ 'is-invalid': submitted && f['year'].errors }" class="form-control ">
+            <input type="text" aria-label=""  name="month" formControlName="month"  [ngClass]="{ 'is-invalid': submitted && f['month'].errors }"  class="form-control ">
+            <input type="text" aria-label=""  name="day" formControlName="day"  [ngClass]="{ 'is-invalid': submitted && f['day'].errors }"   class="form-control "> -->
+            <input type="text" readonly class="form-control w-100"  name="tracking_number" formControlName="tracking_number"  [ngClass]="{ 'is-invalid': submitted && f['tracking_number'].errors }" >
           </div>
          
         </div>

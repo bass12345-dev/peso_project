@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,22 +7,22 @@ import { ApiService } from 'src/app/service/api.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-offices',
-  templateUrl: './offices.component.html',
-  styleUrls: ['./offices.component.css']
+  selector: 'app-final-action-taken',
+  templateUrl: './final-action-taken.component.html',
+  styleUrls: ['./final-action-taken.component.css']
 })
-export class OfficesComponent {
+export class FinalActionTakenComponent {
 
-  title = 'Manage Offices';
-  office : string = ' ';
+  title = 'Manage Final Actions';
+  type : string = ' ';
   button_dis : boolean = false;
   spinner : boolean = true;
-  displayedColumns: string[] = ['office', 'created','action'];
+  displayedColumns: string[] = ['final_action', 'created','action'];
   dataSource : string[] = [];
   showLoading : boolean = false;
   text_label_input : string = 'Add';
   cancel_update_btn : boolean = true;
-  office_id : any;
+  type_id : any;
 
   
 constructor(
@@ -33,15 +34,15 @@ constructor(
   }
 
   ngOnInit(){
-    this.getOffices()
+    this.getTypes()
   }
 
-  update_office(id : any,office:any){
+  update_type(id : any,type:any){
 
     this.text_label_input = 'Update';
     this.cancel_update_btn = false;
-    this.office = office;
-    this.office_id = id;
+    this.type = type;
+    this.type_id = id;
 
   }
 
@@ -49,22 +50,22 @@ constructor(
 
     this.text_label_input = 'Add';
     this.cancel_update_btn = true;
-    this.office = '';
-    this.office_id = undefined;
+    this.type = '';
+    this.type_id = undefined;
    
   }
 
-  getOffices(){
-    this.apiService.getOffices().subscribe((items: any[]) => {
+  getTypes(){
+    this.apiService.getActions().subscribe((items: any[]) => {
       this.dataSource = items;
       this.showLoading = true;
     });
   }
 
-  delete_office(office_id : any){
+  delete(type_id : any){
     Swal.fire({
       title: 'Are you sure?',
-      text: "Delete this Office",
+      text: "Delete this Action",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -82,16 +83,20 @@ constructor(
             Swal.showLoading()
           }
         });
-        this.apiService.delete_office(office_id).subscribe((data : any) =>{
+        this.apiService.delete_action(type_id).subscribe((data : any) =>{
+          
+
           if(data.response){
             Swal.close();
-            this.alert_(data.message);
-            this.getOffices();
+            var style = 'custom-style-success';
+            this.alert_(data.message,style);
+            this.getTypes();
             this.showLoading = true;
           }else {
             Swal.close();
-            this.alert_(data.message);
             this.showLoading = true;
+            var style = 'custom-style-danger';
+            this.alert_(data.message,style);
           }
         });
 
@@ -105,15 +110,17 @@ constructor(
     this.spinner = false;
 
     let params =  {
-      office: this.office,
+      type: this.type,
     }
 
 
-    if(this.office_id == undefined ){
-      this.add_office(params);
+    
+    if(this.type_id == undefined ){
+      this.add_action(params);
     }else {
-      this.update_office_backend(this.office_id,params);
+      this.update_type_backend(this.type_id,params);
     }
+
     
 
 
@@ -121,66 +128,69 @@ constructor(
 
   }
 
+  update_type_backend(type_id : any,params:any){
 
-  update_office_backend(id:any,params:any){
-    this.apiService.update_office(id,params).subscribe((data : any) =>{
+
+    this.apiService.update_action(type_id,params).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message);
+        var style = 'custom-style-success';
+        this.alert_(data.message,style);
         this.button_dis = false;
         this.spinner = true;
-        this.office = ' ';
-        this.getOffices();
+        this.type = ' ';
+        this.getTypes();
       }else {
-        this.alert_(data.message)
+        var style = 'custom-style-danger';
+          this.alert_(data.message,style);
         this.button_dis = false;
         this.spinner = true;
       }
 
       this.text_label_input = 'Add';
       this.cancel_update_btn = true;
-      this.office = '';
-      this.office_id = undefined;
-    });
+      this.type = '';
+      this.type_id = undefined;
+    })
+
+
   }
 
-  
 
-
-  add_office(params:any){
-
-    if(this.office == ' '){
+  add_action(params:any){
+    if(this.type == ' '){
       alert('Please Fill Up')
       this.button_dis = false;
       this.spinner = true;
-    }else if(this.office != ' ') {
+    }else if(this.type != ' ') {
       
-      this.apiService.addOffice(params).subscribe((data : any) =>{
+      this.apiService.addAction(params).subscribe((data : any) =>{
         if(data.response){
-          this.alert_(data.message);
+          var style = 'custom-style-success';
+          this.alert_(data.message,style);
           this.button_dis = false;
           this.spinner = true;
-          this.office = ' ';
-          this.getOffices();
+          this.type = ' ';
+          this.getTypes();
         }else {
-          this.alert_(data.message)
+          var style = 'custom-style-danger';
+          this.alert_(data.message,style)
           this.button_dis = false;
           this.spinner = true;
         }
-      });
+      })
 
     }
-
   }
 
-  alert_(message:any){
+  alert_(message:any,style : string){
 
     this._snackBar.open(message, '', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       duration: 5 * 700,
+      panelClass: [style]
      
     });
   }
-  
 
 }

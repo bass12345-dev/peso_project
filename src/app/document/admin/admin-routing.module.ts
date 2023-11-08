@@ -8,6 +8,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { AllDocumentsComponent } from './pages/all-documents/all-documents.component';
 import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
 import { TrackComponent } from './pages/track/track.component';
+import { FinalActionTakenComponent } from './pages/final-action-taken/final-action-taken.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate : [AdminDocumentGuard],
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path : 'users', component : UsersComponent},
     { path : 'documents', component : AllDocumentsComponent},
     { path : 'track/:id', component : TrackComponent},
+    { path : 'final-action-taken', component : FinalActionTakenComponent},
     
   ] }];
 

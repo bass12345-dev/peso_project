@@ -228,6 +228,13 @@ verifyAdmin(body:any){
   return this.http.post(`${this.apiUrl}/api/verify-admin`,body);
 }
 
+addAction(data: any){
+  return this.http.post(`${this.apiUrl}/api/add-action`,data);
+}
+
+
+
+
 //Get
 getAllDocuments(): Observable<any[]>{
 
@@ -238,7 +245,10 @@ CountadminDashboard(){
   return this.http.get(`${this.apiUrl}/api/count-docs`);
 }
 
+getActions(): Observable<any[]>{
 
+  return this.http.get<any[]>(`${this.apiUrl}/api/get-actions`);
+}
 
   //PUT
 
@@ -255,6 +265,10 @@ CountadminDashboard(){
     return this.http.put(`${this.apiUrl}/api/update_document/` + id,params);
   }
 
+  update_action(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_action/` + id,params);
+  }
+
 
   delete_user(id:any,params : any){
     return this.http.put(`${this.apiUrl}/api/remove-user/` + id,params);
@@ -269,6 +283,10 @@ CountadminDashboard(){
 
   delete_type(id:any){
     return this.http.delete(`${this.apiUrl}/api/delete-type/` + id);
+  }
+
+  delete_action(id:any){
+    return this.http.delete(`${this.apiUrl}/api/delete-action/` + id);
   }
 
 
