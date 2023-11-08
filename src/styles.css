@@ -1,11 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  background-color:linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+
+
+}
 .active-link{ 
 
     background: linear-gradient(to right, #373b44, #4286f4) !important;
   }
+
+
+
+
 
   .auth-page-content {
     background-image: url("assets/background-track.jpg");
