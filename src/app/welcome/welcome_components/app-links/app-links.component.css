@@ -18,7 +18,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 16px;
+    margin-top: 100px;
   }
 
   .card {
