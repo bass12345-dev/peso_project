@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-all-documents',
@@ -20,6 +21,8 @@ export class AllDocumentsComponent {
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
+  selection = new SelectionModel<any>(true, []);
+
   constructor(
     private apiService :ApiService, 
     public router: Router,
@@ -27,6 +30,44 @@ export class AllDocumentsComponent {
   
     ){}
     ngOnInit() {this.getMydocuments();}
+
+
+
+     /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+
+   /** The label for the checkbox on the passed row */
+   checkboxLabel(row?: any): string {
+
+    
+   
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+
+   
+  }
+
+
+  
+    
 
 
     doFilter = (value: any) => {

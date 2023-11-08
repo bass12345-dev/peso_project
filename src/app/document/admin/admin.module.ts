@@ -28,6 +28,8 @@ import { AllDocumentsComponent } from './pages/all-documents/all-documents.compo
 import { AdminDocumentGuard } from 'src/app/service/admin-document-guard.service';
 import { TrackComponent } from './pages/track/track.component';
 import { FinalActionTakenComponent } from './pages/final-action-taken/final-action-taken.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -63,7 +65,9 @@ import { FinalActionTakenComponent } from './pages/final-action-taken/final-acti
     MatFormFieldModule,
     MatInputModule,  
     MatPaginatorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [AdminDocumentGuard],
 })

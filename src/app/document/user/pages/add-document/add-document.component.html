@@ -32,7 +32,24 @@
         
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Description <span class="text-danger">*</span></label>
-          <textarea class="form-control"   name="description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" ></textarea>
+          <!-- <textarea class="form-control"   name="description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" ></textarea> -->
+          <editor
+          apiKey="ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1"
+          name="description" formControlName="description"
+          [init]="{
+            height: 500,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help'
+          }"
+        ></editor>
         </div>
         <div class="col-12">
           <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
