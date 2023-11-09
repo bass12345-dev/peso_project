@@ -11,7 +11,9 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrl = 'http://127.0.0.1:8000';
+  // apiUrl = 'http://127.0.0.1:8000';
+
+  apiUrl = 'http://198.168.5.10/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';
 
 

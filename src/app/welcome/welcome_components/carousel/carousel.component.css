@@ -1,0 +1,36 @@
+.im {
+      height: 420px; width: 800px;
+}
+
+.im-c {
+      height: 420px;
+}
+
+@media screen and (max-width:768px) {
+    .im{
+          /* visibility: hidden; */
+          width: 380px;
+          height: 270px;
+
+  }
+
+  .im-c {
+
+      height: 200px;
+
+  }
+  }
+  
+  @media screen and (min-width: 320x) {
+      .im{
+          /* visibility: hidden; */
+          width: 380px;
+          height: 270px;
+  }
+
+  .im-c {
+
+      height: 200px;
+
+  }
+  }

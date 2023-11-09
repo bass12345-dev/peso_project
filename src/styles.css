@@ -4,6 +4,13 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
   background-color:linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+  background-image: url('./assets/welcome-back.jpg');
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
 
 }
