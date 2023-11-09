@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.service';
 import { UserDocumentGuard } from './service/user-document-guard.service';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -39,6 +40,7 @@ import { UserDocumentGuard } from './service/user-document-guard.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
     ToastrModule.forRoot(),
 
   ],
