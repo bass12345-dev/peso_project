@@ -20,7 +20,9 @@ export class AppLinksComponent {
     public router: Router
     ){}
 
-  
+    open(){
+      open('microsoft-edge:https://github.com');
+   }
   open_(){
     Swal.fire({
       title: 'Enter Security Code',
