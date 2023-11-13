@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // apiUrl = 'http://127.0.0.1:8000';
-
-  apiUrl = 'http://192.168.1.25/cpesd-api/public';
+  apiUrl = 'http://localhost/api/public';
+  // apiUrl = 'http://192.168.1.25/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';
 
 
@@ -227,7 +227,8 @@ track_document(id:any,tracking_number : any){
 //Post
 
 verifyAdmin(body:any){
-  return this.http.post(`${this.apiUrl}/api/verify-admin`,body);
+  var error;
+  return this.http.post(`${this.apiUrl}/api/verify-admin`,body)
 }
 
 addAction(data: any){

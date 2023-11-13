@@ -45,6 +45,14 @@ export class SearchComponent {
         this.count_text= data.length <= 1 ?  'Result' : 'Results' ; 
         this.display_count = this.count_text +' '+ data.length;
         this.showLoading = true;
+      },  (error) => {                              //Error callback
+        Swal.close();
+        var message = "Connection Error, Please Try Again";
+    
+        alert(message)
+
+  
+        //throw error;   //You can also throw the error to a global error handler
       });  
 
     }

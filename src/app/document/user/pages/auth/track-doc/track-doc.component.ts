@@ -37,20 +37,29 @@ export class TrackDocComponent {
 
 
     this.apiService.track_document(localStorage.getItem("id"),text.target.value).subscribe((data : any) =>{
-      Swal.close();
+      
       if(data.response == false){
+        Swal.close();
 
         alert('Tracking Number Not Found')
 
       }
 
       if(data.length) {
+        Swal.close();
         this.track = false;
       }
      this.items = data
      
 
 
+    }, (error) => {                              //Error callback
+        
+      var message = "Connection Error, Please Try Again";
+  
+      alert(message)
+
+      //throw error;   //You can also throw the error to a global error handler
     })
     
 

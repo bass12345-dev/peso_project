@@ -88,7 +88,16 @@ export class RegisterComponent {
           this.button_dis = false;
           this.spinner = true;
         }
-      })
+      },
+      (error) => {                              //Error callback
+        
+        var message = "Connection Error, Please Try Again";
+    
+        alert(message)
+  
+        //throw error;   //You can also throw the error to a global error handler
+      }
+      )
      }
    }
 
@@ -109,7 +118,16 @@ export class RegisterComponent {
     this.apiService.getOffices().subscribe((items: any[]) => {
       this.offices = items;
       
-    });
+    },
+    (error) => {                              //Error callback
+        
+      var message = "Can't Get Offices";
+  
+      alert(message)
+
+      //throw error;   //You can also throw the error to a global error handler
+    }
+    );
   }
   
 

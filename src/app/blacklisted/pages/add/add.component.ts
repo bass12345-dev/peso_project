@@ -69,6 +69,13 @@ export class AddComponent implements OnInit {
         this.button_dis = false;
         this.spinner = true;
       }
+    },  (error) => {                              //Error callback
+        
+      var message = "Connection Error, Please Try Again";
+  
+      alert(message)
+
+      //throw error;   //You can also throw the error to a global error handler
     })
   
 }

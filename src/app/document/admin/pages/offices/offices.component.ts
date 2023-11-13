@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -33,6 +34,7 @@ constructor(
   }
 
   ngOnInit(){
+    
     this.getOffices()
   }
 
@@ -166,7 +168,13 @@ constructor(
           this.button_dis = false;
           this.spinner = true;
         }
-      });
+      },
+      (error)=> {
+        this.button_dis = false;
+          this.spinner = true;
+        alert('Something Wrong')
+      }
+      );
 
     }
 

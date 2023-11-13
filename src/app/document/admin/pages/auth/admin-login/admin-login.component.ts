@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 import { ApiService } from 'src/app/service/api.service';
 import Swal from 'sweetalert2';
 
@@ -16,6 +17,7 @@ export class AdminLoginComponent {
   submitted = false;
   button_dis : boolean = false;
   spinner : boolean = true;
+  
 
   constructor(
     private apiService : ApiService, 
@@ -55,24 +57,44 @@ export class AdminLoginComponent {
         Swal.showLoading()
       }
     });
-    this.apiService.verifyAdmin(this.addForm.value).subscribe((data : any) =>{
-      if(data.response){
 
-        Swal.close()
-        localStorage.setItem('idd', data.data);
-        this.router.navigate(['/document/admin/dashboard']);
-      
-      }else {
+    var loading = true;
+    var errorMessage = "";
 
-        Swal.fire(
-          data.message,
-          '',
-          'error'
-        )
-      
+      this.apiService.verifyAdmin(this.addForm.value).subscribe((data : any) =>{
+        
+
+        if(data.response){
+  
+          Swal.close()
+          localStorage.setItem('idd', data.data);
+          this.router.navigate(['/document/admin/dashboard']);
+        
+        }else {
+  
+          Swal.fire(
+            data.message,
+            '',
+            'error'
+          )
+        
+        }
+      },
+      (error) => {                              //Error callback
+        Swal.close();
+        var message = "Connection Error, Please Try Again";
+    
+        alert(message)
+  
+        //throw error;   //You can also throw the error to a global error handler
       }
-    })
+      
+      )
+      
+
   
 }
+
+
 
 }
