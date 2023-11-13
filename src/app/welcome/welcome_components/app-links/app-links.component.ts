@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-app-links',
@@ -24,7 +25,13 @@ export class AppLinksComponent {
       open('microsoft-edge:https://github.com');
    }
   open_(){
-    Swal.fire({
+
+    let id = localStorage.getItem('permissions')
+
+
+
+    if(id == null) {
+          Swal.fire({
       title: 'Enter Security Code',
       html:
       '<input type="password" id="swal-input2" class="swal2-input" #abc>',
@@ -78,6 +85,13 @@ export class AppLinksComponent {
       }
       
     })
+    }else {
+
+      
+      this.router.navigate(['/blacklisted/dashboard']);
+    }
+
+
   }
 
   open_document(){

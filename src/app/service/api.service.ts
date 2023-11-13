@@ -12,12 +12,22 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // apiUrl = 'http://127.0.0.1:8000';
-  apiUrl = 'http://localhost/api/public';
-  // apiUrl = 'http://192.168.1.25/cpesd-api/public';
+  // apiUrl = 'http://localhost/api/public';
+  apiUrl = 'http://192.168.1.25/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';
 
 
   //                  Blacklisted                 //
+
+  verify_blacklisted_user(data:any) {
+    let item = {
+
+      id : data
+
+    }
+    return this.http.post(`${this.apiUrl}/api/verify-b-user`,item);
+  }
+
 
   //POST
 
