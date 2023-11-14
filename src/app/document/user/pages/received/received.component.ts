@@ -48,6 +48,7 @@ export class ReceivedComponent {
       this.getUsers(); 
       this.getActions(); 
       this.id = localStorage.getItem("id");
+      this.id = atob(this.id);
       
       this.addForm = this.formBuilder.group({
         forward: ['', Validators.required],
