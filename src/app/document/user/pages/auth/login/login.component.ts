@@ -16,6 +16,7 @@ export class LoginComponent {
   submitted = false;
   button_dis : boolean = false;
   spinner : boolean = true;
+  local_id : any = '';
 
   constructor(
     private apiService : ApiService, 
@@ -26,7 +27,7 @@ export class LoginComponent {
   }
 
   ngOnInit(){
- 
+    this.check_if_login();
     this.addForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -59,7 +60,7 @@ export class LoginComponent {
       if(data.response){
 
         Swal.close()
-        localStorage.setItem('id', data.data);
+        localStorage.setItem('id', btoa(data.data));
         this.router.navigate(['/document/user/dashboard']);
       
       }else {
@@ -82,6 +83,18 @@ export class LoginComponent {
     }
     )
   
+}
+
+check_if_login(){
+  this.local_id = localStorage.getItem('id');
+
+  this.apiService.verify_dt_user(atob(this.local_id)).subscribe((data:any)=> {
+
+    if(data.response) {
+      this.router.navigate(['/document/user/dashboard']); 
+    }
+
+});
 }
 
 }

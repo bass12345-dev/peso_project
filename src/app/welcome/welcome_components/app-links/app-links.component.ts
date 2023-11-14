@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
 import { empty } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-app-links',
@@ -14,11 +15,13 @@ import { empty } from 'rxjs';
 })
 export class AppLinksComponent {
 
+  local_id : any;
 
   constructor(
     private apiService : ApiService,
     private toastr: ToastrService,
-    public router: Router
+    public router: Router,
+    private _snackBar: MatSnackBar
     ){}
 
     open(){
@@ -60,7 +63,7 @@ export class AppLinksComponent {
             Swal.close();
 
 
-            localStorage.setItem('permissions', data.message);
+            localStorage.setItem('permissions', btoa(data.message));
             this.router.navigate(['/blacklisted/dashboard']);
           }else {
             
@@ -87,12 +90,48 @@ export class AppLinksComponent {
     })
     }else {
 
+      Swal.fire({
+        title: 'Redirecting...',
+        html: 'Please wait...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      });
+
+      this.local_id = localStorage.getItem('permissions')
+
+      this.apiService.verify_blacklisted_user(atob(this.local_id)).subscribe((data:any)=> {
+
+        if(data.response) {
+          Swal.close();
+          this.router.navigate(['/blacklisted/dashboard']);
+        }else {
+           
+          
+           Swal.close();
+           let message = "You don't have permission";
+           this.alert_(message);
+        }
+
+    })
+
+      // this.router.navigate(['/blacklisted/dashboard']);
+
+     
+
+  //  setTimeout(() => {
+  //   this.router.navigate(['/blacklisted/dashboard']);
+  //   Swal.close();
+  //         }, 4000);
       
-      this.router.navigate(['/blacklisted/dashboard']);
     }
 
 
   }
+
+
 
   open_document(){
 
@@ -115,5 +154,16 @@ export class AppLinksComponent {
 
   open_user(){
     alert('asd');
+  }
+
+
+  alert_(message:any){
+
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['custom-style-danger']
+    });
   }
 }

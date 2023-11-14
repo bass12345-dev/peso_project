@@ -17,7 +17,7 @@ export class AdminLoginComponent {
   submitted = false;
   button_dis : boolean = false;
   spinner : boolean = true;
-  
+  local_id : any = '';
 
   constructor(
     private apiService : ApiService, 
@@ -28,6 +28,8 @@ export class AdminLoginComponent {
   }
 
   ngOnInit(){
+
+    this.check_if_login()
  
     this.addForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -67,7 +69,7 @@ export class AdminLoginComponent {
         if(data.response){
   
           Swal.close()
-          localStorage.setItem('idd', data.data);
+          localStorage.setItem('idd', btoa(data.data));
           this.router.navigate(['/document/admin/dashboard']);
         
         }else {
@@ -95,6 +97,15 @@ export class AdminLoginComponent {
   
 }
 
+check_if_login(){
+  this.local_id = localStorage.getItem('idd');
+  this.apiService.verify_dt_user(atob(this.local_id)).subscribe((data:any)=> {
 
+    if(data.response) {
+      this.router.navigate(['/document/admin/dashboard']); 
+    }
+
+});
+}
 
 }

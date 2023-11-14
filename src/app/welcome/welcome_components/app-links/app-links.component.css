@@ -143,3 +143,8 @@ p {
   }
 }
 
+
+::ng-deep .custom-style-danger {
+  --mdc-snackbar-container-color: #d9534f;
+  --mdc-snackbar-supporting-text-color: white;
+}
