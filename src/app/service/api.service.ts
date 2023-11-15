@@ -8,11 +8,21 @@ import { Observable, catchError, retry } from 'rxjs';
 export class ApiService {
 
   headers : any
+  requestOptions : any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+
+    let api_key = "29F5F7BE86CD65C7FFCB96E85D97A";
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${api_key}`
+      });
+
+    this.requestOptions = { headers: headers };
+  }
 
   // apiUrl = 'http://127.0.0.1:8000';
-  apiUrl = 'http://localhost/api/public';
+  apiUrl = 'http://localhost/cpesd-api/public';
   // apiUrl = 'http://192.168.1.25/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';
 
@@ -153,7 +163,7 @@ export class ApiService {
 
       //Add Data
       addOffice(data: any){
-        return this.http.post(`${this.apiUrl}/api/add-office`,data);
+        return this.http.post(`${this.apiUrl}/api/add-office`,data, this.requestOptions);
       }
 
       addType(data: any){
@@ -314,7 +324,7 @@ getActions(): Observable<any[]>{
   //DELETE
     
   delete_office(id:any){
-    return this.http.delete(`${this.apiUrl}/api/delete-office/` + id);
+    return this.http.delete(`${this.apiUrl}/api/delete-office/` + id,this.requestOptions);
   }
 
   delete_type(id:any){
