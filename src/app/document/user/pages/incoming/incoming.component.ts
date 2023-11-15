@@ -19,7 +19,7 @@ export class IncomingComponent {
 
 
   title = 'Incoming';
-  displayedColumns: string[] = ['tracking_number','to', 'document_name', 'document_type','remarks', 'action'];
+  displayedColumns: string[] = ['tracking_number','to', 'document_name', 'document_type','remarks', 'release_date','action'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   users : any;

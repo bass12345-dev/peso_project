@@ -57,6 +57,12 @@
                 </ng-container>
 
 
+            <ng-container matColumnDef="release_date">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Released Date - Time</th>
+                    <td mat-cell *matCellDef="let element"><span [innerHTML]="element.released_date"></span> </td>
+            </ng-container>
+    
+
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Action</th>
                 <td mat-cell *matCellDef="let element"> 
