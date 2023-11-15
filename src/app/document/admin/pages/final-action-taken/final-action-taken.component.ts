@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 import { ApiService } from 'src/app/service/api.service';
 import Swal from 'sweetalert2';
 
@@ -57,9 +58,19 @@ constructor(
 
   getTypes(){
     this.apiService.getActions().subscribe((items: any[]) => {
-      this.dataSource = items;
-      this.showLoading = true;
-    });
+
+
+        this.dataSource = items;
+        this.showLoading = true;
+
+      
+    
+  
+    },
+    (error)=> {
+      alert('Connection Error')
+    }
+    );
   }
 
   delete(type_id : any){

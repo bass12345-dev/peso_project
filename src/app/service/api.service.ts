@@ -167,11 +167,11 @@ export class ApiService {
       }
 
       addType(data: any){
-        return this.http.post(`${this.apiUrl}/api/add-document-type`,data);
+        return this.http.post(`${this.apiUrl}/api/add-document-type`,data,this.requestOptions);
       }
 
       verifyUser(body:any){
-        return this.http.post(`${this.apiUrl}/api/verify-user`,body);
+        return this.http.post(`${this.apiUrl}/api/verify-user`,body,this.requestOptions);
       }
 
       addDocument(data: any){
@@ -271,11 +271,11 @@ track_document(id:any,tracking_number : any){
 
 verifyAdmin(body:any){
   var error;
-  return this.http.post(`${this.apiUrl}/api/verify-admin`,body)
+  return this.http.post(`${this.apiUrl}/api/verify-admin`,body,this.requestOptions)
 }
 
 addAction(data: any){
-  return this.http.post(`${this.apiUrl}/api/add-action`,data);
+  return this.http.post(`${this.apiUrl}/api/add-action`,data, this.requestOptions);
 }
 
 
@@ -300,11 +300,11 @@ getActions(): Observable<any[]>{
 
 
   update_office(id:any,params : any){
-    return this.http.put(`${this.apiUrl}/api/update_office/` + id,params);
+    return this.http.put(`${this.apiUrl}/api/update_office/` + id,params,this.requestOptions);
   }
 
   update_type(id:any,params : any){
-    return this.http.put(`${this.apiUrl}/api/update_type/` + id,params);
+    return this.http.put(`${this.apiUrl}/api/update_type/` + id,params,this.requestOptions);
   }
 
   update_document(id:any,params : any){
@@ -312,7 +312,7 @@ getActions(): Observable<any[]>{
   }
 
   update_action(id:any,params : any){
-    return this.http.put(`${this.apiUrl}/api/update_action/` + id,params);
+    return this.http.put(`${this.apiUrl}/api/update_action/` + id,params,this.requestOptions);
   }
 
 
@@ -328,11 +328,11 @@ getActions(): Observable<any[]>{
   }
 
   delete_type(id:any){
-    return this.http.delete(`${this.apiUrl}/api/delete-type/` + id);
+    return this.http.delete(`${this.apiUrl}/api/delete-type/` + id,this.requestOptions);
   }
 
   delete_action(id:any){
-    return this.http.delete(`${this.apiUrl}/api/delete-action/` + id);
+    return this.http.delete(`${this.apiUrl}/api/delete-action/` + id,this.requestOptions);
   }
 
 
