@@ -4,6 +4,7 @@ import { DataSource } from 'src/app/source/data-source';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class UpdateComponent {
     public router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private location: Location, 
     ){
   }
 
@@ -86,27 +88,36 @@ export class UpdateComponent {
     }
     this.apiService.update_person_info(this.id,this.addForm.value).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message)
-        this.get_person_data();
+        var style = 'custom-style-success';
+        this.alert_(data.message,style)
         this.button_dis = false;
         this.spinner = true;
       }else {
-        this.alert_(data.message)
+        var style = 'custom-style-danger';
+        this.alert_(data.message,style)
         this.button_dis = false;
         this.spinner = true;
       }
-    });
+    },  (error) => {                              //Error callback 
+      var message = "Connection Error, Please Try Again";
+      alert(message)
+  });
 
   }
 
-  alert_(message:any){
+  alert_(message:any, style : any){
 
     this._snackBar.open(message, '', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       duration: 5 * 700,
+      panelClass: [style]
      
     });
+  }
+
+  back(){
+    this.location.back(); 
   }
 
 }

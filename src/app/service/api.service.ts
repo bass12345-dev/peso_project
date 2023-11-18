@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { 
 
-    let api_key = "29F5F7BE86CD65C7FFCB96E85D97A";
+    let api_key = "base64:2bKEr//MLbjJv0Y+UdvMlzXK2a/8qwvnteFmxH1RgVs=";
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${api_key}`
@@ -21,8 +21,8 @@ export class ApiService {
     this.requestOptions = { headers: headers };
   }
 
-  // apiUrl = 'http://127.0.0.1:8000';
-  apiUrl = 'http://localhost/cpesd-api/public';
+  apiUrl = 'http://127.0.0.1:8000';
+  // apiUrl = 'http://localhost/cpesd-api/public';
   // apiUrl = 'http://192.168.1.25/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';
 
@@ -47,7 +47,7 @@ export class ApiService {
         set('content-type', 'application/json').
         set('Access-Control-Allow-Origin', '*').
         set('Authorization', 'Basic ' + btoa(data.code))
-        return this.http.post(`${this.apiUrl}/api/verify-code`,data,this.headers)
+        return this.http.post(`${this.apiUrl}/api/verify-code`,data,this.requestOptions)
       }
 
       //Search
@@ -57,11 +57,11 @@ export class ApiService {
 
       //Add Data
       addData(data: any){
-        return this.http.post(`${this.apiUrl}/api/add`,data);
+        return this.http.post(`${this.apiUrl}/api/add`,data,this.requestOptions);
       }
 
       ChangeCode(data: any,id :any){
-        return this.http.post(`${this.apiUrl}/api/change-code?id=` + id,data);
+        return this.http.post(`${this.apiUrl}/api/change-code?id=` + id,data,this.requestOptions);
       }
 
 
@@ -95,26 +95,26 @@ export class ApiService {
   //PUT
 
   add_record(id:any,params : any){
-    return this.http.put(`${this.apiUrl}/api/add_record/` + id,params);
+    return this.http.put(`${this.apiUrl}/api/add_record/` + id,params,this.requestOptions);
   }
 
 
   update_record(record_id:any,params : any){
-    return this.http.put(`${this.apiUrl}/api/update_record/` + record_id,params);
+    return this.http.put(`${this.apiUrl}/api/update_record/` + record_id,params,this.requestOptions);
   }
 
     set_active(id:any, item : any){
 
-      return this.http.put(`${this.apiUrl}/api/set-active/` + id,item);
+      return this.http.put(`${this.apiUrl}/api/set-active/` + id,item,this.requestOptions);
   
     }
 
     remove(id:any, item : any){
-      return this.http.put(`${this.apiUrl}/api/remove/` + id,item);
+      return this.http.put(`${this.apiUrl}/api/remove/` + id,item,this.requestOptions);
     }
 
     update_person_info(id:any,params : any){
-      return this.http.put(`${this.apiUrl}/api/update-person-info/` + id,params);
+      return this.http.put(`${this.apiUrl}/api/update-person-info/` + id,params,this.requestOptions);
     }
   
   //DELETE
@@ -122,12 +122,12 @@ export class ApiService {
 
     delete(id : any){
 
-      return this.http.delete(`${this.apiUrl}/api/delete/` + id);
+      return this.http.delete(`${this.apiUrl}/api/delete/` + id,this.requestOptions);
     }
 
 
     delete_record(id:any){
-      return this.http.delete(`${this.apiUrl}/api/delete-record/` + id);
+      return this.http.delete(`${this.apiUrl}/api/delete-record/` + id,this.requestOptions);
     }
 
 

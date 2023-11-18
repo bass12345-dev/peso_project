@@ -80,17 +80,25 @@ export class PersonRecordsComponent {
         });
         this.apiService.delete_record(id).subscribe((data : any) =>{
           if(data.response){
-            this.alert_(data.message);
+            var style = 'custom-style-success';
+            this.alert_(data.message,style);
             this.get_records();
             Swal.close();
             this.showLoading = true;
           }else {
-            alert(data.message)
+            Swal.close();
+            var style = 'custom-style-danger';
+            this.alert_(data.message,style);
+            this.showLoading = true;
           }
         });
 
       }
-    });
+    },  (error) => {                              //Error callback 
+      var message = "Connection Error, Please Try Again";
+      alert(message)
+  });
+
   }
 
   submit(){
@@ -121,7 +129,8 @@ export class PersonRecordsComponent {
       this.apiService.update_record(record_id,params).subscribe((data : any) =>{
         
         if(data.response){
-         this.alert_(data.message);
+          var style = 'custom-style-success';
+          this.alert_(data.message,style);
           this.record = '';
           this.get_records();
           this.showLoading = true;
@@ -130,7 +139,8 @@ export class PersonRecordsComponent {
         
          
         }else {
-          alert(data.message)
+          var style = 'custom-style-danger';
+          this.alert_(data.message,style);
           this.showLoading = true;
           this.button_dis = false;
           this.spinner = true;
@@ -142,7 +152,10 @@ export class PersonRecordsComponent {
     this.cancel_update = true;
     this.record = '';
     this.record_id = undefined;
-      });
+      },  (error) => {                              //Error callback 
+        var message = "Connection Error, Please Try Again";
+        alert(message)
+    });
 
     }
 
@@ -154,28 +167,35 @@ export class PersonRecordsComponent {
       this.apiService.add_record(id,params).subscribe((data : any) =>{
         
         if(data.response){
-         this.alert_(data.message);
+          var style = 'custom-style-success';
+         this.alert_(data.message,style);
           this.record = '';
           this.get_records();
           this.showLoading = true;
           this.button_dis = false;
           this.spinner = true;
         }else {
-          alert(data.message)
+          var style = 'custom-style-danger';
+          this.alert_(data.message,style);
           this.showLoading = true;
           this.button_dis = false;
           this.spinner = true;
         }
-      });
+      },  (error) => {                              //Error callback 
+        var message = "Connection Error, Please Try Again";
+        alert(message)
+    });
+
 
     }
   
-  alert_(message:any){
+  alert_(message:any, style : any){
 
     this._snackBar.open(message, '', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: 5 * 700,
+      panelClass: [style]
     });
   }
 

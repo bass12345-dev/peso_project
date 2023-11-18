@@ -60,12 +60,14 @@ export class AddComponent implements OnInit {
     }
     this.apiService.addData(this.addForm.value).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message);
+        var style = 'custom-style-success';
+        this.alert_(data.message,style)
         this.button_dis = false;
         this.spinner = true;
         this.addForm.reset();
       }else {
-        this.alert_(data.message)
+        var style = 'custom-style-danger';
+        this.alert_(data.message,style)
         this.button_dis = false;
         this.spinner = true;
       }
@@ -80,12 +82,13 @@ export class AddComponent implements OnInit {
   
 }
 
-alert_(message:any){
+alert_(message:any, style : any){
 
   this._snackBar.open(message, '', {
     horizontalPosition: 'end',
     verticalPosition: 'top',
     duration: 5 * 700,
+    panelClass: [style]
    
   });
 }

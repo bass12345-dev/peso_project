@@ -1,5 +1,6 @@
 <app-title [title]="title"></app-title>
 <app-title></app-title>
+<button class="btn"  (click)="back()" ><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
 <div class="card" style="width: 100%;">
     <div class="card-body">
       <form class="row g-3" id="add-form" [formGroup]="addForm" (ngSubmit)="update()">

@@ -53,10 +53,12 @@ export class SecurityCodeComponent {
 
     this.apiService.ChangeCode(this.addForm.value, localStorage.getItem("permissions")).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message);
+        // this.alert_(data.message);
         this.button_dis = false;
         this.spinner = true;
         this.addForm.reset();
+        localStorage.removeItem("permissions");
+        this.router.navigate(['']);
       }else {
         this.alert_(data.message)
         this.button_dis = false;
@@ -81,6 +83,7 @@ export class SecurityCodeComponent {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       duration: 5 * 700,
+      panelClass: ['custom-style-danger']
      
     });
   }
