@@ -67,6 +67,14 @@ export class ApiService {
 
   //GET
 
+  DataPerYearWatchlisted() {
+    return this.http.get<any[]>(`${this.apiUrl}/api/data-per-year`);
+  }
+
+  DataPerBarangayWatchlisted() {
+    return this.http.get<any[]>(`${this.apiUrl}/api/data-per-barangay`);
+  }
+
   count_all(){
     return this.http.get<any[]>(`${this.apiUrl}/api/count_all`);
   }

@@ -36,6 +36,7 @@ import { UpdateComponent } from './pages/update/update.component';
 import { SecurityCodeComponent } from './pages/security-code/security-code.component';
 import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
 import { AuthService } from '../service/auth.service';
+import { ChartComponent } from './pages/dashboard/dashboard_components/chart/chart.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { AuthService } from '../service/auth.service';
     TitleComponent,
     UpdateComponent,
     SecurityCodeComponent,
+    ChartComponent,
 
    
   ],
