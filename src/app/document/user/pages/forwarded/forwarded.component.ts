@@ -45,57 +45,10 @@ export class ForwardedComponent {
       this.getUsers(); 
       this.id = localStorage.getItem("id");
       
-      this.addForm = this.formBuilder.group({
-        forward: ['', Validators.required],
-        remarks: [''],
-        tracking_number : [''],
-        id : [''],
-
-       
-      });
     
     }
 
-    get f() { return this.addForm.controls; }
 
-    onSubmit() {
-      this.button_dis = true;
-      this.spinner = false;
-      this.submitted = true;
-  
-      // stop here if form is invalid
-      if (this.addForm.invalid) {
-          this.button_dis = false;
-          this.spinner = true;
-          return;
-          
-      }
-
-      this.apiService.ForwardDocs(this.addForm.value).subscribe((data : any) =>{
-        if(data.response){
-          this.alert_(data.message);
-          this.button_dis = false;
-          this.spinner = true;
-          this.addForm.reset();
-          this.getForwardedDocs(); 
-        }else {
-          this.alert_(data.message)
-          this.button_dis = false;
-          this.spinner = true;
-        }
-      })
-
-    }
-
-    alert_(message:any){
-
-      this._snackBar.open(message, '', {
-        horizontalPosition: 'end',
-        verticalPosition: 'top',
-        duration: 5 * 700,
-       
-      });
-    }
 
 
     doFilter = (value: any) => {
@@ -113,8 +66,6 @@ export class ForwardedComponent {
 
         this.dataSource.data = items;
         this.showLoading = true;
-
-        console.log(items)
     
       });
 
@@ -149,14 +100,7 @@ export(){
 }
 
 
-a(t_number : any){
-  this.addForm.setValue({
-    tracking_number: t_number,
-    forward: '',
-    remarks: '',
-    id: this.id,
-  })
-}
+
 
 
 }

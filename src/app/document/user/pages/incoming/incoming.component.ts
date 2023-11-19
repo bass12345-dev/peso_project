@@ -80,9 +80,6 @@ export class IncomingComponent {
 
         this.dataSource.data = items;
         this.showLoading = true;
-
-        console.log(items)
-    
       });
 
     }
@@ -144,7 +141,14 @@ receiveDoc(id:any, title : any){
         }else {
           alert(data.message)
         }
-      });
+      },  (error) => {                              //Error callback
+        
+        var message = "Connection Error, Please Try Again";
+    
+        alert(message)
+  
+        //throw error;   //You can also throw the error to a global error handler
+      })
 
     }
   })

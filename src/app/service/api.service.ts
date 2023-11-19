@@ -35,7 +35,7 @@ export class ApiService {
       id : data
 
     }
-    return this.http.post(`${this.apiUrl}/api/verify-b-user`,item);
+    return this.http.post(`${this.apiUrl}/api/verify-b-user`,item,this.requestOptions);
   }
 
 
@@ -143,7 +143,7 @@ export class ApiService {
         id : data
   
       }
-      return this.http.post(`${this.apiUrl}/api/verify-dt-user`,item);
+      return this.http.post(`${this.apiUrl}/api/verify-dt-user`,item,this.requestOptions);
     }
 
 
@@ -154,7 +154,7 @@ export class ApiService {
         id : data
   
       }
-      return this.http.post(`${this.apiUrl}/api/verify-dt-admin`,item);
+      return this.http.post(`${this.apiUrl}/api/verify-dt-admin`,item,this.requestOptions);
     }
 
   //POST
@@ -175,19 +175,19 @@ export class ApiService {
       }
 
       addDocument(data: any){
-        return this.http.post(`${this.apiUrl}/api/add-document`,data);
+        return this.http.post(`${this.apiUrl}/api/add-document`,data,this.requestOptions);
       }
 
       ForwardDocs(data: any){
-        return this.http.post(`${this.apiUrl}/api/forward-document`,data);
+        return this.http.post(`${this.apiUrl}/api/forward-document`,data,this.requestOptions);
       }
 
       ReceivedDoc(data: any){
-        return this.http.post(`${this.apiUrl}/api/receive-document`,data);
+        return this.http.post(`${this.apiUrl}/api/receive-document`,data,this.requestOptions);
       }
 
       CompletedDoc(data: any){
-        return this.http.post(`${this.apiUrl}/api/complete-document`,data);
+        return this.http.post(`${this.apiUrl}/api/complete-document`,data,this.requestOptions);
       }
 
       
@@ -308,7 +308,7 @@ getActions(): Observable<any[]>{
   }
 
   update_document(id:any,params : any){
-    return this.http.put(`${this.apiUrl}/api/update_document/` + id,params);
+    return this.http.put(`${this.apiUrl}/api/update_document/` + id,params,this.requestOptions);
   }
 
   update_action(id:any,params : any){
@@ -337,7 +337,7 @@ getActions(): Observable<any[]>{
 
 
   deleteMyDocs(id:any){
-    return this.http.delete(`${this.apiUrl}/api/delete-my-document/` + id);
+    return this.http.delete(`${this.apiUrl}/api/delete-my-document/` + id,this.requestOptions);
   }
 
 

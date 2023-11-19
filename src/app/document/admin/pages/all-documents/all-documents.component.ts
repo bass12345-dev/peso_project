@@ -121,6 +121,9 @@ export class AllDocumentsComponent {
     remove(id :any, document_name : any){
 
 
+      var style;
+
+
       Swal.fire({
         title: 'Are you sure?',
         text: "Delete this Document " + '"' +   document_name + '"',
@@ -144,13 +147,21 @@ export class AllDocumentsComponent {
           this.apiService.deleteMyDocs(id).subscribe((data : any) =>{
             if(data.response){
               Swal.close();
-              this.alert_(data.message);
+              this.alert_(data.message,style='custom-style-success');
               this.getMydocuments();
               this.showLoading = true;
             }else {
-              alert(data.message)
+              this.alert_(data.message,style='custom-style-danger');
             }
+          },  (error) => {                              //Error callback
+        
+            var message = "Connection Error, Please Try Again";
+        
+            alert(message)
+      
+            //throw error;   //You can also throw the error to a global error handler
           });
+    
   
         }
       });
@@ -159,12 +170,13 @@ export class AllDocumentsComponent {
 
     }
 
-    alert_(message:any){
+    alert_(message:any, style : any){
 
       this._snackBar.open(message, '', {
         horizontalPosition: 'end',
         verticalPosition: 'top',
         duration: 5 * 700,
+        panelClass: [style]
        
       });
     }

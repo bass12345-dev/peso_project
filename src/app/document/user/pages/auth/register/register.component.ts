@@ -61,6 +61,7 @@ export class RegisterComponent {
     this.button_dis = true;
     this.spinner = false;
     this.submitted = true;
+    var style;
 
        // stop here if form is invalid
        if (this.addForm.invalid) {
@@ -79,12 +80,12 @@ export class RegisterComponent {
 
       this.apiService.Register(this.addForm.value).subscribe((data : any) =>{
         if(data.response){
-          this.alert_(data.message);
+          this.alert_(data.message,style='custom-style-success');
           this.button_dis = false;
           this.spinner = true;
           this.addForm.reset();
         }else {
-          this.alert_(data.message)
+          this.alert_(data.message,style='custom-style-danger');
           this.button_dis = false;
           this.spinner = true;
         }
@@ -103,12 +104,13 @@ export class RegisterComponent {
 
 
 
-   alert_(message:any){
+   alert_(message:any, style : any){
 
     this._snackBar.open(message, '', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       duration: 5 * 700,
+      panelClass: [style]
      
     });
   }

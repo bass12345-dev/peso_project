@@ -1,15 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+
+export interface PeriodicElement {
+  name: string;
+  number: number;
+  document: number;
+  
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {number: 1, name: 'Hydrogen', document: 1.0079},
+
+];
 @Component({
   selector: 'app-add-document',
   templateUrl: './add-document.component.html',
   styleUrls: ['./add-document.component.css']
 })
 export class AddDocumentComponent {
+
+
+  displayedColumns: string[] = ['number', 'name', 'document'];
+  // dataSource = ELEMENT_DATA;
+
+
+  public dataSource = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  showLoading : boolean = false;
 
   types : any;
   addForm!: FormGroup;
@@ -34,6 +57,7 @@ export class AddDocumentComponent {
   ngOnInit() {
     this.getTypes();
     this.getUserData();
+    this.getAlldocuments();
     this.addForm = this.formBuilder.group({
       document_name: ['', Validators.required],
       document_type: ['', Validators.required],
@@ -50,7 +74,7 @@ export class AddDocumentComponent {
    get_last(){
 
     this.apiService.getLast().subscribe((item:any) => {
-      console.log(item)
+
     this.addForm.setValue({
 
       document_name: '',
@@ -85,6 +109,7 @@ export class AddDocumentComponent {
     this.button_dis = true;
     this.spinner = false;
     this.submitted = true;
+    var style ;
 
     // stop here if form is invalid
     if (this.addForm.invalid) {
@@ -107,28 +132,38 @@ export class AddDocumentComponent {
 
     this.apiService.addDocument(params).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message);
+        this.alert_(data.message,style = 'custom-style-success');
         this.button_dis = false;
         this.spinner = true;
         this.addForm.reset();
-        this.get_last()
+        this.get_last();
+        this.getAlldocuments();
       }else {
-        this.alert_(data.message)
+        
+        this.alert_(data.message, style = 'custom-style-danger')
         this.button_dis = false;
         this.spinner = true;
       }
+    },  (error) => {                              //Error callback
+        
+      var message = "Connection Error, Please Try Again";
+  
+      alert(message)
+
+      //throw error;   //You can also throw the error to a global error handler
     })
   
 }
 
 get f() { return this.addForm.controls; }
 
-alert_(message:any){
+alert_(message:any,style : any){
 
   this._snackBar.open(message, '', {
     horizontalPosition: 'end',
     verticalPosition: 'top',
     duration: 5 * 700,
+    panelClass: [style]
    
   });
 }
@@ -141,5 +176,32 @@ alert_(message:any){
 
   back(){
     this.location.back(); 
+  }
+
+
+
+
+  doFilter = (value: any) => {
+    this.dataSource.filter = value.target.value.trim().toLocaleLowerCase();
+  }
+  ngAfterViewInit(): void {
+
+    this.dataSource.paginator = this.paginator;
+  }
+
+
+
+  getAlldocuments(){
+
+
+    this.apiService.getAllDocuments().subscribe((items: any[]) => {
+
+      this.dataSource.data = items;
+      this.showLoading = true;
+
+    
+  
+    });
+
   }
 }

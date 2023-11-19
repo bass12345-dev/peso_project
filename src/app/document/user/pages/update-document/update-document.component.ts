@@ -72,6 +72,7 @@ export class UpdateDocumentComponent {
     this.button_dis = true;
     this.spinner = false;
     this.submitted = true;
+    var style;
 
     // stop here if form is invalid
     if (this.addForm.invalid) {
@@ -91,27 +92,35 @@ export class UpdateDocumentComponent {
 
     this.apiService.update_document(this.tracking_number,params).subscribe((data : any) =>{
       if(data.response){
-        this.alert_(data.message);
+        this.alert_(data.message,style = 'custom-style-success');
         this.button_dis = false;
         this.spinner = true;
         // this.addForm.reset();
       }else {
-        this.alert_(data.message)
+        this.alert_(data.message,style = 'custom-style-danger')
         this.button_dis = false;
         this.spinner = true;
       }
+    },  (error) => {                              //Error callback
+        
+      var message = "Connection Error, Please Try Again";
+  
+      alert(message)
+
+      //throw error;   //You can also throw the error to a global error handler
     })
   
 }
 
 get f() { return this.addForm.controls; }
 
-alert_(message:any){
+alert_(message:any,style : any){
 
   this._snackBar.open(message, '', {
     horizontalPosition: 'end',
     verticalPosition: 'top',
     duration: 5 * 700,
+    panelClass: [style]
    
   });
 }

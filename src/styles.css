@@ -24,11 +24,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
 
   .auth-page-content {
-    background-image: url("assets//background-track.jpg");
-    background-size: cover;
-    /* background-size: 100%; */
+    background-image: url("assets/background-track.jpg");
     height: 100%;
-    background-repeat: no-repeat;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
     
   }
 

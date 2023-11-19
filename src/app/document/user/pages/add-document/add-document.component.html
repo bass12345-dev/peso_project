@@ -6,59 +6,106 @@
      
     </div>
     <div class="card-body">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="mat-elevation-z8 table-responsive  "  tabindex="0">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <form class="row g-3" [formGroup]="addForm" (ngSubmit)="onSubmit()" >
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Tracking Number<span class="text-danger">*</span></label>
-          <div class="input-group">
-            <!-- <input type="text" aria-label=""  name="year" formControlName="year"  [ngClass]="{ 'is-invalid': submitted && f['year'].errors }" class="form-control ">
-            <input type="text" aria-label=""  name="month" formControlName="month"  [ngClass]="{ 'is-invalid': submitted && f['month'].errors }"  class="form-control ">
-            <input type="text" aria-label=""  name="day" formControlName="day"  [ngClass]="{ 'is-invalid': submitted && f['day'].errors }"   class="form-control "> -->
-            <input type="text" readonly class="form-control w-100"  name="tracking_number" formControlName="tracking_number"  [ngClass]="{ 'is-invalid': submitted && f['tracking_number'].errors }" >
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="number">
+              <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Encoded By</th>
+              <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="document">
+              <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Document</th>
+              <td mat-cell *matCellDef="let element"> {{element.tracking_number}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+           
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 40, 80, 160]">
+          </mat-paginator>
+          <div  [hidden]="showLoading">
+              <mat-progress-bar    mode="query" ></mat-progress-bar>
           </div>
-         
+          
+          </div>
+
         </div>
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Document Name<span class="text-danger">*</span></label>
-          <input type="text" class="form-control"  name="document_name" formControlName="document_name"  [ngClass]="{ 'is-invalid': submitted && f['document_name'].errors }" >
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label is-invalid">Document Type<span class="text-danger">*</span></label>
-          <select  class="form-control" name="document_type" formControlName="document_type"  [ngClass]="{ 'is-invalid': submitted && f['document_type'].errors }"  >
-            <option value="">Select Document Types...</option>
-            <option   *ngFor="let row of types; let index = index" value="{{row.type_id}}" >{{ row.type_name }}</option>
-          </select>
-        </div>
-        
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Description <span class="text-danger">*</span></label>
-          <!-- <textarea class="form-control"   name="description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" ></textarea> -->
-          <editor
-          apiKey="ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1"
-          name="description" formControlName="description"
-          [init]="{
-            height: 500,
-            menubar: false,
-            plugins: [
-              'advlist autolink lists link image charmap print preview anchor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar:
-              'undo redo | formatselect | bold italic backcolor | \
-              alignleft aligncenter alignright alignjustify | \
-              bullist numlist outdent indent | removeformat | help'
-          }"
-        ></editor>
-        </div>
-        <div class="col-12">
-          <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
-              <div class="spinner-border" role="status" [hidden]="spinner">
-              <span class="visually-hidden">Loading...</span>
+      <div class="col-md-7">
+        <div class="card p-3">
+        <form class="row g-3" [formGroup]="addForm" (ngSubmit)="onSubmit()" >
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Tracking Number<span class="text-danger">*</span></label>
+            <div class="input-group">
+             
+              <input type="text" readonly class="form-control w-100"  name="tracking_number" formControlName="tracking_number"  [ngClass]="{ 'is-invalid': submitted && f['tracking_number'].errors }" >
             </div>
-            Submit
-          </button>
+           
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Document Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control"  name="document_name" formControlName="document_name"  [ngClass]="{ 'is-invalid': submitted && f['document_name'].errors }" >
+          </div>
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label is-invalid">Document Type<span class="text-danger">*</span></label>
+            <select  class="form-control" name="document_type" formControlName="document_type"  [ngClass]="{ 'is-invalid': submitted && f['document_type'].errors }"  >
+              <option value="">Select Document Types...</option>
+              <option   *ngFor="let row of types; let index = index" value="{{row.type_id}}" >{{ row.type_name }}</option>
+            </select>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Description <span class="text-danger">*</span></label>
+          
+            <editor
+            apiKey="ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1"
+            name="description" formControlName="description"
+            [init]="{
+              height: 200,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }"
+          ></editor>
+          </div>
+          <div class="col-12">
+            <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+                <div class="spinner-border" role="status" [hidden]="spinner">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              Submit
+            </button>
+        </div>
+        </form>
       </div>
-      </form>
+      </div>
+
+      </div>
+
+     
     </div>
   </div>

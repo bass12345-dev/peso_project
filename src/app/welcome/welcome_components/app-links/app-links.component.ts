@@ -25,7 +25,7 @@ export class AppLinksComponent {
     ){}
 
     open(){
-      open('microsoft-edge:https://github.com');
+      open('microsoft-edge:http://cpesd-infosys.wuaze.com');
    }
   open_(){
 
