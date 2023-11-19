@@ -37,6 +37,7 @@ import { SecurityCodeComponent } from './pages/security-code/security-code.compo
 import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
 import { AuthService } from '../service/auth.service';
 import { ChartComponent } from './pages/dashboard/dashboard_components/chart/chart.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { ChartComponent } from './pages/dashboard/dashboard_components/chart/cha
     MatFormFieldModule,
     MatInputModule,  
     MatPaginatorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   
     
   ],
