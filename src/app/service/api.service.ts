@@ -336,8 +336,8 @@ getActions(): Observable<any[]>{
   }
 
 
-  deleteMyDocs(id:any){
-    return this.http.delete(`${this.apiUrl}/api/delete-my-document/` + id,this.requestOptions);
+  deleteMyDocs(params:any){
+    return this.http.post(`${this.apiUrl}/api/delete-my-document` , params,this.requestOptions);
   }
 
 

@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/service/api.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import {SelectionModel} from '@angular/cdk/collections';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-all-documents',
   templateUrl: './all-documents.component.html',
@@ -16,7 +16,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 export class AllDocumentsComponent {
 
   title = 'My Documents';
-  displayedColumns: string[] = ['tracking_number', 'document_name', 'document_type', 'created','created_by','action'];
+  displayedColumns: string[] = ['select','tracking_number', 'document_name', 'document_type', 'created','created_by','action'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -121,9 +121,6 @@ export class AllDocumentsComponent {
     remove(id :any, document_name : any){
 
 
-      var style;
-
-
       Swal.fire({
         title: 'Are you sure?',
         text: "Delete this Document " + '"' +   document_name + '"',
@@ -144,24 +141,11 @@ export class AllDocumentsComponent {
               Swal.showLoading()
             }
           });
-          this.apiService.deleteMyDocs(id).subscribe((data : any) =>{
-            if(data.response){
-              Swal.close();
-              this.alert_(data.message,style='custom-style-success');
-              this.getMydocuments();
-              this.showLoading = true;
-            }else {
-              this.alert_(data.message,style='custom-style-danger');
-            }
-          },  (error) => {                              //Error callback
-        
-            var message = "Connection Error, Please Try Again";
-        
-            alert(message)
-      
-            //throw error;   //You can also throw the error to a global error handler
-          });
-    
+
+          let params = {
+            id : id
+          }
+          this.delete(params);
   
         }
       });
@@ -169,6 +153,82 @@ export class AllDocumentsComponent {
      
 
     }
+
+
+    multi_delete(){
+
+       var selectedValues= new Array();
+       $('input[name=multi_doc]:checked').map(function() {
+        selectedValues.push($(this).val());
+        
+      });
+      
+
+      if (selectedValues.length < 1) {
+        alert('please Select at least one');
+      }else {
+
+
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Delete this Documents" ,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.showLoading = false;
+            Swal.fire({
+              title: 'Deleting...',
+              html: 'Please wait...',
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading()
+              }
+            });
+            
+
+            let params = {
+              id : selectedValues
+            }
+          
+            this.delete(params);
+           
+    
+          }
+        });
+
+      
+       
+      }
+    }
+
+    delete(params : any){
+      var style;
+
+      this.apiService.deleteMyDocs(params).subscribe((data : any) =>{
+        if(data.response){
+          Swal.close();
+          this.alert_(data.message,style='custom-style-success');
+          this.getMydocuments();
+          this.showLoading = true;
+        }else {
+          this.alert_(data.message,style='custom-style-danger');
+        }
+      },  (error) => {                              //Error callback
+    
+        var message = "Connection Error, Please Try Again";
+    
+        alert(message)
+  
+        //throw error;   //You can also throw the error to a global error handler
+      });
+
+    }
+
 
     alert_(message:any, style : any){
 
