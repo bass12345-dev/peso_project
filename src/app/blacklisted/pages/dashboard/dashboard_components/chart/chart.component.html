@@ -2,18 +2,18 @@
         <div class="col-md-6">
             <div class="card p-2">
                 <div id="divChart">
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChart"  ></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
             <div class="card p-2">
                     <label>Display Per Year</label>
                     <div class="options w-50 mt-2">
                         
                         <select class="form-control" name="select_year" id="select_year"  (change)="load_per_year($event)">
-                            <option value="0" selected>Select year</option>
+                            <option value="{{year_now}}" selected>{{year_now}}</option>
                             <option *ngFor="let row of year"   value="{{row}}"  >{{row}}</option>
                         </select>
                     </div>

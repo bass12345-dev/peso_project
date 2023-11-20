@@ -48,22 +48,35 @@ export class MyDocumentsComponent {
 
 
     
-export(){
-  Swal.fire({
-    title: 'Verifying...',
-    html: 'Please wait...',
-    allowEscapeKey: false,
-    allowOutsideClick: false,
+    export(){
+      Swal.fire({
+        title: 'Exporting...',
+        html: 'Please wait...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        
+      });
     
-  });
-  let timeSpan = new Date().toISOString();
-  let prefix = "Active";
-  let fileName = `${prefix}-${timeSpan}`;
-  let targetTableElm = document.getElementById('excel-table');
-  let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
-  XLSX.writeFile(wb, `${fileName}.xlsx`);
-  Swal.close();
-}
+      let timeSpan = new Date().toISOString();
+      let prefix = "My Documents Created";
+      let fileName = `${prefix}-${timeSpan}`;
+      let targetTableElm = document.getElementById('excel-table');
+      let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
+    
+      try {
+    
+    
+        XLSX.writeFile(wb, `${fileName}.xlsx`);
+        
+       Swal.close()
+        
+      } catch (error) {
+    
+        alert('Something Wrong in exporting')
+        
+      }
+      
+    }
 
 remove(id:any, title : any){
 

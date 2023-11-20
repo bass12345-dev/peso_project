@@ -64,6 +64,23 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/change-code?id=` + id,data,this.requestOptions);
       }
 
+      remove(params:any){
+        return this.http.post(`${this.apiUrl}/api/remove`, params,this.requestOptions);
+      }
+
+
+      set_active(params : any){
+
+        return this.http.post(`${this.apiUrl}/api/set-active`,params,this.requestOptions);
+    
+      }
+
+
+      delete(params : any){
+
+        return this.http.post(`${this.apiUrl}/api/delete`,params,this.requestOptions);
+      }
+
 
   //GET
 
@@ -111,15 +128,9 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/api/update_record/` + record_id,params,this.requestOptions);
   }
 
-    set_active(id:any, item : any){
 
-      return this.http.put(`${this.apiUrl}/api/set-active/` + id,item,this.requestOptions);
-  
-    }
 
-    remove(id:any, item : any){
-      return this.http.put(`${this.apiUrl}/api/remove/` + id,item,this.requestOptions);
-    }
+   
 
     update_person_info(id:any,params : any){
       return this.http.put(`${this.apiUrl}/api/update-person-info/` + id,params,this.requestOptions);
@@ -128,10 +139,7 @@ export class ApiService {
   //DELETE
     
 
-    delete(id : any){
 
-      return this.http.delete(`${this.apiUrl}/api/delete/` + id,this.requestOptions);
-    }
 
 
     delete_record(id:any){

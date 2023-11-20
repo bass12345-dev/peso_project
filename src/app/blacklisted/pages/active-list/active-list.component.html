@@ -9,9 +9,13 @@
         <i class="fas fa-file-excel-o"></i>
         Export
       </button>
+      <button mat-raised-button class="bg-danger text-white"  style="margin-left: 5px;" (click)="multi_delete()" >
+        <i class="fas fa-times"></i>
+        Remove
+      </button>
     </div>
     
-  <div class="mat-elevation-z8 " >
+  <div class="mat-elevation-z8 table-responsive" >
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="excel-table">
 
 
@@ -24,10 +28,10 @@
             </mat-checkbox>
           </th>
           <td mat-cell *matCellDef="let element">
-            <mat-checkbox class="multi_doc" name="multi_doc" (click)="$event.stopPropagation()"
+            <mat-checkbox class="multi_item" name="multi_item" (click)="$event.stopPropagation()"
                           (change)="$event ? selection.toggle(element) : null"
                           [checked]="selection.isSelected(element)"
-                          [aria-label]="checkboxLabel(element)" value="{{element.document_id}}">
+                          [aria-label]="checkboxLabel(element)" value="{{element.person_id}}">
             </mat-checkbox>
           </td>
         </ng-container>
@@ -56,13 +60,28 @@
           <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Actions</th>
-            <td mat-cell *matCellDef="let element">
-                <button class="btn btn-primary" (click)="view_records(element.person_id)" ><i class="fas fa-eye"></i></button>
-                <button class="btn btn-danger m-2" (click)="remove(element.person_id)" clickable><i class="fas fa-times"></i></button>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="view_records(element.person_id)"  >
+                          <mat-icon class="text-primary">visibility</mat-icon>
+                        <span class="text-primary">View</span>
+                      </button>
+  
+                      <button  mat-menu-item (click)="remove(element.person_id)">
+                        <mat-icon class="text-danger">close</mat-icon>
+                        <span class="text-danger">Remove</span>
+                      </button>
+
+               
+                  </mat-menu>
+            
             </td>
-            </ng-container>
+              </ng-container>
 
          
       

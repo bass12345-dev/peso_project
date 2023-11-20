@@ -8,7 +8,8 @@ import * as XLSX from 'xlsx';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
-
+import * as $ from 'jquery';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-active-list',
@@ -28,6 +29,7 @@ export class ActiveListComponent  {
   constructor(
               private apiService :ApiService, 
               public router: Router,
+              private _snackBar: MatSnackBar
             
               ){}
 
@@ -86,19 +88,32 @@ ngOnInit() {this.getData();}
 
 export(){
   Swal.fire({
-    title: 'Verifying...',
+    title: 'Exporting...',
     html: 'Please wait...',
     allowEscapeKey: false,
     allowOutsideClick: false,
     
   });
+
   let timeSpan = new Date().toISOString();
   let prefix = "Active";
   let fileName = `${prefix}-${timeSpan}`;
   let targetTableElm = document.getElementById('excel-table');
   let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
-  XLSX.writeFile(wb, `${fileName}.xlsx`);
 
+  try {
+
+
+    XLSX.writeFile(wb, `${fileName}.xlsx`);
+    
+   Swal.close()
+    
+  } catch (error) {
+
+    alert('Something Wrong in exporting')
+    
+  }
+  
 }
 ngAfterViewInit(): void {
  
@@ -120,18 +135,12 @@ remove(id:any){
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.apiService.remove(id,item).subscribe((data : any) =>{
-        if(data.response){
-          Swal.fire(
-            data.message,
-            '',
-            'success'
-          )
-          this.getData();
-        }else {
-          alert(data.message)
-        }
-      });
+
+      let params = {
+        id : id,
+        status : item
+      }
+      this.delete(params);
 
     }
   },  (error) => {                              //Error callback
@@ -146,6 +155,96 @@ remove(id:any){
   
 }
 
+
+multi_delete(){
+
+
+  var selectedValues= new Array();
+  $('input[name=multi_item]:checked').map(function() {
+   selectedValues.push($(this).val());
+   
+ });
+
+    if (selectedValues.length < 1) {
+      alert('please Select at least one');
+    }else {
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Remove all selected ? " ,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.showLoading = false;
+          Swal.fire({
+            title: 'Deleting...',
+            html: 'Please wait...',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading()
+            }
+          });
+          
+
+          let params = {
+            id : selectedValues,
+            status : 'inactive'
+          }
+        
+          this.delete(params);
+         
+  
+        }
+      });
+    }
+
+}
+
+
+
+delete(params : any){
+
+      var style;
+  
+      this.apiService.remove(params).subscribe((data : any) =>{
+        if(data.response){
+          Swal.close();
+          this.alert_(data.message,style='custom-style-success');
+          this.getData();
+          this.showLoading = true;
+        }else {
+          this.alert_(data.message,style='custom-style-danger');
+          this.showLoading = true;
+        }
+      },  (error) => {                              //Error callback
+    
+        var message = "Connection Error, Please Try Again";
+    
+        alert(message)
+  
+        //throw error;   //You can also throw the error to a global error handler
+      });
+
+
+}
+
+
+
+alert_(message:any, style : any){
+
+  this._snackBar.open(message, '', {
+    horizontalPosition: 'end',
+    verticalPosition: 'top',
+    duration: 5 * 700,
+    panelClass: [style]
+   
+  });
+}
 
 view_records(id:any){
 

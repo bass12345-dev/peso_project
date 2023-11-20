@@ -14,72 +14,84 @@ import * as $ from 'jquery';
 })
 export class ChartComponent {
 
-    limit_year : number = 2050;
-    year = Array();
-   
+limit_year : number = 2050;
+year = Array();
+attrib : any;
+data_per_year : any;
+
+year_now : number = new Date().getFullYear();
     
-    constructor(
+constructor(
         private apiService : ApiService, 
         public router: Router){
-      }
+    }
 
-  ngOnInit() {
- for (let index = 2023; index <= this.limit_year; index++) {this.year.push(index);}
- 
+ngOnInit() {
+
+ for (let index = this.year_now + 1; index <= this.limit_year; index++) {
+    this.year.push(index);
+    
+}
  this.load_per_barangay();
+ this.load_chart_per_year(this.year_now);
+ }
+
+ load_per_year(event : any){
+
+    if(this.data_per_year) {
+        this.data_per_year.destroy();
+    }
+
+    this.load_chart_per_year(event.target.value);
  }
 
 
- load_per_year(event:any){
 
-    let year = event.target.value;
 
-    try {
-        
-   
 
-    this.apiService.DataPerYearWatchlisted(year).subscribe((data:any)=> {
+load_chart_per_year(year : any){
 
     
-        var  chart = new Chart("myChart1", {
-            type: 'bar',
-            data: {
-                labels: data.label,
-                datasets: [{
-                    label: '# per barangay',
-                    data: data.active,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                       
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-         });
-        
+    this.apiService.DataPerYearWatchlisted(year).subscribe((data:any)=> {
+
      
-    });
 
-} catch (error) {
-        
+        this.data_per_year =  new Chart('myChart1', {
+             type: 'bar',
+             data: {
+                 labels: data.label,
+                 datasets: [{
+                     label: '# per year',
+                     data: data.active,
+                     backgroundColor: [
+                         'rgba(255, 99, 132, 0.2)',
+                        
+                     ],
+                     borderColor: [
+                         'rgba(255, 99, 132, 1)',
+                         
+                     ],
+                     borderWidth: 1
+                 }]
+             },
+             options: {
+                 
+                 scales: {
+                     y: {
+                         beginAtZero: true
+                     }
+                 }
+             }
+          });
+          
+
+
+         
+    
+
+ })
+
 }
-
-
-
-   
-
- }
 
  load_per_barangay(){
     
@@ -105,6 +117,7 @@ export class ChartComponent {
             },
             options: {
                 scales: {
+                    
                     y: {
                         beginAtZero: true
                     }

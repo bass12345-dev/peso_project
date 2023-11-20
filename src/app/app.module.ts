@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DataTablesModule} from 'angular-datatables';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './welcome/welcome/welcome.component';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.service';
 import { UserDocumentGuard } from './service/user-document-guard.service';
 import { MatIconModule } from '@angular/material/icon';
+import { CacheInterceptor } from './interceptors/cache.interceptor';
 
 
 
@@ -45,7 +46,14 @@ import { MatIconModule } from '@angular/material/icon';
 
   ],
   exports : [RouterModule],
-  providers: [BlacklistedAuthGuardService, UserDocumentGuard],
+  providers: [BlacklistedAuthGuardService, UserDocumentGuard, 
+    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

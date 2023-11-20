@@ -42,10 +42,7 @@ export class ForwardedComponent {
     ){}
     ngOnInit() {
       this.getForwardedDocs(); 
-      this.getUsers(); 
       this.id = localStorage.getItem("id");
-      
-    
     }
 
 
@@ -72,32 +69,37 @@ export class ForwardedComponent {
     }
 
 
-    getUsers(){
 
-
-      this.apiService.getUsers('active').subscribe((items: any[]) => {
-        this.users = items;
+    
+    export(){
+      Swal.fire({
+        title: 'Exporting...',
+        html: 'Please wait...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        
       });
-
+    
+      let timeSpan = new Date().toISOString();
+      let prefix = "Forwarded Documents";
+      let fileName = `${prefix}-${timeSpan}`;
+      let targetTableElm = document.getElementById('excel-table');
+      let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
+    
+      try {
+    
+    
+        XLSX.writeFile(wb, `${fileName}.xlsx`);
+        
+       Swal.close()
+        
+      } catch (error) {
+    
+        alert('Something Wrong in exporting')
+        
+      }
+      
     }
-
-    
-export(){
-  Swal.fire({
-    title: 'Verifying...',
-    html: 'Please wait...',
-    allowEscapeKey: false,
-    allowOutsideClick: false,
-    
-  });
-  let timeSpan = new Date().toISOString();
-  let prefix = "Active";
-  let fileName = `${prefix}-${timeSpan}`;
-  let targetTableElm = document.getElementById('excel-table');
-  let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
-  XLSX.writeFile(wb, `${fileName}.xlsx`);
-  Swal.close();
-}
 
 
 

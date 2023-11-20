@@ -9,10 +9,36 @@
         <i class="fas fa-file-excel-o"></i>
           Export
         </button>
+        <button mat-raised-button class="bg-success text-white"  style="margin-left: 5px;" (click)="multi_set_active()" >
+            <i class="fas fa-check"></i>
+            Set to active
+        </button>
+        <button mat-raised-button class="bg-danger text-white"  style="margin-left: 5px;" (click)="multi_delete()" >
+            <i class="fas fa-trash"></i>
+            Delete
+        </button>
       </div>
       
-    <div class="mat-elevation-z8 " >
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="excel-table">
+    <div class="mat-elevation-z8 table-responsive" >
+        <table mat-table [dataSource]="dataSource"  id="excel-table">
+
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">
+                  <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-checkbox class="multi_item" name="multi_item" (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(element) : null"
+                                [checked]="selection.isSelected(element)"
+                                [aria-label]="checkboxLabel(element)" value="{{element.person_id}}">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+      
 
             <ng-container matColumnDef="name" >
             <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Name</th>
@@ -41,8 +67,8 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Action</th>
                 <td mat-cell *matCellDef="let element">
-                    <button class="btn btn-warning m-2" (click)="set_active(element.person_id)">Set to Active</button>
-                    <button class="btn btn-danger" (click)="delete(element.person_id)" >Delete Permanently </button> </td>
+                    <button class="btn btn-secondary m-2" (click)="view(element.person_id)"><i class="fas fa-eye"></i></button>
+                </td>
                 </ng-container>
 
            

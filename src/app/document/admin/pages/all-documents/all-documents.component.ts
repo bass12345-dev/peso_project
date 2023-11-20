@@ -95,19 +95,32 @@ export class AllDocumentsComponent {
 
     export(){
       Swal.fire({
-        title: 'Verifying...',
+        title: 'Exporting...',
         html: 'Please wait...',
         allowEscapeKey: false,
         allowOutsideClick: false,
         
       });
+    
       let timeSpan = new Date().toISOString();
       let prefix = "All Documents";
       let fileName = `${prefix}-${timeSpan}`;
       let targetTableElm = document.getElementById('excel-table');
       let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
-      XLSX.writeFile(wb, `${fileName}.xlsx`);
-      Swal.close();
+    
+      try {
+    
+    
+        XLSX.writeFile(wb, `${fileName}.xlsx`);
+        
+       Swal.close()
+        
+      } catch (error) {
+    
+        alert('Something Wrong in exporting')
+        
+      }
+      
     }
     
 
