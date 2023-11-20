@@ -20,6 +20,7 @@ attrib : any;
 data_per_year : any;
 
 year_now : number = new Date().getFullYear();
+processing_text : boolean = true;
     
 constructor(
         private apiService : ApiService, 
@@ -41,7 +42,8 @@ ngOnInit() {
     if(this.data_per_year) {
         this.data_per_year.destroy();
     }
-
+    
+    this.processing_text = false;
     this.load_chart_per_year(event.target.value);
  }
 
@@ -55,7 +57,7 @@ load_chart_per_year(year : any){
     this.apiService.DataPerYearWatchlisted(year).subscribe((data:any)=> {
 
      
-
+        this.processing_text = true;
         this.data_per_year =  new Chart('myChart1', {
              type: 'bar',
              data: {
