@@ -22,7 +22,7 @@ export class DashboardComponent {
 
 
   public dataSource1 = new MatTableDataSource<any>();
-
+  public dataSource2 = new MatTableDataSource<any>();
 
   
   constructor(
@@ -81,6 +81,7 @@ export class DashboardComponent {
     this.apiService.GetTransactionToday(this.id).subscribe((items: any) => {
       this.dataSource = items.created_today;
       this.dataSource1 = items.received_today;
+      this.dataSource2 = items.forwarded_today;
     })
     
   }
