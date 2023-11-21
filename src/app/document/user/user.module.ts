@@ -33,6 +33,7 @@ import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
 import { UpdateDocumentComponent } from './pages/update-document/update-document.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     MatPaginatorModule,
     MatSnackBarModule,
     MatMenuModule,
-    EditorModule
+    EditorModule,
+    MatTabsModule
+  
   ],
   providers: [UserDocumentGuard],
 })

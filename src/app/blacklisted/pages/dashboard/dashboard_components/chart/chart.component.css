@@ -1,6 +1,13 @@
 #divChart{
     display: block;
-    
+   
+ 
     /* width: 400px; */
     /* height: 400px; */
+}
+
+.card {
+    background: linear-gradient(to right, rgb(234, 236, 240), rgb(228, 213, 173)) !important;
+    color: #000;
+    
 }

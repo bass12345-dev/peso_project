@@ -93,7 +93,11 @@ remove(id:any, title : any){
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.apiService.deleteMyDocs(id).subscribe((data : any) =>{
+      let params = {
+        id : id
+      }
+
+      this.apiService.deleteMyDocs(params).subscribe((data : any) =>{
         if(data.response){
           Swal.fire(
             data.message,

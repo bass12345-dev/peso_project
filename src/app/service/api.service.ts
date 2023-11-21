@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { 
 
-    let api_key = "base64:SKWrlEH55ilmbjwUpuyj5TFJOO1jASlU8aHXoFP6RAs=";
+    let api_key = "base64:2bKEr//MLbjJv0Y+UdvMlzXK2a/8qwvnteFmxH1RgVs=";
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${api_key}`
@@ -21,7 +21,8 @@ export class ApiService {
     this.requestOptions = { headers: headers };
   }
 
-  apiUrl = 'http://127.0.0.1:8000';
+  // apiUrl = 'http://127.0.0.1:8000';
+  apiUrl = 'http://localhost/api/public';
   // apiUrl = 'http://localhost/cpesd-api/public';
   // apiUrl = 'http://192.168.1.25/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';

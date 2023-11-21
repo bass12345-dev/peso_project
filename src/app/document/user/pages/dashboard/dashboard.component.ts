@@ -2,15 +2,35 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  
+];
+
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+
+
+
 export class DashboardComponent {
   count : any;
   count_card : any;
   count_doc : any;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = ELEMENT_DATA;
   constructor(
     private apiService :ApiService, 
     public router: Router,

@@ -73,6 +73,9 @@ export class AddDocumentComponent {
 
    get_last(){
 
+
+
+
     this.apiService.getLast().subscribe((item:any) => {
 
     this.addForm.setValue({
@@ -90,8 +93,14 @@ export class AddDocumentComponent {
     // this.y = item.y;
     // this.m = item.m;
     // this.d = item.d;
+ },  (error) => {                              //Error callback
+        
+      var message = "Can't fetch tracking number please click reload icon ";
+  
+      alert(message)
 
-  })
+      //throw error;   //You can also throw the error to a global error handler
+    })
 
 
 
@@ -187,6 +196,11 @@ alert_(message:any,style : any){
   ngAfterViewInit(): void {
 
     this.dataSource.paginator = this.paginator;
+  }
+
+  reload(){
+    this.getAlldocuments();
+    this.get_last();
   }
 
 
