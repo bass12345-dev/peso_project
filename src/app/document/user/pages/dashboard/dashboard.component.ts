@@ -1,20 +1,7 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  
-];
-
-
 
 @Component({
   selector: 'app-dashboard',
@@ -29,21 +16,31 @@ export class DashboardComponent {
   count : any;
   count_card : any;
   count_doc : any;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  public dataSource = new MatTableDataSource<any>();
+  displayedColumns: string[] = ['no','tracking_number', 'document_name', 'document_type'];
+  id : any;
+
+
+  public dataSource1 = new MatTableDataSource<any>();
+
+
+  
   constructor(
     private apiService :ApiService, 
     public router: Router,
   ){}
 
   ngOnInit() {
+    this.id = localStorage.getItem("id");
     this.Count();
+    this.created_document_today();
+    
 
   }
 
   Count(){
 
-    this.apiService.CountMyDashboard(localStorage.getItem("id")).subscribe((items: any) => {
+    this.apiService.CountMyDashboard(this.id).subscribe((items: any) => {
 
       
       
@@ -77,6 +74,17 @@ export class DashboardComponent {
   
     });
   }
+
+
+  created_document_today(){
+
+    this.apiService.GetTransactionToday(this.id).subscribe((items: any) => {
+      this.dataSource = items.created_today;
+      this.dataSource1 = items.received_today;
+    })
+    
+  }
+
 
   
 
