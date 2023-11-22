@@ -159,4 +159,8 @@ receiveDoc(id:any, title : any){
   })
 }
 
+track(tracking_number : any){
+  this.router.navigate(['document/user/track/' + tracking_number]);
+}
+
 }

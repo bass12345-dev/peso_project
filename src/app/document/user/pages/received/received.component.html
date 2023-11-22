@@ -77,6 +77,11 @@
                       <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="track(element.tracking_number)">
+                        <mat-icon>visibility</mat-icon>
+                      <span>View</span>
+                    </button>
+
                       <button mat-menu-item (click)="a(element.tracking_number,element.history_id)"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
                           <mat-icon class="text-primary">fast_forward</mat-icon>
                         <span class="text-primary">Forward</span>
