@@ -1,5 +1,6 @@
 <div class="card p-3" style="border: 1px solid;">
     <app-title [title]="title"></app-title>
+    <h1>Active</h1>
     <div class="row">
         <mat-form-field appearance="fill">
             <mat-label>Filter</mat-label>
@@ -59,5 +60,69 @@
         </div>
        </div>
     
+    </div>
+    
+    <div class="section mt-5">
+      <h1>Inative</h1>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="doFilter($event)" placeholder="Search columns" #input>
+        </mat-form-field>
+        <div class="export-container mb-2">
+      <button mat-raised-button color="primary" (click)="export()">
+        <i class="fas fa-file-excel-o"></i>
+        Export
+      </button>
+    </div>
+       <div class="col-md-12">
+        <div class="mat-elevation-z8 table-responsive" >
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 " id="excel-table">
+      
+                <ng-container matColumnDef="name" >
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.first_name }} </td>
+                </ng-container>
+            
+              
+                
+                <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+            
+                
+                <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email_address}} </td>
+                </ng-container>
+            
+                
+                <ng-container matColumnDef="phone_number">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Phone Number</th>
+                <td mat-cell *matCellDef="let element"> {{element.contact_number}} </td>
+                </ng-container>
+      
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Actions</th>
+                  <td mat-cell *matCellDef="let element">
+                      <button class="btn btn-danger m-2" (click)="remove(element.user_id)" clickable><i class="fas fa-trash"></i></button>
+                  </td>
+                  </ng-container>
+      
+               
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 40, 80, 160]">
+            </mat-paginator>
+            <div  [hidden]="showLoading">
+                <mat-progress-bar    mode="query" ></mat-progress-bar>
+            </div>
+        </div>
+       </div>
+    
+    </div>
     </div>
  </div>
