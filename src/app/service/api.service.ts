@@ -362,8 +362,8 @@ getActions(): Observable<any[]>{
     return this.http.post(`${this.apiUrl}/api/delete-my-document` , params,this.requestOptions);
   }
 
-
-
-
+  remove_user(params:any){
+    return this.http.delete(`${this.apiUrl}/api/delete-user/` + params,this.requestOptions);
+  }
 
  }

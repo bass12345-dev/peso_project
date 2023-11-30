@@ -24,6 +24,7 @@ export class UsersComponent {
   showLoading : boolean = false;
   displayedColumns: string[] = ['name', 'address', 'email', 'phone_number','action'];
   public dataSource = new MatTableDataSource<any>();
+  public dataSource1 = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   constructor(
     private apiService : ApiService, 
@@ -33,10 +34,11 @@ export class UsersComponent {
     ){
   }
   
-  ngOnInit() {this.getData();}
+  ngOnInit() {this.getData(); this.getDatInactive();}
 
   doFilter = (value: any) => {
    this.dataSource.filter = value.target.value.trim().toLocaleLowerCase();
+   this.dataSource1.filter = value.target.value.trim().toLocaleLowerCase();
  }
  
  
@@ -49,15 +51,85 @@ export class UsersComponent {
  
  }
 
+
+ getDatInactive(){
+  this.apiService.getUsers('inactive').subscribe((items: any[]) => {
+
+    this.dataSource1.data = items;
+    this.showLoading = true;
+  });
+
+}
+
  remove(id:any){
 
   let items = {
       status : 'inactive'
   }
 
+
+  this.update_status(id,items);
+
+ }
+
+ set_to_active(id:any){
+
+  let items = {
+    status : 'active'
+}
+
+this.update_status(id,items);
+
+ }
+
+
+update_status(id : any,items:any){
+
   Swal.fire({
     title: 'Are you sure?',
-    text: "Delete this person",
+    text: "Update Person Status",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.showLoading = false;
+      Swal.fire({
+        title: 'Updating...',
+        html: 'Please wait...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      });
+      this.apiService.delete_user(id,items).subscribe((data : any) =>{
+        if(data.response){
+          Swal.close();
+          this.alert_(data.message);
+          this.getData();
+          this.getDatInactive();
+          this.showLoading = true;
+        }else {
+          Swal.close();
+          this.alert_(data.message);
+          this.showLoading = true;
+        }
+      });
+
+    }
+  });
+
+ }
+
+ delete(id : any){
+
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Delete this user",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -75,11 +147,12 @@ export class UsersComponent {
           Swal.showLoading()
         }
       });
-      this.apiService.delete_user(id,items).subscribe((data : any) =>{
+      this.apiService.remove_user(id).subscribe((data : any) =>{
         if(data.response){
           Swal.close();
           this.alert_(data.message);
           this.getData();
+          this.getDatInactive();
           this.showLoading = true;
         }else {
           Swal.close();
@@ -91,11 +164,14 @@ export class UsersComponent {
     }
   });
 
+
+
  }
 
  ngAfterViewInit(): void {
  
   this.dataSource.paginator = this.paginator;
+  this.dataSource1.paginator = this.paginator;
 }
 
 export(){
