@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,6 +9,7 @@ import * as XLSX from 'xlsx';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as $ from 'jquery';
+import { jsPDF } from "jspdf";
 
 
 @Component({
@@ -17,6 +18,8 @@ import * as $ from 'jquery';
   styleUrls: ['./track.component.css']
 })
 export class TrackComponent {
+
+  @ViewChild('content', {static: false}) el!: ElementRef;
 
   title = 'Track #' +  this.route.snapshot.paramMap.get('id');
   displayedColumns: string[] = ['number','date_released',  'user1', 'date_received', 'user2', 'duration','remarks'];
@@ -99,6 +102,21 @@ export class TrackComponent {
 
     back(){
       this.location.back(); 
+    }
+
+
+    print_pdf(){
+
+     
+      const pdf = new jsPDF('p', 'pt', 'a4');
+      pdf.html(this.el.nativeElement, {
+        callback : (pdf)=> {
+          pdf.save(this.title)
+        }
+      })
+
+      // pdf.save();
+      
     }
 
 

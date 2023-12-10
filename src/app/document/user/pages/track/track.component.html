@@ -6,7 +6,7 @@
             <div class="header-title">
               <button class="btn" (click) = "back()" ><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
                 <h1>{{title}}</h1>
-               
+             
             </div>
         </div> 
     </div>
@@ -14,9 +14,9 @@
 
 <div class="card p-3" style="border: 1px solid;">
     <div class="row">
-        <div class="col-md-5">
-
-            <div class="card mb-4 border border-dark">
+        <div class="col-md-5" >
+          <button class="btn btn-primary m-2" (click)="print_pdf()"><i class="fas fa-file"></i> Print</button>
+            <div class="card mb-4 border border-dark" id="content" #content>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-5">
@@ -88,6 +88,7 @@
                   </div>
             
                   <hr>
+                  
                  
                   <div class="row" [hidden]="document.is">
                     <div class="col-sm-5">
