@@ -106,14 +106,13 @@ export class TrackComponent {
 
 
     print_pdf(){
-
-     
-      const pdf = new jsPDF('p', 'pt', 'a4');
-      pdf.html(this.el.nativeElement, {
-        callback : (pdf)=> {
-          pdf.save(this.title)
-        }
-      })
+      
+      // const pdf = new jsPDF('p', 'pt', 'a4');
+      // pdf.html(this.el.nativeElement, {
+      //   callback : (pdf)=> {
+      //     pdf.save(this.title)
+      //   }
+      // })
 
       // pdf.save();
       

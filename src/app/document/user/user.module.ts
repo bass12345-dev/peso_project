@@ -73,7 +73,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSnackBarModule,
     MatMenuModule,
     EditorModule,
-    MatTabsModule
+    MatTabsModule,
+   
   
   ],
   providers: [UserDocumentGuard],

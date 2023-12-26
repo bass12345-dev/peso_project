@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
+import { CdkTableModule} from '@angular/cdk/table';
+import {DataSource} from '@angular/cdk/table';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,7 @@ export class DashboardComponent {
   public dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ['no','tracking_number', 'document_name', 'document_type'];
   id : any;
+  
 
 
   public dataSource1 = new MatTableDataSource<any>();
