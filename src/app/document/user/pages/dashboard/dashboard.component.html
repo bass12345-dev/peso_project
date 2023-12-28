@@ -23,15 +23,17 @@
 <div class="row p-3">
     <div class="card p-3">
         <div class="title">
-            <h1>Transaction Today</h1>
+            <h1>Transaction Today - {{date_now}} </h1>
         </div>
 
         
     <mat-tab-group>
         <mat-tab>
-          <ng-template mat-tab-label>
+          <ng-template mat-tab-label >
+            
             <mat-icon>file_copy</mat-icon>
             Created Document
+            <span class="text-danger p-2 mb-2 h5" >{{count_created_doc}}</span>
           </ng-template>
 
           <div class="card table-responsive mt-2" style="border: 1px solid;"  tabindex="0">
@@ -75,8 +77,10 @@
 
         <mat-tab >
           <ng-template   mat-tab-label>
+            
             <mat-icon  >arrow_backward</mat-icon>
             Incoming
+            <span class="text-danger p-2 mb-2 h5" >{{count_incoming_doc}}</span>
           </ng-template>
           <div class="card table-responsive mt-2" style="border: 1px solid;"  tabindex="0">
 
@@ -118,8 +122,10 @@
       
         <mat-tab >
           <ng-template   mat-tab-label>
+           
             <mat-icon  >arrow_downward</mat-icon>
             Received
+            <span class="text-danger p-2 mb-2 h5" >{{count_received_doc}}</span>
           </ng-template>
           <div class="card table-responsive mt-2" style="border: 1px solid;"  tabindex="0">
 
@@ -161,8 +167,10 @@
       
         <mat-tab>
           <ng-template mat-tab-label>
+            
             <mat-icon>arrow_forward</mat-icon>
             Forwarded
+            <span class="text-danger p-2 mb-2 h5" >{{count_forwarded_doc}}</span>
           </ng-template>
       
           <div class="card table-responsive mt-2" style="border: 1px solid;"  tabindex="0">
