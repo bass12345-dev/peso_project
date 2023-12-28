@@ -80,7 +80,6 @@ ngOnInit() {this.getData();}
   this.apiService.getList(this.type).subscribe((items: any) => {
 
     const data = atob(items);
-
     this.dataSource.data = JSON.parse(data) ;
     this.showLoading = true;
 

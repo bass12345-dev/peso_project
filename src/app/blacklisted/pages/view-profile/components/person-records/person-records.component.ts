@@ -30,10 +30,16 @@ export class PersonRecordsComponent {
   }
   get_records(){
 
-    this.apiService.getRecords(this.id).subscribe((items: any[]) => {
-      this.dataSource = items;
+    setTimeout(() => {
+      
+      this.apiService.getRecords(this.id).subscribe((items: any[]) => {
+        this.dataSource = items;
+        
+      });
       this.showLoading = true;
-    });
+    }, 3000);
+
+   
     
   }
 
@@ -84,7 +90,7 @@ export class PersonRecordsComponent {
             this.alert_(data.message,style);
             this.get_records();
             Swal.close();
-            this.showLoading = true;
+            
           }else {
             Swal.close();
             var style = 'custom-style-danger';
@@ -133,7 +139,7 @@ export class PersonRecordsComponent {
           this.alert_(data.message,style);
           this.record = '';
           this.get_records();
-          this.showLoading = true;
+        
           this.button_dis = false;
           this.spinner = true;
         
@@ -171,7 +177,7 @@ export class PersonRecordsComponent {
          this.alert_(data.message,style);
           this.record = '';
           this.get_records();
-          this.showLoading = true;
+         
           this.button_dis = false;
           this.spinner = true;
         }else {
