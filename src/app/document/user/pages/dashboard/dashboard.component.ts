@@ -18,15 +18,16 @@ export class DashboardComponent {
   count : any;
   count_card : any;
   count_doc : any;
-  public dataSource = new MatTableDataSource<any>();
+ 
   displayedColumns: string[] = ['no','tracking_number', 'document_name', 'document_type'];
   id : any;
   
 
-
+  public dataSource = new MatTableDataSource<any>();
   public dataSource1 = new MatTableDataSource<any>();
   public dataSource2 = new MatTableDataSource<any>();
 
+  public dataSourceIncoming = new MatTableDataSource<any>();
   
   constructor(
     private apiService :ApiService, 
@@ -85,6 +86,11 @@ export class DashboardComponent {
       this.dataSource = items.created_today;
       this.dataSource1 = items.received_today;
       this.dataSource2 = items.forwarded_today;
+
+      this.dataSourceIncoming = items.incoming_today;
+
+
+      
     })
     
   }

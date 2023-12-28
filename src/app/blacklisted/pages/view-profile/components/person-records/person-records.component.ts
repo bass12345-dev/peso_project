@@ -37,7 +37,7 @@ export class PersonRecordsComponent {
         
       });
       this.showLoading = true;
-    }, 3000);
+    }, 2000);
 
    
     
