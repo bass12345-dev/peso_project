@@ -14,7 +14,7 @@ import * as XLSX from 'xlsx';
 export class MyDocumentsComponent {
 
   title = 'My Documents';
-  displayedColumns: string[] = ['tracking_number', 'document_name', 'document_type', 'created','action'];
+  displayedColumns: string[] = ['tracking_number', 'document_name', 'document_type', 'status','created','action'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;

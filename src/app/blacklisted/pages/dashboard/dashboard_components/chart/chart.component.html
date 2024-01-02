@@ -13,8 +13,8 @@
                     <div class="options w-50 mt-2">
                         
                         <select class="form-control" name="select_year" id="select_year"  (change)="load_per_year($event)">
-                            <option value="{{year_now}}" selected>{{year_now}}</option>
-                            <option *ngFor="let row of year"   value="{{row}}"  >{{row}}</option>
+                            <!-- <option value="{{year_now}}" selected>{{year_now}}</option> -->
+                            <option *ngFor="let row of year"   [attr.value]="row" [attr.selected]="row == year_now ? true : null"  >{{row}}</option>
                         </select>
                     </div>
                     <div id="divChart1">

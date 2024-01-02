@@ -39,6 +39,7 @@ import { AuthService } from '../service/auth.service';
 import { ChartComponent } from './pages/dashboard/dashboard_components/chart/chart.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
+import { ManageProgramsComponent } from './pages/manage-programs/manage-programs.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { MatMenuModule } from '@angular/material/menu';
     UpdateComponent,
     SecurityCodeComponent,
     ChartComponent,
+    ManageProgramsComponent,
 
    
   ],

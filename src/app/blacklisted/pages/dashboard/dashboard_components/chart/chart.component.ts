@@ -29,7 +29,11 @@ constructor(
 
 ngOnInit() {
 
- for (let index = this.year_now + 1; index <= this.limit_year; index++) {
+//  for (let index = this.year_now + 1; index <= this.limit_year; index++) {
+//     this.year.push(index);
+    
+// }
+for (let index = 2023; index <= this.limit_year; index++) {
     this.year.push(index);
     
 }
@@ -52,6 +56,8 @@ ngOnInit() {
 
 
 load_chart_per_year(year : any){
+
+    console.log(year)
 
     
     this.apiService.DataPerYearWatchlisted(year).subscribe((data:any)=> {
