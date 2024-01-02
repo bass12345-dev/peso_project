@@ -129,6 +129,10 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/api/update_record/` + record_id,params,this.requestOptions);
   }
 
+  update_program(program_id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_program/` + program_id,params,this.requestOptions);
+  }
+
 
 
    
@@ -145,6 +149,10 @@ export class ApiService {
 
     delete_record(id:any){
       return this.http.delete(`${this.apiUrl}/api/delete-record/` + id,this.requestOptions);
+    }
+
+    delete_program(id:any){
+      return this.http.delete(`${this.apiUrl}/api/delete-program/` + id,this.requestOptions);
     }
 
 
@@ -185,6 +193,10 @@ export class ApiService {
 
       addType(data: any){
         return this.http.post(`${this.apiUrl}/api/add-document-type`,data,this.requestOptions);
+      }
+
+      addProgram(data: any){
+        return this.http.post(`${this.apiUrl}/api/add-program`,data,this.requestOptions);
       }
 
       verifyUser(body:any){
@@ -235,6 +247,10 @@ export class ApiService {
   getTypes(){
     return this.http.get<any[]>(`${this.apiUrl}/api/get-document-types`);
   } 
+
+  getPrograms(){
+    return this.http.get<any[]>(`${this.apiUrl}/api/get-programs`);
+  }
 
   getUsers(type:any): Observable<any[]>{
     return this.http.get<any[]>(`${this.apiUrl}/api/get-users?type=` + type);;

@@ -4,6 +4,18 @@ export interface Barangay {
     
   }
 
+export interface Type {
+    type: string;
+    
+  }
+
+const TYPE: Type[] = [
+  {type : 'Senior High School Student'},
+  {type : 'College Student'},
+  {type : 'Worker'},
+
+];
+
 const EXAMPLE_DATA: Barangay[] = [
     {name: 'Apil'},
     {name: 'Binuangan'},
@@ -60,5 +72,6 @@ const EXAMPLE_DATA: Barangay[] = [
 
 export class DataSource {
     barangay: Barangay[] = EXAMPLE_DATA;
+    type: Type[] = TYPE;
     url :string = 'http://127.0.0.1:8000';
 }

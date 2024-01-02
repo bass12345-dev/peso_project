@@ -17,12 +17,13 @@ export class ManageProgramsComponent {
   program : string = ' ';
   button_dis : boolean = false;
   spinner : boolean = true;
-  displayedColumns: string[] = ['type', 'created','action'];
+  displayedColumns: string[] = ['program', 'program_description', 'created','action'];
   dataSource : string[] = [];
   showLoading : boolean = false;
   text_label_input : string = 'Add';
   cancel_update_btn : boolean = true;
   program_id : any;
+  program_description : string = '';
 
   
 constructor(
@@ -34,14 +35,15 @@ constructor(
   }
 
   ngOnInit(){
-    this.getTypes()
+    this.getPrograms()
   }
 
-  update_type(id : any,type:any){
+  update_type(id : any,program:any, program_description : any){
 
     this.text_label_input = 'Update';
     this.cancel_update_btn = false;
-    this.program = type;
+    this.program = program;
+    this.program_description = program_description;
     this.program_id = id;
 
   }
@@ -55,14 +57,14 @@ constructor(
    
   }
 
-  getTypes(){
-    this.apiService.getTypes().subscribe((items: any[]) => {
+  getPrograms(){
+    this.apiService.getPrograms().subscribe((items: any[]) => {
       this.dataSource = items;
       this.showLoading = true;
     });
   }
 
-  delete(type_id : any){
+  delete(program_id : any){
     Swal.fire({
       title: 'Are you sure?',
       text: "Delete this type",
@@ -83,14 +85,14 @@ constructor(
             Swal.showLoading()
           }
         });
-        this.apiService.delete_type(type_id).subscribe((data : any) =>{
+        this.apiService.delete_program(program_id).subscribe((data : any) =>{
           
 
           if(data.response){
             Swal.close();
             var style = 'custom-style-success';
             this.alert_(data.message,style);
-            this.getTypes();
+            this.getPrograms();
             this.showLoading = true;
           }else {
             Swal.close();
@@ -110,13 +112,14 @@ constructor(
     this.spinner = false;
 
     let params =  {
-      type: this.program,
+      program             : this.program,
+      program_description : this.program_description
     }
 
 
     
     if(this.program_id == undefined ){
-      this.add_type(params);
+      this.add_program(params);
     }else {
       this.update_type_backend(this.program_id,params);
     }
@@ -131,14 +134,15 @@ constructor(
   update_type_backend(type_id : any,params:any){
 
 
-    this.apiService.update_type(type_id,params).subscribe((data : any) =>{
+    this.apiService.update_program(type_id,params).subscribe((data : any) =>{
       if(data.response){
         var style = 'custom-style-success';
         this.alert_(data.message,style);
         this.button_dis = false;
         this.spinner = true;
         this.program = ' ';
-        this.getTypes();
+        this.program_description = ' ';
+        this.getPrograms();
       }else {
         var style = 'custom-style-danger';
           this.alert_(data.message,style);
@@ -156,21 +160,22 @@ constructor(
   }
 
 
-  add_type(params:any){
+  add_program(params:any){
     if(this.program == ' '){
       alert('Please Fill Up')
       this.button_dis = false;
       this.spinner = true;
     }else if(this.program != ' ') {
       
-      this.apiService.addType(params).subscribe((data : any) =>{
+      this.apiService.addProgram(params).subscribe((data : any) =>{
         if(data.response){
           var style = 'custom-style-success';
           this.alert_(data.message,style);
           this.button_dis = false;
           this.spinner = true;
           this.program = ' ';
-          this.getTypes();
+          this.program_description = ' ';
+          this.getPrograms();
         }else {
           var style = 'custom-style-danger';
           this.alert_(data.message,style)

@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddComponent implements OnInit {
   barangay : any;
+  type : any;
   addForm!: FormGroup;
   submitted = false;
   title = 'Add Person';
@@ -30,6 +31,7 @@ export class AddComponent implements OnInit {
   ngOnInit(){
     let d = new DataSource;
     this.barangay = d.barangay;
+    this.type = d.type;
 
     this.addForm = this.formBuilder.group({
       firstName: ['', Validators.required],

@@ -27,6 +27,14 @@
             <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
           </select>
         </div>
+
+        <!-- <div class="col-12">
+          <label for="inputAddress" class="form-label">Type <span class="text-danger">*</span></label>
+          <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" >
+            <option value="" selected>Select Type</option>
+            <option *ngFor="let a of type ;let index = index" value="{{a.type}}">{{a.type}}</option>
+          </select>
+        </div> -->
         <div class="col-12">
           <label for="inputAddress2" class="form-label">Phone Number <span class="text-danger">*</span></label>
           <input type="text" formControlName="phoneNumber" class="form-control" name="phone_number"   placeholder="">
