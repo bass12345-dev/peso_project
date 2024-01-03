@@ -312,9 +312,15 @@ verifyAdmin(body:any){
   return this.http.post(`${this.apiUrl}/api/verify-admin`,body,this.requestOptions)
 }
 
+filter_document_by_date(data: any){
+  return this.http.post(`${this.apiUrl}/api/filter-by-date`,data, this.requestOptions);
+}
+
+
 addAction(data: any){
   return this.http.post(`${this.apiUrl}/api/add-action`,data, this.requestOptions);
 }
+
 
 
 

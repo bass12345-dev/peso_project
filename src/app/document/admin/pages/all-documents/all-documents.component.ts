@@ -47,7 +47,11 @@ export class AllDocumentsComponent {
     }
 
   filter_date(){
-    console.log(this.range.value)
+    
+
+    this.apiService.filter_document_by_date(this.range.value).subscribe((data : any) =>{
+
+    });
   }
 
   clear_date_filter(){
@@ -144,6 +148,12 @@ export class AllDocumentsComponent {
       }
       
     }
+
+    // reset(){
+
+    //   $('input[name="input-filter"]').val('');
+    //   this.getMydocuments();
+    // }
     
 
 
