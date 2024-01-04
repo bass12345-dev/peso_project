@@ -321,7 +321,7 @@ verifyAdmin(body:any){
 }
 
 filter_document_by_date(data: any){
-  return this.http.post(`${this.apiUrl}/api/filter-by-date`,data, this.requestOptions);
+  return this.http.post<any[]>(`${this.apiUrl}/api/filter-by-date`,data, this.requestOptions);
 }
 
 

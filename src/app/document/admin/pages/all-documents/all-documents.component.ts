@@ -47,11 +47,23 @@ export class AllDocumentsComponent {
     }
 
   filter_date(){
+
+
     
 
-    this.apiService.filter_document_by_date(this.range.value).subscribe((data : any) =>{
+    this.apiService.filter_document_by_date(this.range.value).subscribe((items: any) => {
 
+      this.dataSource.data = items;
+      this.showLoading = true;
+
+  
     });
+
+  }
+
+  refresh(){
+    this.showLoading = false;
+    this.getMydocuments();
   }
 
   clear_date_filter(){
@@ -106,14 +118,12 @@ export class AllDocumentsComponent {
     
     getMydocuments(){
 
-
+      
       this.apiService.getAllDocuments().subscribe((items: any[]) => {
 
         this.dataSource.data = items;
         this.showLoading = true;
 
-        console.log(items)
-    
       });
 
     }
