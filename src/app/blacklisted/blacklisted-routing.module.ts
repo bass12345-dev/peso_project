@@ -9,6 +9,7 @@ import { ViewProfileComponent } from './pages/view-profile/view-profile.componen
 import { UpdateComponent } from './pages/update/update.component';
 import { SecurityCodeComponent } from './pages/security-code/security-code.component';
 import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
+import { ManageProgramsComponent } from './pages/manage-programs/manage-programs.component';
 
 const routes: Routes = [
   { path: 'blacklisted', component: BlacklistedComponent, canActivate : [BlacklistedAuthGuardService],
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path : 'view/:id', component : ViewProfileComponent },
     { path : 'update/:id', component : UpdateComponent },
     { path : 'update-security', component : SecurityCodeComponent },
+    { path : 'manage-programs', component : ManageProgramsComponent},
     
     
     

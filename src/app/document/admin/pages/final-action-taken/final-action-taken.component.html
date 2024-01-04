@@ -36,26 +36,32 @@
 
     </div>
     <div class="col-md-6">
-      <form id="login-form" >
-        <h1>Register Final Actions</h1>
-        <div class="mb-3">
-          <input type="hidden" [(ngModel)]="type_id" name="office_id" >
-           <label for="username" class="form-label">{{text_label_input}} Final Actions</label>
-           <input type="text" autofocus name="type" [(ngModel)]="type" class="form-control"  required>
-        </div>
-       
-        <div class="col-12">
-          <button (click)="submit()" [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
-              <div class="spinner-border" role="status" [hidden]="spinner">
-              <span class="visually-hidden">Loading...</span>
+      <div class="card">
+        <div class="card-body">
+          <form id="login-form" >
+            <h1>Register Final Actions</h1>
+            <div class="mb-3">
+              <input type="hidden" [(ngModel)]="type_id" name="office_id" >
+               <label for="username" class="form-label">{{text_label_input}} Final Actions</label>
+               <input type="text" autofocus name="type" [(ngModel)]="type" class="form-control"  required>
             </div>
-            Submit
-          </button>
-          <button [hidden]="cancel_update_btn" type="button" class="btn btn-danger mt-2" style="margin-left: 5px;" (click)="cancel_update_click()" > 
-            Cancel update
-          </button>
+           
+            <div class="col-12">
+              <button (click)="submit()" [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+                  <div class="spinner-border" role="status" [hidden]="spinner">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                Submit
+              </button>
+              <button [hidden]="cancel_update_btn" type="button" class="btn btn-danger mt-2" style="margin-left: 5px;" (click)="cancel_update_click()" > 
+                Cancel update
+              </button>
+          </div>
+         </form>
+
+        </div>
       </div>
-     </form>
+
     </div>
   </div>
 

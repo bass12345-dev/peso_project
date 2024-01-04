@@ -46,11 +46,17 @@
             <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Document Type</th>
             <td mat-cell *matCellDef="let element"> {{element.type_name}} </td>
             </ng-container>
+
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created</th>
+              <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+            </ng-container>
         
             
             <ng-container matColumnDef="created">
-            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created</th>
-            <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+            <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Status</th>
+            <td mat-cell *matCellDef="let element"><div [innerHTML]="element.is"></div></td>
             </ng-container>
   
             <ng-container matColumnDef="action">

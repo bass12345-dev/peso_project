@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { 
 
-    let api_key = "base64:SKWrlEH55ilmbjwUpuyj5TFJOO1jASlU8aHXoFP6RAs=";
+    let api_key = "base64:2bKEr//MLbjJv0Y+UdvMlzXK2a/8qwvnteFmxH1RgVs=";
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${api_key}`
@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   // apiUrl = 'http://127.0.0.1:8000';
-  apiUrl = 'http://localhost/cpesd-api/public';
+  apiUrl = 'http://localhost/api/public';
   // apiUrl = 'http://localhost/cpesd-api/public';
   // apiUrl = 'http://192.168.1.25/cpesd-api/public';
   // apiUrl = 'https://basil-project.000webhostapp.com/public';
@@ -129,6 +129,10 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/api/update_record/` + record_id,params,this.requestOptions);
   }
 
+  update_program(program_id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_program/` + program_id,params,this.requestOptions);
+  }
+
 
 
    
@@ -145,6 +149,10 @@ export class ApiService {
 
     delete_record(id:any){
       return this.http.delete(`${this.apiUrl}/api/delete-record/` + id,this.requestOptions);
+    }
+
+    delete_program(id:any){
+      return this.http.delete(`${this.apiUrl}/api/delete-program/` + id,this.requestOptions);
     }
 
 
@@ -187,6 +195,10 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/add-document-type`,data,this.requestOptions);
       }
 
+      addProgram(data: any){
+        return this.http.post(`${this.apiUrl}/api/add-program`,data,this.requestOptions);
+      }
+
       verifyUser(body:any){
         return this.http.post(`${this.apiUrl}/api/verify-user`,body,this.requestOptions);
       }
@@ -207,6 +219,10 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/complete-document`,data,this.requestOptions);
       }
 
+
+      save_programs(data:any){
+        return this.http.post(`${this.apiUrl}/api/save-person-program`,data,this.requestOptions);
+      }
       
 
 
@@ -235,6 +251,14 @@ export class ApiService {
   getTypes(){
     return this.http.get<any[]>(`${this.apiUrl}/api/get-document-types`);
   } 
+
+  getPrograms(){
+    return this.http.get<any[]>(`${this.apiUrl}/api/get-programs`);
+  }
+
+  get_person_programs(id:any){
+    return this.http.get<any[]>(`${this.apiUrl}/api/get-person-programs?id=` + id);
+  }
 
   getUsers(type:any): Observable<any[]>{
     return this.http.get<any[]>(`${this.apiUrl}/api/get-users?type=` + type);;
@@ -296,9 +320,15 @@ verifyAdmin(body:any){
   return this.http.post(`${this.apiUrl}/api/verify-admin`,body,this.requestOptions)
 }
 
+filter_document_by_date(data: any){
+  return this.http.post<any[]>(`${this.apiUrl}/api/filter-by-date`,data, this.requestOptions);
+}
+
+
 addAction(data: any){
   return this.http.post(`${this.apiUrl}/api/add-action`,data, this.requestOptions);
 }
+
 
 
 

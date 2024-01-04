@@ -19,7 +19,10 @@
     <div class="col-xl-8 col-lg-7"> 
         <div class="card p-3">
             <h3 class="text-danger">{{display_count}}</h3>
-            <div class="mat-elevation-z8 table-responsive">
+            <div class="card" [hidden]="image_search">
+                <img src="assets/search.jpg" alt="carousel2.jpg" class="d-block im"   >
+            </div>
+            <div class="mat-elevation-z8 table-responsive" [hidden]="table_dis">
             <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
 
                     <!--- Note that these columns can be defined in any order.

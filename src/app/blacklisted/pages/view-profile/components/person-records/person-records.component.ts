@@ -23,6 +23,8 @@ export class PersonRecordsComponent {
   text_label : string = 'Add';
   cancel_update : boolean = true;
   record_id : any;
+  table_records : boolean = true;
+  no_record_image : boolean = true;
 
   constructor(private route: ActivatedRoute,private apiService : ApiService, public router: Router,private _snackBar: MatSnackBar) {}
   ngOnInit(){this.get_records();
@@ -30,10 +32,25 @@ export class PersonRecordsComponent {
   }
   get_records(){
 
-    this.apiService.getRecords(this.id).subscribe((items: any[]) => {
-      this.dataSource = items;
+    setTimeout(() => {
+      
+      this.apiService.getRecords(this.id).subscribe((items: any[]) => {
+        this.dataSource = items;
+
+        if(items.length > 0){
+          this.table_records = false;
+          this,this.no_record_image = true;
+        }else {
+          this.table_records = true;
+          this,this.no_record_image = false;
+        }
+        
+        
+      });
       this.showLoading = true;
-    });
+    }, 2000);
+
+   
     
   }
 
@@ -84,7 +101,7 @@ export class PersonRecordsComponent {
             this.alert_(data.message,style);
             this.get_records();
             Swal.close();
-            this.showLoading = true;
+            
           }else {
             Swal.close();
             var style = 'custom-style-danger';
@@ -133,7 +150,7 @@ export class PersonRecordsComponent {
           this.alert_(data.message,style);
           this.record = '';
           this.get_records();
-          this.showLoading = true;
+        
           this.button_dis = false;
           this.spinner = true;
         
@@ -171,7 +188,7 @@ export class PersonRecordsComponent {
          this.alert_(data.message,style);
           this.record = '';
           this.get_records();
-          this.showLoading = true;
+         
           this.button_dis = false;
           this.spinner = true;
         }else {

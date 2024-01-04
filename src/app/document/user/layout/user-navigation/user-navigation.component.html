@@ -11,7 +11,7 @@
 
 <mat-divider></mat-divider>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let row of menus; let i = index" routerLink="{{row.url}}" routerLinkActive="active-link"> <i class="fa {{row.icon}} {{row.class}}" aria-hidden="true"></i><span class="{{row.class}}" > {{ row.title}}</span></a>
+      <a mat-list-item   *ngFor="let row of menus; let i = index" routerLink="{{row.url}}" routerLinkActive="active-link"> <i class="fa {{row.icon}} {{row.class}}" aria-hidden="true"></i><span class="{{row.class}}" > {{ row.title}}</span> <span class="badge badge-pill badge-danger" style="color: red;">{{row.badge}}</span></a>
       <!-- <a mat-list-item routerLink="my-document" routerLinkActive="active-link"><span> <i class="fa fa-file" aria-hidden="true"></i> My Documents</span></a>
       <a mat-list-item routerLink="incoming" routerLinkActive="active-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span>Incoming</span></a>
       <a mat-list-item routerLink="received" routerLinkActive="active-link"><i class="fa fa-arrow-down" aria-hidden="true"></i> <span>Received</span></a>

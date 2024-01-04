@@ -77,9 +77,10 @@ ngOnInit() {this.getData();}
 
 
  getData(){
-  this.apiService.getList(this.type).subscribe((items: any[]) => {
+  this.apiService.getList(this.type).subscribe((items: any) => {
 
-    this.dataSource.data = items;
+    const data = atob(items);
+    this.dataSource.data = JSON.parse(data) ;
     this.showLoading = true;
 
   });

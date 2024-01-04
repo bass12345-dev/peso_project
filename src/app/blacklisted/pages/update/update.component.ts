@@ -43,6 +43,7 @@ export class UpdateComponent {
       middleName : [''],
       extension : [''],
       phoneNumber : [''],
+      age : ['']
       
       
     });
@@ -66,10 +67,24 @@ export class UpdateComponent {
         middleName : item.middle_name,
         extension : item.extension,
         phoneNumber : item.phone_number,
+        age : item.age
       });
     });
   
   }
+
+  validateNumber(event : any) {
+    const keyCode = event.keyCode;
+
+    const excludedKeys = [8, 37, 39, 46];
+
+    if (!((keyCode >= 48 && keyCode <= 57) ||
+      (keyCode >= 96 && keyCode <= 105) ||
+      (excludedKeys.includes(keyCode)))) {
+      event.preventDefault();
+    }
+  }
+
 
 
   

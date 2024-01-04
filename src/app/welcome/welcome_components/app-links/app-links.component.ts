@@ -166,4 +166,18 @@ export class AppLinksComponent {
       panelClass: ['custom-style-danger']
     });
   }
+
+  open_labor(){
+
+    Swal.fire({
+      title: '',
+      text: 'Wa pa Nahuman',
+      icon: 'warning',
+      showCancelButton: false,
+
+    })
+
+    
+
+  }
 }

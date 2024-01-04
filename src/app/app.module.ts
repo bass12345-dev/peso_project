@@ -18,6 +18,7 @@ import { BlacklistedAuthGuardService } from './service/blacklisted-auth-guard.se
 import { UserDocumentGuard } from './service/user-document-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 import { CacheInterceptor } from './interceptors/cache.interceptor';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -43,6 +44,7 @@ import { CacheInterceptor } from './interceptors/cache.interceptor';
     ReactiveFormsModule,
     MatIconModule,
     ToastrModule.forRoot(),
+    MatTableModule
 
   ],
   exports : [RouterModule],

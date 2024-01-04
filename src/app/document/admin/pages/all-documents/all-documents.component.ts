@@ -8,6 +8,11 @@ import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import {SelectionModel} from '@angular/cdk/collections';
 import * as $ from 'jquery';
+import {MatRippleModule} from '@angular/material/core';
+import {FormGroup, FormControl, FormsModule, ReactiveFormsModule, FormBuilder, Validators} from '@angular/forms';
+
+
+
 @Component({
   selector: 'app-all-documents',
   templateUrl: './all-documents.component.html',
@@ -20,17 +25,50 @@ export class AllDocumentsComponent {
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
+  range!: FormGroup;
 
   selection = new SelectionModel<any>(true, []);
 
   constructor(
     private apiService :ApiService, 
     public router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private formBuilder: FormBuilder,
   
     ){}
-    ngOnInit() {this.getMydocuments();}
+    ngOnInit() {
+      this.getMydocuments();
 
+      this.range = this.formBuilder.group({
+        start: ['', Validators.required],
+        end: ['', Validators.required],
+      })
+    
+    }
+
+  filter_date(){
+
+
+    
+
+    this.apiService.filter_document_by_date(this.range.value).subscribe((items: any) => {
+
+      this.dataSource.data = items;
+      this.showLoading = true;
+
+  
+    });
+
+  }
+
+  refresh(){
+    this.showLoading = false;
+    this.getMydocuments();
+  }
+
+  clear_date_filter(){
+    this.range.reset();
+  }
 
 
      /** Whether the number of selected elements matches the total number of rows. */
@@ -80,14 +118,12 @@ export class AllDocumentsComponent {
     
     getMydocuments(){
 
-
+      
       this.apiService.getAllDocuments().subscribe((items: any[]) => {
 
         this.dataSource.data = items;
         this.showLoading = true;
 
-        console.log(items)
-    
       });
 
     }
@@ -122,6 +158,12 @@ export class AllDocumentsComponent {
       }
       
     }
+
+    // reset(){
+
+    //   $('input[name="input-filter"]').val('');
+    //   this.getMydocuments();
+    // }
     
 
 

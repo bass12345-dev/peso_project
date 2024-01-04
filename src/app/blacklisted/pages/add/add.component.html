@@ -20,30 +20,122 @@
           <input type="text" formControlName="extension"  class="form-control" name="extension" >
           <small>Jr, Sr ...</small>
         </div>
-        <div class="col-12">
+        <div class="col-md-6">
           <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
           <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" >
             <option value="" selected>Select Barangay...</option>
             <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
           </select>
         </div>
+
+        <div class="col-md-6">
+          <label for="inputAddress" class="form-label">Age<span class="text-danger">*</span></label>
+          <input type="number" formControlName="age"  class="form-control" name="age" (keydown)="validateNumber($event)" >
+        </div>
+
+        <!-- <div class="col-12">
+          <label for="inputAddress" class="form-label">Type <span class="text-danger">*</span></label>
+          <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" >
+            <option value="" selected>Select Type</option>
+            <option *ngFor="let a of type ;let index = index" value="{{a.type}}">{{a.type}}</option>
+          </select>
+        </div> -->
         <div class="col-12">
           <label for="inputAddress2" class="form-label">Phone Number <span class="text-danger">*</span></label>
-          <input type="text" formControlName="phoneNumber" class="form-control" name="phone_number"   placeholder="">
+          <input type="text" formControlName="phoneNumber" class="form-control" name="phone_number" (keydown)="validateNumber($event)"  placeholder="">
         </div>
         <div class="col-12">
           <label for="inputAddress2" class="form-label">Email Address <span class="text-danger">*</span></label>
           <input type="email" formControlName="emailAddress" [ngClass]="{ 'is-invalid': submitted && f['emailAddress'].errors }" class="form-control" name="emailAddress"   placeholder="">
         </div>
+
+
+        <!-- <div class="col-12">
+          <label for="inputAddress2" class="form-label">Select Programs <span class="text-danger">*</span></label><br>
+          <a href="javascript:;" (click)="get_programs()" data-bs-toggle="offcanvas" data-bs-target="#complete">Click Here</a>
+          <ul>
+            <li  *ngFor="let a of selected_programs ;let index = index">{{a}}</li>
+            
+          </ul>
+        </div> -->
         
         <div class="col-12">
-          <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
-              <div class="spinner-border" role="status" [hidden]="spinner">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            Submit
-          </button>
-      </div>
+            <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+                <div class="spinner-border" role="status" [hidden]="spinner">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              Submit
+            </button>
+        </div>
       </form>
     </div>
   </div>
+
+
+  <!-- <div class="offcanvas offcanvas-end w-75" tabindex="-1" id="complete" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h2 id="offcanvasRightLabel">Select Programs</h2>
+      <button type="button" class="btn-close text-reset" id="close-off" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form>
+        
+        <input type="hidden" formControlName="history_id1" name="history_id1">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Programs</label>
+            <div class="mat-elevation-z8 table-responsive " >
+              <table mat-table  [dataSource]="dataSource" class="table">
+
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">
+                    <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox class="multi_doc" name="multi_doc" (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(element) : null"
+                                  [checked]="selection.isSelected(element)"
+                                  [aria-label]="checkboxLabel(element)" data-id="{{element.program_id}}" value="{{element.program}}">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="program">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Program</th>
+                <td mat-cell *matCellDef="let element"> {{element.program }} </td>
+                </ng-container>
+        
+        
+                <ng-container matColumnDef="program_description">
+                  <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Program Description</th>
+                  <td mat-cell *matCellDef="let element"> {{element.program_description }} </td>
+                  </ng-container>
+            
+            
+                <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Created </th>
+                <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+                </ng-container>
+           
+                  
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+              <div  [hidden]="showLoading">
+                <mat-progress-bar    mode="query" ></mat-progress-bar>
+            </div>
+            </div>
+          </div>
+          <div class="mb-3">
+          <button type="submit"   class="btn btn-primary" (click)="multi_select()">
+            <div class="spinner-border" role="status" [hidden]="spinner">
+              <span class="visually-hidden">Loading...</span>
+            </div>Submit</button>
+            </div>
+        </form>
+    </div>
+  </div> -->

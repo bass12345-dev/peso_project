@@ -1,0 +1,67 @@
+ul{
+    font-size: 20px;
+    color: red;
+    list-style: none;
+}
+
+mat-list-item .list_programs{
+  color: red;
+
+}
+
+
+
+
+/* .offcanvas-body{
+    margin: 0;
+    padding: 0;
+} */
+
+
+.container1 {
+    --uib-size: 37px;
+    --uib-color: black;
+    --uib-speed: .9s;
+    --uib-bg-opacity: .1;
+    height: var(--uib-size);
+    width: var(--uib-size);
+    transform-origin: center;
+    overflow: visible;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .car {
+    fill: none;
+    stroke: var(--uib-color);
+    stroke-dasharray: 15, 85;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: travel var(--uib-speed) linear infinite;
+    will-change: stroke-dasharray, stroke-dashoffset;
+    transition: stroke 0.5s ease;
+  }
+
+  .track {
+    stroke: var(--uib-color);
+    opacity: var(--uib-bg-opacity);
+    transition: stroke 0.5s ease;
+  }
+
+  @keyframes travel {
+    0% {
+      stroke-dashoffset: 0;
+    }
+
+    100% {
+      stroke-dashoffset: 100;
+    }
+  }
+
+
+  .btn-update-programs{
+
+    margin-left: 7%;
+  }

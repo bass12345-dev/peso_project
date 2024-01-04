@@ -22,16 +22,20 @@
           <input type="text" formControlName="extension"  class="form-control" name="extension" >
           <small>Jr, Sr ...</small>
         </div>
-        <div class="col-12">
+        <div class="col-md-6">
           <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
           <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" >
             <option value="" selected>Select Barangay...</option>
             <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
           </select>
         </div>
+        <div class="col-md-6">
+          <label for="inputAddress" class="form-label">Age<span class="text-danger">*</span></label>
+          <input type="number" formControlName="age"  class="form-control" name="age" (keydown)="validateNumber($event)" >
+        </div>
         <div class="col-12">
           <label for="inputAddress2" class="form-label">Phone Number <span class="text-danger">*</span></label>
-          <input type="text" formControlName="phoneNumber" class="form-control" name="phone_number"   placeholder="">
+          <input type="text" formControlName="phoneNumber" class="form-control" name="phone_number" (keydown)="validateNumber($event)"   placeholder="">
         </div>
         <div class="col-12">
           <label for="inputAddress2" class="form-label">Email Address <span class="text-danger">*</span></label>

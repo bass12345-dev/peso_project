@@ -73,8 +73,9 @@ export class InactiveListComponent implements OnInit {
 
   getData(){
 
-    this.apiService.getList(this.type).subscribe((items: any[]) => {
-      this.dataSource.data = items;
+    this.apiService.getList(this.type).subscribe((items: any) => {
+      const data = atob(items);
+      this.dataSource.data = JSON.parse(data) ;
       this.showLoading = true;
     });
   }

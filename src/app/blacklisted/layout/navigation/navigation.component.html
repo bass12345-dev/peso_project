@@ -14,6 +14,7 @@
       <a mat-list-item routerLink="list" routerLinkActive="active-link"><i class="fa fa-ban" aria-hidden="true"></i> <span>Active List</span></a>
       <a mat-list-item routerLink="inactive-list" routerLinkActive="active-link"><i class="fa fa-check" aria-hidden="true"></i> <span>Inactive List</span></a>
       <a mat-list-item routerLink="add" routerLinkActive="active-link"><i class="fa fa-plus" aria-hidden="true"></i><span>Add</span></a>
+      <a mat-list-item routerLink="manage-programs" routerLinkActive="active-link"><i class="fa fa-pen" aria-hidden="true"></i><span>Manage Programs</span></a>
       <a mat-list-item routerLink="update-security" routerLinkActive="active-link"><i class="fa fa-lock" aria-hidden="true"></i><span style="font-size: 13px;">Change Security Code</span></a>
       <a mat-list-item (click)="logout()"  routerLinkActive="active-link" ><i class="fa fa-sign-out text-danger " aria-hidden="true"></i> <span class="text-danger">Logout</span></a>
     </mat-nav-list>
@@ -31,8 +32,10 @@
         >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <div class="container top-display"  >
       <span>Watchlisted</span>
-      
+      <span class="pull-right text-danger">Administrator</span>
+      </div>
     </mat-toolbar>
     <div style="padding: 10px;"><router-outlet></router-outlet></div>
     

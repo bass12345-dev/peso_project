@@ -16,6 +16,9 @@ export class SearchComponent {
   displayedColumns: string[] = ['name', 'address', 'email', 'phone_number','action' ];
   dataSource : string[] = [];
   showLoading : boolean = true
+  table_dis : boolean = true;
+  image_search : boolean = false;
+  
   constructor(
     private apiService : ApiService, 
     public router: Router){
@@ -41,6 +44,8 @@ export class SearchComponent {
       });
       this.apiService.searchName(params).subscribe((data : any) =>{
         Swal.close();
+        this.table_dis = false;
+        this.image_search = true;
         this.dataSource =  data;
         this.count_text= data.length <= 1 ?  'Result' : 'Results' ; 
         this.display_count = this.count_text +' '+ data.length;
