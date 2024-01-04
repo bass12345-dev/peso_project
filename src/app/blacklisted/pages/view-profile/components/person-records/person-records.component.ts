@@ -23,6 +23,8 @@ export class PersonRecordsComponent {
   text_label : string = 'Add';
   cancel_update : boolean = true;
   record_id : any;
+  table_records : boolean = true;
+  no_record_image : boolean = true;
 
   constructor(private route: ActivatedRoute,private apiService : ApiService, public router: Router,private _snackBar: MatSnackBar) {}
   ngOnInit(){this.get_records();
@@ -34,6 +36,15 @@ export class PersonRecordsComponent {
       
       this.apiService.getRecords(this.id).subscribe((items: any[]) => {
         this.dataSource = items;
+
+        if(items.length > 0){
+          this.table_records = false;
+          this,this.no_record_image = true;
+        }else {
+          this.table_records = true;
+          this,this.no_record_image = false;
+        }
+        
         
       });
       this.showLoading = true;

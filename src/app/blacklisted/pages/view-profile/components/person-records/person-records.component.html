@@ -1,10 +1,11 @@
 <div class="row">
     <div class="col-md-6">
+        <h1>Records</h1>
         <div class="card p-2 border border-dark" >
-            
+            <img src="assets/no_record_found.jpg" [hidden]="no_record_image">
             <!-- <button class="btn btn-secondary w-50 mb-2"><i class="fas fa-plus m-1"></i>Add New Record</button> -->
             
-            <table mat-table  [dataSource]="dataSource" >
+            <table mat-table  [dataSource]="dataSource" [hidden]="table_records">
                 <ng-container matColumnDef="record">
                 <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Record</th>
                 <td mat-cell *matCellDef="let element"> {{element.record_description }} </td>

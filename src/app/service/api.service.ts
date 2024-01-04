@@ -219,6 +219,10 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/api/complete-document`,data,this.requestOptions);
       }
 
+
+      save_programs(data:any){
+        return this.http.post(`${this.apiUrl}/api/save-person-program`,data,this.requestOptions);
+      }
       
 
 
@@ -250,6 +254,10 @@ export class ApiService {
 
   getPrograms(){
     return this.http.get<any[]>(`${this.apiUrl}/api/get-programs`);
+  }
+
+  get_person_programs(id:any){
+    return this.http.get<any[]>(`${this.apiUrl}/api/get-person-programs?id=` + id);
   }
 
   getUsers(type:any): Observable<any[]>{
