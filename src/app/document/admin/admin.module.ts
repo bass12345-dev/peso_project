@@ -32,6 +32,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DashboardChartsComponent } from './pages/dashboard/dasboard_components/dashboard-charts/dashboard-charts.component';
+
 
 
 
@@ -48,7 +50,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     UsersComponent,
     AllDocumentsComponent,
     TrackComponent,
-    FinalActionTakenComponent
+    FinalActionTakenComponent,
+    DashboardChartsComponent
   
   ],
   imports: [

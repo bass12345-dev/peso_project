@@ -56,7 +56,7 @@
             
             <ng-container matColumnDef="created">
             <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;">Status</th>
-            <td mat-cell *matCellDef="let element"><div [innerHTML]="element.is"></div></td>
+            <td mat-cell *matCellDef="let element"><button [innerHTML]="element.is"  [ngClass]="element.is == 'Completed' ? 'bg-primary' : 'bg-danger'" class=" text-white" style="border-radius: 20px;"></button></td>
             </ng-container>
   
             <ng-container matColumnDef="action">

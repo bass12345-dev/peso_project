@@ -21,7 +21,7 @@ import {FormGroup, FormControl, FormsModule, ReactiveFormsModule, FormBuilder, V
 export class AllDocumentsComponent {
 
   title = 'My Documents';
-  displayedColumns: string[] = ['select','tracking_number', 'document_name', 'document_type', 'created','created_by','action'];
+  displayedColumns: string[] = ['select','tracking_number', 'document_name', 'document_type', 'created','created_by','status','action'];
   public dataSource = new MatTableDataSource<any>();
   showLoading : boolean = false;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
