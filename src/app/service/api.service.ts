@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { 
 
-    let api_key = "base64:SKWrlEH55ilmbjwUpuyj5TFJOO1jASlU8aHXoFP6RAs=";
+    let api_key = "base64:2bKEr//MLbjJv0Y+UdvMlzXK2a/8qwvnteFmxH1RgVs=";
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${api_key}`
@@ -228,6 +228,10 @@ export class ApiService {
 
       Register(data: any){
         return this.http.post(`${this.apiUrl}/api/register`,data);
+      }
+
+      DataPerYearDocument(year:any) {
+        return this.http.get<any[]>(`${this.apiUrl}/api/data-per-year-document?year=` + year);
       }
 
   //GET

@@ -64,6 +64,7 @@ export class ReceivedComponent {
         history_id1: ['', Validators.required],
         final: ['', Validators.required],
         remarks1: [''],
+        t_number : ['', Validators.required],
       
       });
     
@@ -85,6 +86,7 @@ export class ReceivedComponent {
     let params = {
 
       id : this.addForm1.value['history_id1'],
+      t_number : this.addForm1.value['t_number'],
       final_action_taken : this.addForm1.value['final'],
       remarks1 : this.addForm1.value['remarks1'],
     }
@@ -257,13 +259,14 @@ a(t_number : any, history_id : any){
 }
 
 
-complete_off_canvas(id: any , title : any){
+complete_off_canvas(id: any , title : any, tracking_number : any){
 
   this.addForm1.setValue({
 
     history_id1: id,
     final : '',
     remarks1: '',
+    t_number : tracking_number
     
   });
 

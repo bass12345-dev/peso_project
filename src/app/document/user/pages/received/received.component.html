@@ -87,7 +87,7 @@
                         <span class="text-primary">Forward</span>
                       </button>
   
-                      <button  mat-menu-item [hidden]="element.a" (click)="complete_off_canvas(element.history_id,element.document_name)"  data-bs-toggle="offcanvas" data-bs-target="#complete">
+                      <button  mat-menu-item [hidden]="element.a" (click)="complete_off_canvas(element.history_id,element.document_name, element.tracking_number)"  data-bs-toggle="offcanvas" data-bs-target="#complete">
                           <mat-icon class="text-success">check</mat-icon>
                         <span class="text-success">Approve</span>
                       </button>
@@ -175,6 +175,7 @@
       <!-- <input type="hidden" formControlName="tracking_number" name="tracking_number">
       <input type="hidden" formControlName="id" name="id"> -->
       <input type="hidden" formControlName="history_id1" name="history_id1">
+      <input type="hidden" formControlName="t_number" name="t_number">
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Final Action Taken : </label>
           <select class="form-control" formControlName="final" name="final" [ngClass]="{ 'is-invalid': submitted && f1['final'].errors }" >

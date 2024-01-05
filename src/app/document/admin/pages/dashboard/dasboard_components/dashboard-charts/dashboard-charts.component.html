@@ -1,1 +1,19 @@
-<p>dashboard-charts works!</p>
+<div class="row ">
+    <div class="col-md-12">
+        <div class="card p-2">
+            <label>Display Per Year</label>
+            <div class="options w-50 mt-2">
+                
+                <select class="form-control" aria-label="label for the select" name="select_year" id="select_year" (change)="load_per_year($event)" >
+                    <!-- <option value="{{year_now}}" selected>{{year_now}}</option> -->
+                    <option *ngFor="let row of year"   [attr.value]="row" [attr.selected]="row == year_now ? true : null"  >{{row}}</option>
+                </select>
+            </div>
+            <div id="divChart1">
+                
+                <canvas id="myChart1" width="100" height="25"></canvas>
+                <span [hidden]="processing_text">Processing...</span>
+            </div>
+        </div>
+    </div>
+</div>

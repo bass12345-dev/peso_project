@@ -57,7 +57,7 @@ for (let index = 2023; index <= this.limit_year; index++) {
 
 load_chart_per_year(year : any){
 
-    console.log(year)
+
 
     
     this.apiService.DataPerYearWatchlisted(year).subscribe((data:any)=> {
