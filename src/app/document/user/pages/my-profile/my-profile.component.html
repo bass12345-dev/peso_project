@@ -1,0 +1,180 @@
+<div class="container">
+    <div class="main-body">
+    
+        
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{user.first_name}}</h4>
+                      <p class="text-secondary mb-1">CPESD MEMBER</p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Full Name</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.first_name}} {{user.middle_name}} {{user.last_name}} {{user.extension}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Username</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.username}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Email</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{user.email_address}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Phone</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.contact_number}}
+                    </div>
+                  </div>
+                  <hr>
+                 
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Address</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.address}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info m-1 " data-bs-toggle="offcanvas" data-bs-target="#complete"  href="javascript:;">Edit Profile</a>
+                      <a class="btn btn-danger " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit Password</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+    <div class="offcanvas offcanvas-end w-75" tabindex="-1" id="complete" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h2 id="offcanvasRightLabel">Update Profile</h2>
+          <button type="button" class="btn-close text-reset" id="close-off" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+                  <div class="card mt-4">
+                     <div class="card-body p-4">
+                        
+                        
+                        <div class="p-2 mt-2">
+                           <form id="login-form" [formGroup]="addForm"   >
+                            <div class="row">
+                              <div class="col-md-6 mb-3">
+                                <label for="inputEmail4" class="form-label">First Name<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
+                              
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label for="inputEmail4" class="form-label">Middle Name<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
+                              
+                              </div>
+                            </div>
+
+                            <div class="row">
+
+                              <div class="col-md-6 mb-3">
+                                <label for="inputEmail4" class="form-label">Last Name<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
+                              
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label for="inputEmail4" class="form-label">Jr Sr ... Extension<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
+                              
+                              </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label" for="password-input">Contact Number</label>
+                              <div class="position-relative auth-pass-inputgroup mb-3">
+                                 <input type="text" class="form-control pe-5"  name="contact_number" formControlName="contact_number"  [ngClass]="{ 'is-invalid': submitted && f['contact_number'].errors }">
+                              </div>
+                           </div>
+                            <div class="mb-3">
+                               <label class="form-label" for="password-input">Email Address</label> <small class="text-danger"> *Valid</small>
+                               <div class="position-relative auth-pass-inputgroup mb-3">
+                                  <input type="email" class="form-control pe-5"  name="email" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                               </div>
+   
+                               <!-- <span class="text-danger" *ngif="f['email'].errors?.pattern">Email address is invalid</span>   -->
+                            </div>
+   
+                            <div class="mb-3">
+                              <label for="inputPassword4" class="form-label is-invalid">Barangay<span class="text-danger">*</span></label>
+                              <select  class="form-control" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"  >
+                                <option value="" selected>Select Barangay</option>
+                                <option *ngFor="let a of barangay ;let index = index" value="{{a.name}}">{{a.name}}</option>
+                              </select>
+                           </div>
+   
+                            <div class="mb-3">
+                              <label for="inputPassword4" class="form-label is-invalid">Offices<span class="text-danger">*</span></label>
+                              <select  class="form-control" name="office" formControlName="office"  [ngClass]="{ 'is-invalid': submitted && f['office'].errors }"  >
+                                <option value="">Select Office</option>
+                                <option   *ngFor="let row of offices; let index = index" value="{{row.office_id}}" >{{ row.office }}</option>
+                              </select>
+                           </div>
+   
+                            <div class="mb-3">
+                               <label class="form-label" for="password-input">Username</label>
+                               <div class="position-relative auth-pass-inputgroup mb-3">
+                                  <input type="text" class="form-control pe-5"  name="user_name" formControlName="user_name"  [ngClass]="{ 'is-invalid': submitted && f['user_name'].errors }">
+                               </div>
+                            </div>
+                              
+                              <div class="col-12">
+                                <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+                                    <div class="spinner-border" role="status" [hidden]="spinner">
+                                    <span class="visually-hidden">Loading...</span>
+                                  </div>
+                                  Submit
+                                </button>
+                            </div>
+                           </form>
+                        </div>
+                     </div>
+                     <!-- end card body -->
+                  </div>
+               
+           
+          
+        </div>
+    </div>

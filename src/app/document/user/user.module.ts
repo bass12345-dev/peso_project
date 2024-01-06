@@ -34,6 +34,7 @@ import { UpdateDocumentComponent } from './pages/update-document/update-document
 import {MatMenuModule} from '@angular/material/menu';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     UserDisplayComponent,
     TrackAllComponent,
     UpdateDocumentComponent,
+    MyProfileComponent,
     
 
   ],

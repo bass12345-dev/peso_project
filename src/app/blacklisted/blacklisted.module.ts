@@ -40,6 +40,7 @@ import { ChartComponent } from './pages/dashboard/dashboard_components/chart/cha
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { ManageProgramsComponent } from './pages/manage-programs/manage-programs.component';
+import { SearchPersonComponent } from './pages/search-person/search-person.component';
 
 
 @NgModule({
@@ -60,6 +61,8 @@ import { ManageProgramsComponent } from './pages/manage-programs/manage-programs
     SecurityCodeComponent,
     ChartComponent,
     ManageProgramsComponent,
+    SearchPersonComponent,
+    
 
    
   ],

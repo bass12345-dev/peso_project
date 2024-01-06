@@ -13,15 +13,15 @@ export class UserDisplayComponent {
     private apiService : ApiService, 
   ) {}
 
-  ngOnInit() {
-    this.getUserData();
-   }
+  // ngOnInit() {
+  //   this.getUserData();
+  //  }
 
-   getUserData(){
-    this.apiService.getUserData(localStorage.getItem("id")).subscribe((item: any) => {
-      this.user = item;
+  //  getUserData(){
+  //   this.apiService.getUserData(localStorage.getItem("id")).subscribe((item: any) => {
+  //     this.user = item;
       
-  });
-   }
+  // });
+  //  }
 
 }

@@ -13,6 +13,7 @@ import { TrackAllComponent } from './pages/track-all/track-all.component';
 import { UserDocumentGuard } from 'src/app/service/user-document-guard.service';
 import { UpdateComponent } from 'src/app/blacklisted/pages/update/update.component';
 import { UpdateDocumentComponent } from './pages/update-document/update-document.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent  , canActivate : [UserDocumentGuard],
@@ -26,7 +27,7 @@ const routes: Routes = [
     { path : 'track/:id', component : TrackComponent},
     { path : 'update-document/:id', component : UpdateDocumentComponent},
     { path : 'track-documents', component : TrackAllComponent},
-    
+    { path : 'my-profile', component : MyProfileComponent},
   ] }
 ];
 

@@ -1,0 +1,75 @@
+<div class="row  mt-2">
+    <div class="col-xl-4 col-lg-5"> 
+        <div class="card p-3">
+            <h1>Search Name</h1>
+            <form class="p-3" id="form">
+                <div class="mb-3">
+                  <label  class="form-label">First Name</label>
+                  <input type="text" name="first_name" [(ngModel)]="first_name"  class="form-control" required >
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Last Name</label>
+                    <input type="text" name="last_name" [(ngModel)]="last_name"  class="form-control" >
+                </div>
+               
+                <button type="button" (click)="search()"  class="btn btn-primary btn-lg btn-block">Search</button>
+            </form>
+
+
+           
+
+        </div>
+        
+    </div>   
+    <div class="col-xl-8 col-lg-7"> 
+        <div class="card p-3">
+            <h3 class="text-danger">{{display_count}}</h3>
+            <div class="card" [hidden]="image_search">
+                <img src="assets/search.jpg" alt="carousel2.jpg" class="d-block im"   >
+            </div>
+            <div class="mat-elevation-z8 table-responsive" [hidden]="table_dis">
+            <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
+                
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Name</th>
+                    <td mat-cell *matCellDef="let element"> {{element.first_name }} {{element.middle_name }} {{element.last_name }} {{element.extension }} </td>
+                    </ng-container>
+                
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Address </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                    </ng-container>
+                
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email_address}} </td>
+                    </ng-container>
+                
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="phone_number">
+                    <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Phone Number</th>
+                    <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef style="background-color: #3F6BA4; color: #fff;"> Actions</th>
+                        <td mat-cell *matCellDef="let element">
+                          
+                            <button class="btn btn-primary" (click)="view_records(element.person_id)"><i class="fas fa-eye"></i></button>
+                        </td>
+                        </ng-container>
+    
+                 
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

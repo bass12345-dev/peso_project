@@ -10,6 +10,7 @@ import { UpdateComponent } from './pages/update/update.component';
 import { SecurityCodeComponent } from './pages/security-code/security-code.component';
 import { BlacklistedAuthGuardService } from '../service/blacklisted-auth-guard.service';
 import { ManageProgramsComponent } from './pages/manage-programs/manage-programs.component';
+import { SearchPersonComponent } from './pages/search-person/search-person.component';
 
 const routes: Routes = [
   { path: 'blacklisted', component: BlacklistedComponent, canActivate : [BlacklistedAuthGuardService],
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path : 'update/:id', component : UpdateComponent },
     { path : 'update-security', component : SecurityCodeComponent },
     { path : 'manage-programs', component : ManageProgramsComponent},
+    { path : 'search', component : SearchPersonComponent},
     
     
     

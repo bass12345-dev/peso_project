@@ -139,4 +139,8 @@ export class UserNavigationComponent {
       localStorage.removeItem("id");
       this.router.navigate(['../document/login']);
   }
+
+  view_my_profile(){
+    this.router.navigate(['../document/user/my-profile']);
+  }
 }

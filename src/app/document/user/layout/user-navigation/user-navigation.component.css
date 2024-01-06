@@ -53,6 +53,9 @@ i, span {
   margin-left: 40px;
 }
 
+.sa {
+  cursor: pointer;
+}
 /* .top-display {
   background-image: url("../../../../../assets/top-back.jpg");
   background-size: cover;

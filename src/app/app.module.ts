@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {  Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,15 +21,25 @@ import { CacheInterceptor } from './interceptors/cache.interceptor';
 import { MatTableModule } from '@angular/material/table';
 
 
+// Add these two
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
+// Export this function
+export function playerFactory(): any {  
+  return import('lottie-web');
+}
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-  
     WelcomeComponent,
-       ToolbarComponent,
-       AppLinksComponent,
-       CarouselComponent,
+    ToolbarComponent,
+    AppLinksComponent,
+    CarouselComponent,
+    
    
   ],
   imports: [
@@ -44,7 +54,9 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     MatIconModule,
     ToastrModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    LottieModule.forRoot({ player: playerFactory }),  
+   
 
   ],
   exports : [RouterModule],
