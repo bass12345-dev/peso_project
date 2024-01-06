@@ -93,7 +93,7 @@
                         
                         
                         <div class="p-2 mt-2">
-                           <form id="login-form" [formGroup]="addForm"   >
+                           <form id="login-form" [formGroup]="addForm" (ngSubmit)="onSubmit()"   >
                             <div class="row">
                               <div class="col-md-6 mb-3">
                                 <label for="inputEmail4" class="form-label">First Name<span class="text-danger">*</span></label>
@@ -101,24 +101,23 @@
                               
                               </div>
                               <div class="col-md-6 mb-3">
-                                <label for="inputEmail4" class="form-label">Middle Name<span class="text-danger">*</span></label>
-                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
-                              
-                              </div>
+                                <label class="form-label" for="password-input">Middle Name</label>
+                                <div class="position-relative auth-pass-inputgroup mb-3">
+                                   <input type="text" class="form-control pe-5"   name="middle_name" formControlName="middle_name"  [ngClass]="{ 'is-invalid': submitted && f['middle_name'].errors }">
+                                </div>
+                             </div>
+                             <div class=" col-md-6 mb-3">
+                                <label class="form-label" for="password-input">Last Name</label>
+                                <div class="position-relative auth-pass-inputgroup mb-3">
+                                   <input type="text" class="form-control pe-5"  name="last_name" formControlName="last_name"  [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }">
+                                </div>
+                             </div>
+                             <div class=" col-md-6 mb-3">
+                               <label class="form-label" for="password-input">Jr Sr ... Extension</label>
+                               <div class="position-relative auth-pass-inputgroup mb-3">
+                                  <input type="text" class="form-control pe-5"  name="extension" formControlName="extension"  [ngClass]="{ 'is-invalid': submitted && f['extension'].errors }">
+                               </div>
                             </div>
-
-                            <div class="row">
-
-                              <div class="col-md-6 mb-3">
-                                <label for="inputEmail4" class="form-label">Last Name<span class="text-danger">*</span></label>
-                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
-                              
-                              </div>
-                              <div class="col-md-6 mb-3">
-                                <label for="inputEmail4" class="form-label">Jr Sr ... Extension<span class="text-danger">*</span></label>
-                                <input type="text" formControlName="first_name"  [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" class="form-control" name="first_name"  required="">
-                              
-                              </div>
 
                             </div>
 

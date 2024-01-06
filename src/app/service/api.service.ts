@@ -376,6 +376,11 @@ getActions(): Observable<any[]>{
     return this.http.put(`${this.apiUrl}/api/remove-user/` + id,params);
   }
 
+
+  UpdateProfile(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_profile/` + id,params,this.requestOptions);
+  }
+
   
   //DELETE
     
