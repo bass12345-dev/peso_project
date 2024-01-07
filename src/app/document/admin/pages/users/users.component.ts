@@ -168,6 +168,47 @@ update_status(id : any,items:any){
 
  }
 
+
+ default_password(id:any){
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Change to Default Password",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.showLoading = false;
+      Swal.fire({
+        title: 'Deleting...',
+        html: 'Please wait...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      });
+
+      this.apiService.default_password(id).subscribe((data : any) =>{
+        if(data.response){
+          Swal.close();
+          this.alert_(data.message);
+          this.showLoading = true;
+        }else {
+          Swal.close();
+          this.alert_(data.message);
+          this.showLoading = true;
+        }
+      });
+
+
+    }
+  });
+ }
+
  ngAfterViewInit(): void {
  
   this.dataSource.paginator = this.paginator;

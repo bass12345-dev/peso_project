@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { DataSource } from 'src/app/source/data-source';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -19,10 +21,13 @@ export class MyProfileComponent {
   offices : any = [];
   barangay : any;
 
+  passform!: FormGroup;
+
   constructor(
     private apiService : ApiService, 
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public router: Router,
   ) {}
 
   ngOnInit() {
@@ -30,7 +35,10 @@ export class MyProfileComponent {
     this.barangay = d.barangay;
     this.getOffices()
     this.getUserData();
-   
+    this.passform = this.formBuilder.group({
+      old_password : ['', Validators.required],
+      new_password : ['', Validators.required],
+    })
     this.addForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       middle_name: ['', ],
@@ -63,6 +71,9 @@ export class MyProfileComponent {
   }
 
    get f() { return this.addForm.controls; }
+   
+   get p() { return this.passform.controls; }
+
 
    getUserData(){
     this.apiService.getUserData(localStorage.getItem("id")).subscribe((item: any) => {
@@ -83,11 +94,54 @@ export class MyProfileComponent {
 
       })
       
-  });
+  },
+  (error) => {
+          
+    alert("Can't connect to server")
+  }
+  
+  );
    }
 
 
+   onSubmit1() {
 
+    this.button_dis = true;
+    this.spinner = false;
+    this.submitted = true;
+    var style;
+
+       // stop here if form is invalid
+       if (this.addForm.invalid) {
+        this.button_dis = false;
+        this.spinner = true;
+        return;
+      }
+      
+
+      
+
+
+
+      this.apiService.UpdatePassword(localStorage.getItem("id"),this.passform.value).subscribe((data : any) =>{
+        if(data.response){
+       
+          this.button_dis = false;
+          this.spinner = true;
+          this.logout()
+        }else {
+          this.alert_(data.message,style='custom-style-danger');
+          this.button_dis = false;
+          this.spinner = true;
+        }
+      },
+      (error) => {
+          
+        alert("Can't connect to server")
+      }
+      )
+
+   }
 
 
 
@@ -123,6 +177,26 @@ export class MyProfileComponent {
 
    }
 
+
+
+   logout(){
+    Swal.fire({
+      title: 'Successfully Changed',
+      text: "Logout ?",
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
+        localStorage.removeItem("id");
+        this.router.navigate(['../document/login']);
+      }
+    });
+  }
+  
 
 
    alert_(message:any, style : any){

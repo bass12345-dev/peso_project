@@ -227,7 +227,7 @@ export class ApiService {
 
 
       Register(data: any){
-        return this.http.post(`${this.apiUrl}/api/register`,data);
+        return this.http.post(`${this.apiUrl}/api/register`,data,this.requestOptions);
       }
 
       DataPerYearDocument(year:any) {
@@ -379,6 +379,15 @@ getActions(): Observable<any[]>{
 
   UpdateProfile(id:any,params : any){
     return this.http.put(`${this.apiUrl}/api/update_profile/` + id,params,this.requestOptions);
+  }
+
+
+  UpdatePassword(id:any,params : any){
+    return this.http.put(`${this.apiUrl}/api/update_password/` + id,params,this.requestOptions);
+  }
+
+  default_password(id:any){
+    return this.http.put(`${this.apiUrl}/api/update_password_to_default/` + id,'',this.requestOptions);
   }
 
   

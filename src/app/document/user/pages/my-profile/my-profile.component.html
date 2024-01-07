@@ -70,7 +70,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info m-1 " data-bs-toggle="offcanvas" data-bs-target="#complete"  href="javascript:;">Edit Profile</a>
-                      <a class="btn btn-danger " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit Password</a>
+                      <a class="btn btn-danger " href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#complete1">Edit Password</a>
                     </div>
                   </div>
                 </div>
@@ -81,6 +81,43 @@
     </div>
 
 
+
+    <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="complete1" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h2 id="offcanvasRightLabel">Update Password</h2>
+        <button type="button" class="btn-close text-reset" id="close-off1" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="card mt-2">
+          <div class="card-body p-4">
+            <div class="p-2 ">
+              <form id="login-form" [formGroup]="passform" (ngSubmit)="onSubmit1()"   >
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="inputEmail4" class="form-label">Old Password<span class="text-danger">*</span></label>
+                      <input type="password" formControlName="old_password"  [ngClass]="{ 'is-invalid': submitted && p['old_password'].errors }" class="form-control" name="old_password"  required="">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="password-input">New Password</label>
+                      <div class="position-relative auth-pass-inputgroup mb-3">
+                        <input type="password" class="form-control pe-5"   name="new_password" formControlName="new_password"  [ngClass]="{ 'is-invalid': submitted && p['new_password'].errors }">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button [disabled]="button_dis" type="submit" class="btn btn-primary mt-2"  > 
+                  <div class="spinner-border" role="status" [hidden]="spinner">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> 
+      </div>
+  </div>
 
     <div class="offcanvas offcanvas-end w-75" tabindex="-1" id="complete" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
