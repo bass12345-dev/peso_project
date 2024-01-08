@@ -199,6 +199,7 @@ alert_(message:any,style : any){
   }
 
   reload(){
+    this.showLoading = false;
     this.getAlldocuments();
     this.get_last();
   }
@@ -207,7 +208,7 @@ alert_(message:any,style : any){
 
   getAlldocuments(){
 
-
+    
     this.apiService.getAllDocuments().subscribe((items: any[]) => {
 
       this.dataSource.data = items;

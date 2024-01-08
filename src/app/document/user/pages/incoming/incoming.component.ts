@@ -73,14 +73,17 @@ export class IncomingComponent {
     }
     
     getIncomingDocs(){
-
-
+      this.showLoading = false;
+      setTimeout(() => {
       this.apiService.getIncomingDocs(localStorage.getItem("id")).subscribe((items: any[]) => {
 
         this.dataSource.data = items;
-        this.showLoading = true;
+      
       
       });
+
+      this.showLoading = true;
+    }, 2000);
 
     }
 

@@ -185,15 +185,17 @@ export class ReceivedComponent {
     
     getReceivedDocs(){
 
-
+      this.showLoading = false;
+      setTimeout(() => {
       this.apiService.getReceivedDocs(localStorage.getItem("id")).subscribe((items: any[]) => {
 
         this.dataSource.data = items;
-        this.showLoading = true;
-
-        console.log(items)
+      
     
       });
+
+      this.showLoading = true;
+    }, 2000);
 
     }
 
