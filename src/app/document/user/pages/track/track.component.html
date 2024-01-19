@@ -90,7 +90,7 @@
                   <hr>
                   
                  
-                  <div class="row" [hidden]="document.is">
+                  <!-- <div class="row" [hidden]="document.is">
                     <div class="col-sm-5">
                       <p class="mb-0">Status</p>
                     </div>
@@ -99,8 +99,19 @@
                     </div>
                   </div>
             
-                  <hr [hidden]="document.is">
+                  <hr [hidden]="document.is"> -->
                  
+
+                  <div class="row" >
+                    <div class="col-sm-5">
+                      <p class="mb-0">Status</p>
+                    </div>
+                    <div class="col-sm-7">
+                        <button class="btn " [innerHTML]="document.is == true ? 'Completed' : 'Pending'" [ngClass]="document.is == true ? 'btn-primary' : 'btn-danger' "></button>  
+                    </div>
+                  </div>
+            
+                  <hr>
                 
               </div>
             </div>

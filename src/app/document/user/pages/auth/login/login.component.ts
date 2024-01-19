@@ -40,6 +40,12 @@ export class LoginComponent {
 
     this.submitted = true;
 
+    let data = {
+
+      username : this.addForm.value['username'],
+      password : btoa(this.addForm.value['password']), 
+    }
+
     // stop here if form is invalid
     if (this.addForm.invalid) {
     
@@ -56,7 +62,7 @@ export class LoginComponent {
         Swal.showLoading()
       }
     });
-    this.apiService.verifyUser(this.addForm.value).subscribe((data : any) =>{
+    this.apiService.verifyUser(data).subscribe((data : any) =>{
       if(data.response){
 
         Swal.close()
