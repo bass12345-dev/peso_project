@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { 
 
-    let api_key = "base64:2bKEr//MLbjJv0Y+UdvMlzXK2a/8qwvnteFmxH1RgVs=";
+    let api_key = "base64:SKWrlEH55ilmbjwUpuyj5TFJOO1jASlU8aHXoFP6RAs=";
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${api_key}`

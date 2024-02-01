@@ -118,6 +118,8 @@ export class AllDocumentsComponent {
     
     getMydocuments(){
 
+
+      setTimeout(() => {
       
       this.apiService.getAllDocuments().subscribe((items: any[]) => {
 
@@ -126,6 +128,7 @@ export class AllDocumentsComponent {
 
       });
 
+    }, 2000);
     }
 
 
