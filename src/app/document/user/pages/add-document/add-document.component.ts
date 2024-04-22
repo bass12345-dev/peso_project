@@ -63,9 +63,7 @@ export class AddDocumentComponent {
       document_type: ['', Validators.required],
       description: ['', ],
       tracking_number : ['', Validators.required],
-      // year : ['', Validators.required],
-      // month : ['', Validators.required],
-      // day : ['', Validators.required],
+      type : ['', Validators.required]
     });
 
     this.get_last();
@@ -84,15 +82,11 @@ export class AddDocumentComponent {
       tracking_number  : item.number,
       document_type: '',
       description: '',
-      // month : item.m,
-      // day : item.d,
-      // year : item.y 
+      type : ''
 
     });
 
-    // this.y = item.y;
-    // this.m = item.m;
-    // this.d = item.d;
+  
  },  (error) => {                              //Error callback
         
       var message = "Can't fetch tracking number please click reload icon ";

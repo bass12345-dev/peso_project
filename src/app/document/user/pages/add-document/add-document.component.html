@@ -72,8 +72,17 @@
               <option   *ngFor="let row of types; let index = index" value="{{row.type_id}}" >{{ row.type_name }}</option>
             </select>
           </div>
-          
+
           <div class="col-md-6">
+            <label for="inputPassword4" class="form-label is-invalid">Type<span class="text-danger">*</span></label>
+            <select  class="form-control" name="type" formControlName="type"  [ngClass]="{ 'is-invalid': submitted && f['type'].errors }"  >
+              <option value="">Select Type...</option>
+              <option value="simple">Simple</option>
+              <option value="conplex">Complex</option>
+            </select>
+          </div>
+          
+          <div class="col-md-12">
             <label for="inputEmail4" class="form-label">Description <span class="text-danger">*</span></label>
           
             <editor
